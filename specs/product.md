@@ -479,17 +479,25 @@ RAG is a required part of the product. It explains; it never decides eligibility
 **Ingestion (`npm run rag:ingest`)**
 - One-time setup: `core/db/rag.sql` in the Supabase SQL Editor creates the `rag_chunks` table (pgvector, HNSW cosine index, RLS on with no policies so the anon key can't read it) and the `match_rag_chunks` search function (executable only by the secret key).
 - Core reaches Supabase over its HTTPS REST API (port 443), not a direct Postgres connection: venue and campus networks often block ports 5432/6543. The secret key stays in `core/.env`.
-- Ingestion embeds only new or changed chunks with `text-embedding-3-small`; removed chunks are deleted.
+- Ingestion embeds only new or changed chunks with `text-embedding-3-large` (shortened to 1536 dimensions); the stored hash includes the model, so changing models re-embeds everything, and core warns at startup if the stored model differs from the query model. Removed chunks are deleted.
+- Hindi pages of official PDFs extract as garbled Devanagari and are skipped; `data/corpus/aliases.json` adds scheme names and everyday caller words (hi/mr/en) to every summary passage.
 
 **At call time (inside the same single LLM call per turn)**
 1. Skip retrieval for plain answers to the engine's own question ("हाँ", "तीस साल": short and no question word); retrieve otherwise.
-2. Embed the utterance; search pgvector for up to 3 chunks of the schemes in focus plus the best overall, 4 in total.
+2. Hybrid search: schemes named in the utterance (alias match, e.g. "पीएम किसान") and schemes in focus are searched first, then the best overall; at most 2 passages per scheme, 4 in total.
 3. The chunks go into the LLM call as numbered passages marked `rules="verified"` or `rules="none"` (RAG-only scheme → only "may be eligible, confirm at CSC").
 4. The answer may only use those passages, and the LLM returns which ones it used (`sources`). If they don't answer the question, it says the CSC will give exact information.
 5. If Supabase fails or takes over 2.5 s, the local scheme text is used instead, so a call never stalls on RAG.
 6. The live panel shows the retrieved passages with similarity scores and marks the cited ones under the answer, with links to the official documents.
 
-**Evaluation (`npm run rag:eval`)**: 27 questions in hi / mr / en (`data/corpus/eval.json`), no scheme filter; reports Hit@4 and MRR overall and per language.
+**Evaluation (`npm run rag:eval`)**: 35 questions in hi / mr / en (`data/corpus/eval.json`), no scheme filter; reports Hit@4 and MRR overall, per language, and for 8 held-out questions written after tuning.
+
+| Setup (31 Oct 2026) | Hit@4 | MRR | Held-out |
+|---|---|---|---|
+| small model, vector only (27 questions) | 74% | 0.63 | n/a |
+| + aliases, 2 per scheme, name boost | 80% | 0.72 | 4/8 |
+| + garbled Hindi PDF text removed | 83% | 0.74 | 5/8 |
+| + `text-embedding-3-large` | **97%** | **0.93** | **7/8** |
 
 **Uses**
 - Follow-up questions: "paisa kab aayega?", "kisht kitni hai?", "aur kaun se documents?"

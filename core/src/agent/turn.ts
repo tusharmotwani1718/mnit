@@ -1,4 +1,4 @@
-import { toHectares, type Engine, type Evaluation, type Lang, type Scheme, type SchemeResult } from "../engine/index.js";
+import { toHectares, type Engine, type FactValue, type Evaluation, type Lang, type Scheme, type SchemeResult } from "../engine/index.js";
 import { composeDetails, composeSchemeList, moreText, text } from "./composer.js";
 import { decideLanguage } from "./language.js";
 import type { LlmTurnOutput, TurnLlm } from "./llm.js";
@@ -14,7 +14,28 @@ export const MAX_QUESTIONS = 5;
 /** Schemes spoken per batch (spec 4.3: never read a long list). */
 export const BATCH = 2;
 const HISTORY_TURNS = 6;
+
+/**
+ * Words that name a class or course. The LLM tends to turn an age ("my 12 year old son") into a class, so a student level is
+ * only taken when we just asked for it or the caller used one of these words.
+ */
+const STUDENT_LEVEL_CUES =
+  /class|std|standard|grade|college|degree|diploma|iti|polytechnic|engineering|medical|mbbs|b\.?\s?(a|sc|com|tech|e)\b|m\.?\s?(a|sc|com|tech|ba)\b|कक्षा|क्लास|कॉलेज|कालेज|डिग्री|डिप्लोमा|इंजीनियरिंग|इयत्ता|वर्ग|महाविद्यालय|पदवी|इंजिनिअरिंग|(पहली|दूसरी|तीसरी|चौथी|पाँचवीं|पांचवीं|छठी|सातवीं|आठवीं|नौवीं|नवीं|दसवीं|ग्यारहवीं|बारहवीं)|(पहिली|दुसरी|तिसरी|चौथी|पाचवी|सहावी|सातवी|आठवी|नववी|दहावी|अकरावी|बारावी)/i;
+
+/** Facts about the caller as a person. Ignored from a message about someone else ("he is 15"); family and student facts are kept. */
+const PERSONAL_FACTS = new Set([
+  "age", "gender", "isIncomeTaxPayer", "isGovtEmployee", "hasOtherPensionScheme", "hasBankAccount", "hasPfOrEsic",
+  "isWidowOrSingleWoman", "isPregnantOrLactating", "isDisabled", "isFrontlineWorker",
+]);
 const PREVIEW_CHARS = 220;
+/** Spoken answers stay short (spec 4.3); the prompt asks for two sentences and this enforces it. */
+const MAX_ANSWER_SENTENCES = 2;
+
+const firstSentences = (text: string, n: number) =>
+  text
+    .split(/(?<=[.।?!])\s+/)
+    .slice(0, n)
+    .join(" ");
 
 // Question words in Hindi, Marathi and English: a short reply containing one still gets retrieval.
 const QUESTION_WORDS =
@@ -86,20 +107,29 @@ export function createAgent({
       .map((r) => r.schemeId);
   }
 
-  function mergeFacts(s: Session, out: LlmTurnOutput) {
+  /** Merges valid extracted facts into the session; returns how many were new or changed. */
+  function mergeFacts(s: Session, out: LlmTurnOutput, userText: string): number {
+    let changed = 0;
+    const set = (key: string, value: FactValue) => {
+      if (s.stated[key] !== value) changed++;
+      s.stated[key] = value;
+    };
     for (const [key, value] of Object.entries(out.facts)) {
       if (value === null || value === undefined) continue;
+      if (out.aboutSomeoneElse && PERSONAL_FACTS.has(key)) continue;
+      if (key === "studentLevel" && s.pendingFact !== "studentLevel" && !STUDENT_LEVEL_CUES.test(userText)) continue;
       const def = engine.facts[key];
       if (!def) continue;
       if (def.type === "enum" && !def.values?.includes(value as string)) continue;
       if (def.type === "number" && typeof value !== "number") continue;
       if (def.type === "boolean" && typeof value !== "boolean") continue;
-      s.stated[key] = value;
+      set(key, value);
     }
     if (out.landArea) {
       const ha = toHectares(out.landArea.value, out.landArea.unit, s.stated.state as string | undefined);
-      if (ha !== null) s.stated.landHectares = ha;
+      if (ha !== null) set("landHectares", ha);
     }
+    return changed;
   }
 
   return {
@@ -174,17 +204,33 @@ export function createAgent({
         }
       }
 
-      mergeFacts(s, out);
-      if (!s.topics.length && out.topics.length && s.questionsAsked === 0) s.topics = out.topics;
-      if (out.intent === "ask_question") say.push(out.answer?.trim() || text("noAnswer", s.lang));
+      const learned = mergeFacts(s, out, userText);
+      // Narrow to the caller's topics when none are set: at the start, or after "check other schemes" widened them
+      // and the caller comes back to what they wanted ("actually, schemes for my son").
+      if (!s.topics.length && out.topics.length && s.state === "collecting") {
+        s.topics = out.topics;
+        s.questionsAsked = 0;
+      }
+      if (out.intent === "ask_question") {
+        // A caller describing their situation while we collect facts ("which schemes can my son get?") is answered by
+        // the rules engine's next question, not by the LLM. Otherwise speak only answers grounded in a cited passage.
+        const describedNeed = out.topics.length > 0 || Object.values(out.facts).some((v) => v !== null && v !== undefined);
+        const grounded = out.answer?.trim() && out.sources.length > 0 ? out.answer.trim() : null;
+        if (s.state === "collecting" && describedNeed) {
+          // the next question follows below
+        } else if (grounded) say.push(firstSentences(grounded, MAX_ANSWER_SENTENCES));
+        else say.push(text("noAnswer", s.lang));
+      }
 
       const ev = engine.evaluate(s.stated, { topics: s.topics });
       const results = new Map(ev.results.map((r) => [r.schemeId, r]));
 
       const askNext = (): boolean => {
         if (!ev.next || s!.questionsAsked >= MAX_QUESTIONS) return false;
-        if (ev.next.fact === s!.pendingFact && s!.lastPrompt === "fact" && !(ev.next.fact in s!.stated)) {
-          say.push(text("sorry", s!.lang));
+        // Apologise for re-asking only if nothing was understood (not when the caller volunteered a different fact).
+        if (ev.next.fact === s!.pendingFact && s!.lastPrompt === "fact" && !(ev.next.fact in s!.stated) && !learned) {
+          // "he is 15" to "How old are you?": the caller answered for someone else.
+          say.push(text(out.aboutSomeoneElse && PERSONAL_FACTS.has(ev.next.fact) ? "meantYou" : "sorry", s!.lang));
         }
         s!.pendingFact = ev.next.fact;
         s!.lastPrompt = "fact";
@@ -257,8 +303,15 @@ export function createAgent({
         say.push(text(sent ? "closingSent" : "closing", s!.lang));
       };
 
-      const picked = out.pickedSchemeId && s.offered.includes(out.pickedSchemeId) ? out.pickedSchemeId : null;
-      const yes = out.intent === "yes";
+      // The LLM tends to repeat the scheme under discussion in pickedSchemeId; only a real pick (or a different scheme
+      // named alongside other intents) counts, so "no" after details doesn't replay the same details.
+      const pickable = out.pickedSchemeId && s.offered.includes(out.pickedSchemeId) ? out.pickedSchemeId : null;
+      const picked =
+        pickable && (out.intent === "pick_scheme" || (!["yes", "no", "done"].includes(out.intent) && pickable !== s.selectedScheme))
+          ? pickable
+          : null;
+      // "Shall we check other kinds of schemes?" → "yes, show me more" comes back as want_more; it means yes.
+      const yes = out.intent === "yes" || (out.intent === "want_more" && s.lastPrompt === "check_others");
       const no = out.intent === "no" || out.intent === "done";
 
       switch (s.state) {

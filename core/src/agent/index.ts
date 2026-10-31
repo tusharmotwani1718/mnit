@@ -17,7 +17,12 @@ export function createDefaultAgent(): Agent {
   const local = new LocalSchemeRetriever(engine.schemes);
   let retriever: Retriever = local;
   if (process.env.SUPABASE_URL && process.env.SUPABASE_SECRET_KEY) {
-    retriever = new FallbackRetriever(new PgVectorRetriever(new SupabaseRest(), new Embedder()), local);
+    const pgvector = new PgVectorRetriever(new SupabaseRest(), new Embedder());
+    pgvector
+      .checkModel()
+      .then(() => pgvector.warmUp())
+      .catch((err) => console.warn("RAG store check failed:", err instanceof Error ? err.message : err));
+    retriever = new FallbackRetriever(pgvector, local);
   } else console.warn("SUPABASE_URL / SUPABASE_SECRET_KEY not set: RAG uses the local scheme text only.");
   return createAgent({
     engine,

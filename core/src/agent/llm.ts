@@ -22,6 +22,8 @@ export type LlmTurnOutput = {
   answer: string | null;
   /** 1-based numbers of the <context> passages the answer used (empty if none). */
   sources: number[];
+  /** The message describes another person (child, spouse, parent), not the caller: personal facts are ignored. */
+  aboutSomeoneElse: boolean;
 };
 
 export type LlmTurnInput = {
@@ -64,7 +66,7 @@ export function buildOutputSchema(defs: Record<string, FactDef>, schemeIds: stri
     additionalProperties: false,
     required: [
       "facts", "landArea", "language", "switchLanguageTo", "topics", "intent",
-      "pickedSchemeId", "otherPhoneNumber", "scam", "answer", "sources",
+      "pickedSchemeId", "otherPhoneNumber", "scam", "answer", "sources", "aboutSomeoneElse",
     ],
     properties: {
       facts: { type: "object", additionalProperties: false, required: Object.keys(factProps), properties: factProps },
@@ -91,6 +93,7 @@ export function buildOutputSchema(defs: Record<string, FactDef>, schemeIds: stri
       },
       answer: { type: ["string", "null"] },
       sources: { type: "array", items: { type: "integer" } },
+      aboutSomeoneElse: { type: "boolean" },
     },
   };
 }
@@ -108,7 +111,8 @@ facts:
 - familyPaysIncomeTax / familyHasGovtEmployeeOrPensioner cover husband, wife and minor children. Govt employee excludes Class IV / Group D staff.
 - annualFamilyIncome in rupees per year (convert monthly × 12, "lakh" = 100000).
 - landArea: the amount and unit of farmland owned, if said (bigha, acre, guntha, hectare, are). Do not convert.
-- Students: studentLevel, studentInGovtSchool and the scholarship schemes are about the student, who may be the caller's child. Never set the caller's own age or gender from what they say about a child.
+- Students: studentLevel, studentInGovtSchool and the scholarship schemes are about the student, who may be the caller's child. Never set the caller's own age or gender from what they say about a child or anyone else: "he is 15" or "my son is 15" in reply to "How old are you?" leaves age null.
+- studentLevel: Class 1 to 7 = "upto7"; Class 8 = "class8"; Class 9 or 10 = "class9to10"; Class 11 or 12 = "class11to12"; ITI, polytechnic, diploma = "diploma"; BA, BSc, BCom, BE, BTech, MBBS, other bachelor's or professional degree = "degree"; MA, MSc, MCom, MBA, MTech = "postgrad". A bare number answering the class question is the class number ("9" = class 9 = "class9to10"). Never infer studentLevel from an age: "my 12 year old son" or "he is 12 years old" gives no studentLevel (12 is his age, not his class).
 - socialCategory: only if stated. Neo-Buddhist (Nav-Bauddha) = "SC"; VJ, NT, SBC = "OBC".
 - willingManualWork: true if the caller or an adult at home does or wants mazdoori / manual labour.
 - isWidowOrSingleWoman: true for a widow, divorced woman or woman abandoned by her husband.
@@ -116,12 +120,13 @@ facts:
 
 language: the language the caller actually spoke in this message ("hi", "mr", "en" or "other"). switchLanguageTo: only if the caller explicitly asks to talk in Hindi, Marathi or English.
 topics: what kinds of help the caller is asking about (empty if not said). work = jobs, wages, labour cards; education = school/college, scholarships, fees; welfare = support for widows, disabled or destitute people; pension = old-age or retirement pension.
-intent: give_info (sharing facts or describing their need), ask_question (asking about a scheme: money, timing, documents, process), pick_scheme (choosing one of <offered_schemes>; set pickedSchemeId), want_more (wants to hear more schemes), yes, no, done (wants to finish), other.
+intent: give_info (sharing facts or describing their need, including "which schemes can I / my son get?", "is there any scheme for farmers?": the rules engine answers those), ask_question (a specific question about a scheme or process: money, timing, documents, how to apply, status), pick_scheme (choosing one of <offered_schemes>; set pickedSchemeId), want_more (wants to hear more schemes), yes, no, done (wants to finish), other.
 otherPhoneNumber: a phone number the caller gives for receiving the message, digits only (convert spoken Hindi/Marathi/English number words to digits).
 scam: detected=true if the caller reports someone asking for money, fees, a bribe, an OTP, Aadhaar or bank details to register them, or a middleman/agent offering to get them a scheme for a price.
 answer: only when intent is ask_question. Answer in the language named in <lang> (Devanagari script for Hindi and Marathi), in at most two short, simple sentences, using ONLY the passages in <context>. If <context> does not contain the answer, say that the CSC will give exact information. Otherwise null.
 - Passages marked rules="none" are schemes without verified eligibility rules: you may describe them, but always say the caller "may be eligible" and should confirm at the CSC or the office named in the passage. Never say they are eligible.
 - Do not repeat amounts or dates that are not in the passages.
+aboutSomeoneElse: true only if THIS message itself refers to another person (he, she, my son, my wife, my mother...), e.g. "he is 15", "my wife is a government teacher". A bare answer like "28", "yes" or "I am 28" is about the caller, even if a child was mentioned earlier: false. Still fill the facts you see; the code decides which apply.
 sources: the numbers of the <context> passages your answer used, e.g. [2] or [1, 3]. Empty when answer is null.`;
 
 export function buildUserMessage(input: LlmTurnInput): string {

@@ -9,7 +9,7 @@ import { createApp } from "../src/server.js";
 const engine = loadEngine();
 const output = (o: Partial<LlmTurnOutput>): LlmTurnOutput => ({
   facts: {}, landArea: null, language: "en", switchLanguageTo: null, topics: [], intent: "give_info",
-  pickedSchemeId: null, otherPhoneNumber: null, scam: { detected: false, pattern: null }, answer: null, sources: [], ...o,
+  pickedSchemeId: null, otherPhoneNumber: null, scam: { detected: false, pattern: null }, answer: null, sources: [], aboutSomeoneElse: false, ...o,
 });
 
 function start(apiKey?: string, liveToken?: string) {

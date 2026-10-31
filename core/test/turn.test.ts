@@ -20,6 +20,7 @@ const base = (): LlmTurnOutput => ({
   scam: { detected: false, pattern: null },
   answer: null,
   sources: [],
+  aboutSomeoneElse: false,
 });
 
 type Script = Record<string, Partial<LlmTurnOutput> | ((input: LlmTurnInput) => Partial<LlmTurnOutput>)>;
@@ -51,7 +52,7 @@ describe("handleTurn: farmer call", () => {
       "नहीं": (input) => ({ intent: "no", facts: { [input.pendingQuestion!.fact]: false } }),
       "तीस साल": { facts: { age: 30 } },
       "पीएम किसान": { intent: "pick_scheme", pickedSchemeId: "pm-kisan" },
-      "पैसा कब आएगा?": { intent: "ask_question", answer: "साल में तीन किस्तें आती हैं।" },
+      "पैसा कब आएगा?": { intent: "ask_question", answer: "साल में तीन किस्तें आती हैं।", sources: [1] },
       "बस": { intent: "done" },
       "हाँ": { intent: "yes" },
     });
@@ -213,5 +214,114 @@ describe("helpers", () => {
       Object.values(n).forEach(check);
     };
     check(schema);
+  });
+});
+
+describe("handleTurn: volunteered facts", () => {
+  it("doesn't apologise when the caller answers with a different fact than the one asked", async () => {
+    const { agent } = agentWith({
+      "scholarship for my son": { topics: ["education"] },
+      "engineering in Maharashtra": { facts: { studentLevel: "degree", state: "MH" } },
+      "we are general category": { facts: { socialCategory: "GEN" } },
+      "hmm": { intent: "other" },
+    });
+    const say = (t: string) => agent.handleTurn("vol-1", t, "en");
+    await say("");
+    await say("scholarship for my son");
+    const asked = await say("engineering in Maharashtra");
+    expect(asked.trace.next?.fact).toBe("annualFamilyIncome");
+    const volunteered = await say("we are general category");
+    expect(volunteered.replyText).not.toContain("Sorry");
+    expect(volunteered.replyText).toContain("earn in a year");
+    const nothing = await say("hmm");
+    expect(nothing.replyText).toContain("Sorry");
+  });
+});
+
+describe("handleTurn: checking other kinds of schemes", () => {
+  it("widens to all topics when the caller says yes, even if understood as 'want more'", async () => {
+    const { agent } = agentWith({
+      "scholarship for my son": { topics: ["education"] },
+      "class 9": { facts: { studentLevel: "class9to10" } },
+      "yes show more": { intent: "want_more" },
+    });
+    const say = (t: string) => agent.handleTurn("widen-1", t, "en");
+    await say("");
+    await say("scholarship for my son");
+    const none = await say("class 9");
+    expect(none.replyText).toContain("other kinds of schemes");
+    const widened = await say("yes show more");
+    expect(widened.trace.topics).toEqual([]);
+    expect(widened.trace.state).toBe("collecting");
+    expect(widened.replyText).not.toContain("other kinds of schemes");
+  });
+});
+
+describe("handleTurn: facts about someone else", () => {
+  it("ignores personal facts from a message about another person, keeps family and student facts", async () => {
+    const { agent } = agentWith({
+      "he is 15": { facts: { age: 15 }, aboutSomeoneElse: true },
+      "my son is in class 9, we earn 2 lakh": { facts: { studentLevel: "class9to10", annualFamilyIncome: 200000 }, aboutSomeoneElse: true },
+      "I am 42": { facts: { age: 42 } },
+    });
+    const say = (t: string) => agent.handleTurn("else-1", t, "en");
+    await say("");
+    const someoneElse = await say("he is 15");
+    expect(someoneElse.trace.facts.age).toBeUndefined();
+    const family = await say("my son is in class 9, we earn 2 lakh");
+    expect(family.trace.facts).toMatchObject({ studentLevel: "class9to10", annualFamilyIncome: 200000 });
+    expect((await say("I am 42")).trace.facts.age).toBe(42);
+  });
+});
+
+describe("handleTurn: after scheme details", () => {
+  it("'no' ends the conversation even if the LLM repeats the scheme under discussion", async () => {
+    const { agent } = agentWith({
+      "मेरे पास ज़मीन है": { topics: ["farming"], facts: { ownsCultivableLand: true, state: "MH" } },
+      "नहीं": (input) => ({ intent: "no", facts: input.pendingQuestion ? { [input.pendingQuestion.fact]: false } : {}, pickedSchemeId: input.selectedSchemeId }),
+      "तीस साल": { facts: { age: 30 } },
+      "पीएम किसान": { intent: "pick_scheme", pickedSchemeId: "pm-kisan" },
+    });
+    const say = (t: string) => agent.handleTurn("loop-1", t, "hi", { callerNumber: "+919876543210" });
+    await say("");
+    let r = await say("मेरे पास ज़मीन है");
+    for (let i = 0; i < 6 && r.trace.state === "collecting"; i++) r = await say(r.trace.next?.fact === "age" ? "तीस साल" : "नहीं");
+    expect(r.trace.state).toBe("results");
+    expect((await say("पीएम किसान")).trace.state).toBe("details");
+    const after = await say("नहीं");
+    expect(after.trace.state).toBe("consent");
+  });
+});
+
+describe("handleTurn: coming back to a topic", () => {
+  it("narrows to the caller's topic again after widening", async () => {
+    const { agent } = agentWith({
+      "scholarship for my son": { topics: ["education"] },
+      "class 9": { facts: { studentLevel: "class9to10" } },
+      "yes": { intent: "yes" },
+      "actually schemes for my son's studies": { topics: ["education"], aboutSomeoneElse: true },
+    });
+    const say = (t: string) => agent.handleTurn("topic-1", t, "en");
+    await say("");
+    await say("scholarship for my son");
+    await say("class 9");
+    expect((await say("yes")).trace.topics).toEqual([]);
+    const back = await say("actually schemes for my son's studies");
+    expect(back.trace.topics).toEqual(["education"]);
+  });
+});
+
+describe("handleTurn: student level", () => {
+  it("doesn't take a class from an age, but does from a class word or an answer to the class question", async () => {
+    const { agent } = agentWith({
+      "schemes for my 12 year old son": { topics: ["education"], facts: { studentLevel: "class9to10" }, aboutSomeoneElse: true },
+      "9": { facts: { studentLevel: "class9to10" } },
+    });
+    const say = (t: string) => agent.handleTurn("lvl-1", t, "en");
+    await say("");
+    const r = await say("schemes for my 12 year old son");
+    expect(r.trace.facts.studentLevel).toBeUndefined();
+    expect(r.trace.next?.fact).toBe("studentLevel");
+    expect((await say("9")).trace.facts.studentLevel).toBe("class9to10");
   });
 });

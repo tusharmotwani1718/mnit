@@ -48,7 +48,7 @@ const hash = (s: string) => createHash("sha256").update(s).digest("hex").slice(0
  */
 export function normalise(text: string): string {
   return text
-    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F�]/g, " ")
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F\uFFFD]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
 }

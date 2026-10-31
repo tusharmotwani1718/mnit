@@ -3,7 +3,9 @@ import { createAgent, shouldRetrieve, type Chunk, type LlmTurnOutput, type Retri
 import { buildUserMessage } from "../src/agent/llm.js";
 import { FallbackRetriever, LocalSchemeRetriever } from "../src/agent/retriever.js";
 import { loadEngine } from "../src/engine/index.js";
-import { buildCorpus, chunkText } from "../src/rag/corpus.js";
+import { buildCorpus, chunkText, isMostlyDevanagari, normalise } from "../src/rag/corpus.js";
+import { diversify, namedSchemes } from "../src/rag/store.js";
+import { loadAliases } from "../src/rag/corpus.js";
 
 const engine = loadEngine();
 
@@ -12,6 +14,12 @@ const chunk = (id: string, schemeId: string, tier: Chunk["tier"] = "tier1"): Chu
 });
 
 describe("corpus", () => {
+  it("strips control characters but keeps all letters", () => {
+    expect(normalise("FUND Disbursal\u0000 of\nDBT \uFFFD done")).toBe("FUND Disbursal of DBT done");
+    expect(isMostlyDevanagari("पीएम किसान योजना")).toBe(true);
+    expect(isMostlyDevanagari("PM-KISAN operational guidelines")).toBe(false);
+  });
+
   it("chunks long PDF text into bounded, overlapping windows", () => {
     const text = Array.from({ length: 60 }, (_, i) => `Sentence number ${i} explains a rule of the scheme.`).join("\n");
     const chunks = chunkText(text, 400, 80);
@@ -66,7 +74,7 @@ describe("RAG in a turn", () => {
     const inputs: Parameters<TurnLlm["turn"]>[0][] = [];
     const base: LlmTurnOutput = {
       facts: {}, landArea: null, language: "hi", switchLanguageTo: null, topics: [], intent: "ask_question", pickedSchemeId: null,
-      otherPhoneNumber: null, scam: { detected: false, pattern: null }, answer: "नए पंजीकरण अभी बंद बताए जाते हैं।", sources: [2, 9],
+      otherPhoneNumber: null, scam: { detected: false, pattern: null }, answer: "नए पंजीकरण अभी बंद बताए जाते हैं।", sources: [2, 9], aboutSomeoneElse: false,
     };
     const llm: TurnLlm = { turn: async (input) => (inputs.push(input), base) };
     const agent = createAgent({ engine, llm, retriever });
@@ -80,5 +88,57 @@ describe("RAG in a turn", () => {
     const message = buildUserMessage(inputs[0]!);
     expect(message).toContain('[1] scheme="pm-kisan" rules="verified"');
     expect(message).toContain('[2] scheme="ladki-bahin" rules="none"');
+  });
+});
+
+describe("hybrid search helpers", () => {
+  it("finds schemes named in a query, in any script", () => {
+    const aliases = loadAliases();
+    expect(namedSchemes("पीएम किसान की किस्त कब आती है?", aliases)).toEqual(["pm-kisan"]);
+    expect(namedSchemes("PM-Kisan kab aayega", aliases)).toEqual(["pm-kisan"]);
+    expect(namedSchemes("लाडकी बहीण योजनेचे पैसे", aliases)).toEqual(["ladki-bahin"]);
+    expect(namedSchemes("खेती के लिए पैसा", aliases)).toEqual([]);
+  });
+
+  it("keeps at most two passages per scheme", () => {
+    const c = (id: string, schemeId: string): Chunk => ({ id, schemeId, tier: "tier1", title: "", section: "", text: "", sourceUrl: "" });
+    const out = diversify([c("1", "a"), c("2", "a"), c("3", "a"), c("1", "a"), c("4", "b"), c("5", "c")], 4);
+    expect(out.map((x) => x.id)).toEqual(["1", "2", "4", "5"]);
+  });
+});
+
+describe("ungrounded answers", () => {
+  const base: LlmTurnOutput = {
+    facts: {}, landArea: null, language: "en", switchLanguageTo: null, topics: [], intent: "ask_question", pickedSchemeId: null,
+    otherPhoneNumber: null, scam: { detected: false, pattern: null }, answer: "You'll get exact information at a CSC centre.", sources: [], aboutSomeoneElse: false,
+  };
+  const run = async (partial: Partial<LlmTurnOutput>) => {
+    const llm: TurnLlm = { turn: async () => ({ ...base, ...partial }) };
+    const agent = createAgent({ engine, llm, retriever: new LocalSchemeRetriever(engine.schemes) });
+    await agent.handleTurn("u", "", "en");
+    return agent.handleTurn("u", "want to know the schemes my son is eligible for as a student");
+  };
+
+  it("skips the 'ask at CSC' filler when the caller was describing their need", async () => {
+    const r = await run({ topics: ["education"] });
+    expect(r.replyText).not.toContain("CSC");
+    expect(r.replyText).toContain("Which class or course");
+  });
+
+  it("doesn't let the LLM answer a need with schemes, even when grounded", async () => {
+    const r = await run({ topics: ["education"], answer: "Your son may be eligible for the Central Sector Scholarship.", sources: [1] });
+    expect(r.replyText).not.toContain("Central Sector");
+    expect(r.replyText).toContain("Which class or course");
+  });
+
+  it("caps a grounded answer at two sentences", async () => {
+    const r = await run({ answer: "One. Two. Three. Four.", sources: [1] });
+    expect(r.replyText.startsWith("One. Two.")).toBe(true);
+    expect(r.replyText).not.toContain("Three");
+  });
+
+  it("still says the CSC line for a real question it can't answer", async () => {
+    const r = await run({});
+    expect(r.replyText).toContain("CSC");
   });
 });

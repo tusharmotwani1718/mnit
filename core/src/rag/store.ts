@@ -146,6 +146,20 @@ export class PgVectorRetriever implements Retriever {
     private aliases: Aliases = loadAliases(),
   ) {}
 
+  /** Warns if the stored passages were embedded with a different model than queries will be (results would be meaningless). */
+  async checkModel(): Promise<void> {
+    const rows = await this.db.request<{ content_hash: string }[]>("/rag_chunks?select=content_hash&limit=1");
+    const stored = rows[0]?.content_hash.split(":")[1];
+    if (!rows.length) console.warn("RAG store is empty: run npm run rag:ingest.");
+    else if (stored !== EMBED_MODEL) console.warn(`RAG store was embedded with ${stored ?? "an unknown model"}, but queries use ${EMBED_MODEL}: run npm run rag:ingest.`);
+  }
+
+  /** Opens the HTTPS connections to OpenAI and Supabase at startup, so the first caller's question isn't the cold one. */
+  async warmUp(): Promise<void> {
+    const [vector] = await this.embedder.embed(["योजना"]);
+    await this.search(vector!, null, 1);
+  }
+
   async search(vector: number[], schemeIds: string[] | null, k: number): Promise<Chunk[]> {
     const rows = await this.db.request<Row[]>("/rpc/match_rag_chunks", {
       method: "POST",
