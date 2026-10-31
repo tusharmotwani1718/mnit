@@ -477,7 +477,9 @@ RAG is a required part of the product. It explains; it never decides eligibility
 - About 1,000 chunks (~250k tokens). Metadata per chunk: `id`, `schemeId`, `tier`, `title`, `section`, `lang`, `sourceUrl`, content hash.
 
 **Ingestion (`npm run rag:ingest`)**
-- Creates the `rag_chunks` table (pgvector, HNSW cosine index, RLS on with no policies so the public Supabase API can't read it) and embeds only new or changed chunks with `text-embedding-3-small`; removed chunks are deleted.
+- One-time setup: `core/db/rag.sql` in the Supabase SQL Editor creates the `rag_chunks` table (pgvector, HNSW cosine index, RLS on with no policies so the anon key can't read it) and the `match_rag_chunks` search function (executable only by the secret key).
+- Core reaches Supabase over its HTTPS REST API (port 443), not a direct Postgres connection: venue and campus networks often block ports 5432/6543. The secret key stays in `core/.env`.
+- Ingestion embeds only new or changed chunks with `text-embedding-3-small`; removed chunks are deleted.
 
 **At call time (inside the same single LLM call per turn)**
 1. Skip retrieval for plain answers to the engine's own question ("हाँ", "तीस साल": short and no question word); retrieve otherwise.

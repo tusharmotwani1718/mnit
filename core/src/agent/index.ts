@@ -1,6 +1,6 @@
 import { loadEngine } from "../engine/index.js";
 import { OpenAiTurnLlm } from "./openaiLlm.js";
-import { Embedder, PgVectorRetriever, createPool } from "../rag/store.js";
+import { Embedder, PgVectorRetriever, SupabaseRest } from "../rag/store.js";
 import { FallbackRetriever, LocalSchemeRetriever, type Retriever } from "./retriever.js";
 import { createAgent, type Agent } from "./turn.js";
 
@@ -11,13 +11,14 @@ export type { Retriever, Chunk } from "./retriever.js";
 export { shouldRetrieve } from "./turn.js";
 export { SessionStore } from "./session.js";
 
-/** Production wiring: approved schemes from data/, gpt-4.1-mini, pgvector RAG (local scheme text if DATABASE_URL is unset or Supabase fails). */
+/** Production wiring: approved schemes from data/, gpt-4.1-mini, pgvector RAG over Supabase HTTPS (local scheme text if unset or Supabase fails). */
 export function createDefaultAgent(): Agent {
   const engine = loadEngine();
   const local = new LocalSchemeRetriever(engine.schemes);
   let retriever: Retriever = local;
-  if (process.env.DATABASE_URL) retriever = new FallbackRetriever(new PgVectorRetriever(createPool(), new Embedder()), local);
-  else console.warn("DATABASE_URL not set: RAG uses the local scheme text only (run npm run rag:ingest after setting it).");
+  if (process.env.SUPABASE_URL && process.env.SUPABASE_SECRET_KEY) {
+    retriever = new FallbackRetriever(new PgVectorRetriever(new SupabaseRest(), new Embedder()), local);
+  } else console.warn("SUPABASE_URL / SUPABASE_SECRET_KEY not set: RAG uses the local scheme text only.");
   return createAgent({
     engine,
     llm: new OpenAiTurnLlm(engine.facts, engine.schemes.map((s) => s.id)),

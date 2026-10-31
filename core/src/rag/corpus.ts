@@ -23,9 +23,15 @@ type ExtraScheme = {
 
 const hash = (s: string) => createHash("sha256").update(s).digest("hex").slice(0, 16);
 
-/** PDF text comes with hard line breaks mid-sentence; collapse whitespace into single spaces. */
+/**
+ * PDF text comes with hard line breaks mid-sentence and stray control characters (NUL can't be stored in Postgres text);
+ * drop the control characters and collapse whitespace into single spaces.
+ */
 export function normalise(text: string): string {
-  return text.replace(/\s+/g, " ").trim();
+  return text
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F�]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 /** Splits text into ~CHUNK_CHARS windows on sentence boundaries, overlapping by ~OVERLAP_CHARS. */
