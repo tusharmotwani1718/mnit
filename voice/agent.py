@@ -233,7 +233,12 @@ server.setup_fnc = prewarm
 async def entrypoint(ctx: JobContext) -> None:
     await ctx.connect()
     # Console mode (`agent.py console`: laptop mic/speaker) has no remote participant to wait for.
-    participant = None if ctx.is_fake_job() else await ctx.wait_for_participant()
+    try:
+        participant = None if ctx.is_fake_job() else await ctx.wait_for_participant()
+    except RuntimeError as e:
+        # The caller hung up (or the browser page closed) before the agent joined: nothing to do.
+        logger.info("caller left before the call started (%s); ending job", e)
+        return
     attributes = participant.attributes if participant else {}
 
     is_phone = participant is not None and participant.kind == rtc.ParticipantKind.PARTICIPANT_KIND_SIP

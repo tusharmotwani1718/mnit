@@ -2,9 +2,15 @@
 
 from __future__ import annotations
 
+import asyncio
 from typing import Any
 
 import httpx
+
+# Core restarts on every file change in `npm run dev`; a turn arriving during that second finds
+# nothing listening. Connection errors (the request never reached core) are retried after a pause.
+CONNECT_RETRIES = 2
+RETRY_DELAY = 0.75
 
 
 class CoreError(Exception):
@@ -17,10 +23,16 @@ class CoreClient:
         self._http = httpx.AsyncClient(base_url=base_url.rstrip("/"), headers=headers, timeout=timeout)
 
     async def _post(self, path: str, body: dict[str, Any]) -> dict[str, Any] | None:
-        try:
-            res = await self._http.post(path, json=body)
-        except httpx.HTTPError as e:
-            raise CoreError(f"core unreachable: {e!r}") from e
+        for attempt in range(CONNECT_RETRIES + 1):
+            try:
+                res = await self._http.post(path, json=body)
+                break
+            except httpx.ConnectError as e:
+                if attempt == CONNECT_RETRIES:
+                    raise CoreError(f"core unreachable at {self._http.base_url} (is core running?): {e!r}") from e
+                await asyncio.sleep(RETRY_DELAY)
+            except httpx.HTTPError as e:
+                raise CoreError(f"core request failed: {e!r}") from e
         if res.status_code == 404:
             return None
         if res.status_code >= 400:
