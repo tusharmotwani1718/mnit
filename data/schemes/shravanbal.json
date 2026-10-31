@@ -1,0 +1,38 @@
+{
+  "id": "shravanbal",
+  "name": { "en": "Shravanbal Seva old-age pension", "hi": "श्रावणबाळ सेवा राज्य निवृत्ति वेतन योजना", "mr": "श्रावणबाळ सेवा राज्य निवृत्तीवेतन योजना" },
+  "level": "state",
+  "state": "MH",
+  "tier": 1,
+  "topics": ["pension", "welfare"],
+  "rules": {
+    "all": [
+      { "fact": "state", "op": "eq", "value": "MH" },
+      { "fact": "age", "op": "gte", "value": 65 },
+      { "fact": "annualFamilyIncome", "op": "lte", "value": 21000 }
+    ]
+  },
+  "benefitSummary": {
+    "en": "Rs 1,500 a month old-age pension, paid to your bank account. For BPL families this includes the central old-age pension.",
+    "hi": "हर महीने 1,500 रुपये बुढ़ापा पेंशन, सीधे बैंक खाते में। बीपीएल परिवारों के लिए इसमें केंद्र की वृद्धावस्था पेंशन भी शामिल है।",
+    "mr": "दरमहा 1,500 रुपये वृद्धापकाळ निवृत्तीवेतन, थेट बँक खात्यात. बीपीएल कुटुंबांसाठी यात केंद्राची वृद्धापकाळ पेन्शनही समाविष्ट आहे."
+  },
+  "documents": [
+    { "en": "Age proof (65 or older)", "hi": "उम्र का सबूत (65 साल या ज़्यादा)", "mr": "वयाचा पुरावा (65 वर्षे किंवा जास्त)" },
+    { "en": "Income certificate from the tahsildar (or BPL proof)", "hi": "तहसीलदार का आय प्रमाण पत्र (या बीपीएल का सबूत)", "mr": "तहसीलदारांचा उत्पन्नाचा दाखला (किंवा बीपीएल पुरावा)" },
+    { "en": "Aadhaar card and ration card", "hi": "आधार कार्ड और राशन कार्ड", "mr": "आधार कार्ड आणि रेशन कार्ड" },
+    { "en": "Residence certificate", "hi": "निवास प्रमाण पत्र", "mr": "रहिवासी दाखला" }
+  ],
+  "applyAt": ["Tahsil office, Sanjay Gandhi Yojana branch", "Setu / Aaple Sarkar centre"],
+  "applyAtSpoken": { "hi": "अपने तहसील कार्यालय की संजय गांधी योजना शाखा में", "mr": "तुमच्या तहसील कार्यालयातील संजय गांधी योजना शाखेत", "en": "to the Sanjay Gandhi Yojana desk at your tahsil office" },
+  "notes": [
+    "BPL-listed families aged 65+ qualify regardless of the Rs 21,000 figure (Indira Gandhi National Old Age Pension + state top-up); not modelled.",
+    "Some district pages still show older amounts (Rs 600); the Thane collectorate page (updated 30.09.2025) gives Rs 1,500."
+  ],
+  "helpline": null,
+  "source": "https://thane.nic.in/en/sanjay-ghandhi-niradhar-yojana/",
+  "sourceHash": null,
+  "version": 1,
+  "lastVerified": "2026-10-31",
+  "status": "approved"
+}

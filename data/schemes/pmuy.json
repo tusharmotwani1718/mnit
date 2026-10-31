@@ -1,0 +1,40 @@
+{
+  "id": "pmuy",
+  "name": { "en": "Pradhan Mantri Ujjwala Yojana (free cooking gas connection)", "hi": "प्रधानमंत्री उज्ज्वला योजना", "mr": "प्रधानमंत्री उज्ज्वला योजना" },
+  "level": "central",
+  "tier": 1,
+  "topics": ["women", "household"],
+  "rules": {
+    "all": [
+      { "fact": "gender", "op": "eq", "value": "female" },
+      { "fact": "age", "op": "gte", "value": 18 },
+      { "fact": "hasLpgConnection", "op": "eq", "value": false },
+      { "manualCheck": "Household must belong to an eligible category (SC/ST, PMAY-G, AAY, Most Backward Classes, forest dwellers, tea garden tribes, island/river island residents, SECC households) or be a poor household by self-declaration." }
+    ]
+  },
+  "benefitSummary": {
+    "en": "Free LPG connection in the woman's name (no deposit), with the first refill and a gas stove free. After that, a subsidy of Rs 300 per 14.2 kg cylinder for up to 9 refills a year (FY 2025-26).",
+    "hi": "महिला के नाम पर मुफ़्त गैस कनेक्शन, बिना जमा राशि के। पहला सिलेंडर और गैस चूल्हा भी मुफ़्त। उसके बाद हर सिलेंडर पर 300 रुपये की छूट, साल में 9 सिलेंडर तक।",
+    "mr": "स्त्रीच्या नावावर मोफत गॅस कनेक्शन, अनामत रकमेशिवाय. पहिला सिलेंडर आणि गॅस शेगडीही मोफत. त्यानंतर प्रत्येक सिलेंडरवर 300 रुपयांची सूट, वर्षाला 9 सिलेंडरपर्यंत."
+  },
+  "documents": [
+    { "en": "Aadhaar of the woman and adult family members", "hi": "महिला और घर के बड़े सदस्यों का आधार", "mr": "स्त्रीचे आणि घरातील प्रौढ सदस्यांचे आधार" },
+    { "en": "Ration card (or other document showing family members)", "hi": "राशन कार्ड (या परिवार के सदस्यों वाला कोई सरकारी कागज़)", "mr": "रेशन कार्ड (किंवा कुटुंबातील सदस्य दाखवणारा सरकारी कागद)" },
+    { "en": "Bank account number and IFSC", "hi": "बैंक खाता नंबर और आईएफएससी कोड", "mr": "बँक खाते क्रमांक आणि आयएफएससी कोड" },
+    { "en": "Address proof (Aadhaar is enough if same address)", "hi": "पते का सबूत (पता वही हो तो आधार काफ़ी है)", "mr": "पत्त्याचा पुरावा (पत्ता तोच असल्यास आधार पुरेसे)" }
+  ],
+  "applyAt": ["Nearest LPG distributor (Indane, Bharat Gas, HP Gas)", "pmuy.gov.in (online)", "CSC"],
+  "applyAtSpoken": { "hi": "नज़दीकी गैस एजेंसी पर", "mr": "जवळच्या गॅस एजन्सीवर", "en": "to your nearest gas agency" },
+  "notes": [
+    "Migrant families can give a self-declaration instead of a ration card.",
+    "The Rs 300 subsidy for 9 refills was approved for FY 2025-26; no FY 2026-27 approval found, so the spoken benefit says '300 rupaye ki chhoot' without promising the refill count for this year.",
+    "PIB year-end review 2025 says a single deprivation declaration replaced the older 14-point declaration."
+  ],
+  "helpline": "14438 (Ujjwala), 14428 (toll free), 1906 (LPG emergency)",
+  "source": "https://www.pmuy.gov.in/about.html",
+  "sourceSecondary": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/aug/doc202588603301.pdf",
+  "sourceHash": null,
+  "version": 1,
+  "lastVerified": "2026-10-30",
+  "status": "approved"
+}

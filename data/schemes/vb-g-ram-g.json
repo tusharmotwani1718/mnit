@@ -1,0 +1,38 @@
+{
+  "id": "vb-g-ram-g",
+  "name": { "en": "VB-G RAM G rural job guarantee (replaced MGNREGA)", "hi": "ग्रामीण रोज़गार गारंटी (वीबी-जी राम जी, पहले मनरेगा)", "mr": "ग्रामीण रोजगार हमी (व्हीबी-जी राम जी, पूर्वीची मनरेगा)" },
+  "level": "central",
+  "tier": 1,
+  "topics": ["work"],
+  "rules": {
+    "all": [
+      { "fact": "residence", "op": "eq", "value": "rural" },
+      { "fact": "age", "op": "gte", "value": 18 },
+      { "fact": "willingManualWork", "op": "eq", "value": true }
+    ]
+  },
+  "benefitSummary": {
+    "en": "At least 125 days of paid work a year for every rural household, at the state's notified daily wage. Wages are paid within 15 days of the work; if work is not given in time, an unemployment allowance is due. Old MGNREGA job cards stay valid until the new cards are issued.",
+    "hi": "हर ग्रामीण परिवार को साल में कम से कम 125 दिन का मज़दूरी वाला काम, सरकार की तय मज़दूरी पर। काम के 15 दिन के अंदर मज़दूरी मिलती है, और समय पर काम न मिले तो बेरोज़गारी भत्ता मिलता है। पुराना मनरेगा जॉब कार्ड नया कार्ड बनने तक चलता रहेगा।",
+    "mr": "प्रत्येक ग्रामीण कुटुंबाला वर्षाला किमान 125 दिवस मजुरीचे काम, सरकारने ठरवलेल्या मजुरीवर. कामानंतर 15 दिवसांत मजुरी मिळते, आणि वेळेवर काम न मिळाल्यास बेरोजगारी भत्ता मिळतो. जुने मनरेगा जॉब कार्ड नवीन कार्ड मिळेपर्यंत चालू राहील."
+  },
+  "documents": [
+    { "en": "Aadhaar card of each adult member", "hi": "घर के हर बड़े सदस्य का आधार कार्ड", "mr": "घरातील प्रत्येक प्रौढ व्यक्तीचे आधार कार्ड" },
+    { "en": "Bank or post office passbook", "hi": "बैंक या डाकघर की पासबुक", "mr": "बँक किंवा पोस्टाचे पासबुक" },
+    { "en": "Photograph", "hi": "फ़ोटो", "mr": "फोटो" }
+  ],
+  "applyAt": ["Gram Panchayat (apply for a job card / Gramin Rozgar Guarantee Card, then ask for work in writing)"],
+  "applyAtSpoken": { "hi": "अपनी ग्राम पंचायत में", "mr": "तुमच्या ग्रामपंचायतीत", "en": "to your Gram Panchayat" },
+  "notes": [
+    "VB-G RAM G Act, 2025 came into force on 1 July 2026 and replaced MGNREGA (100 → 125 days).",
+    "States may notify a pause of up to 60 days in a year during peak sowing and harvesting; the 125 days are given in the rest of the year.",
+    "Wage rate is notified per state; we deliberately do not quote an amount."
+  ],
+  "helpline": null,
+  "source": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/sep/doc_10028_20260929_12582401.pdf",
+  "sourceSecondary": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2207187",
+  "sourceHash": null,
+  "version": 1,
+  "lastVerified": "2026-10-31",
+  "status": "approved"
+}

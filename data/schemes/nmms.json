@@ -1,0 +1,39 @@
+{
+  "id": "nmms",
+  "name": { "en": "National Means-cum-Merit Scholarship (NMMS)", "hi": "राष्ट्रीय साधन-सह-योग्यता छात्रवृत्ति (एनएमएमएस)", "mr": "राष्ट्रीय साधन-सह-गुणवत्ता शिष्यवृत्ती (एनएमएमएस)" },
+  "level": "central",
+  "tier": 1,
+  "topics": ["education"],
+  "rules": {
+    "all": [
+      { "fact": "studentLevel", "op": "eq", "value": "class8" },
+      { "fact": "studentInGovtSchool", "op": "eq", "value": true },
+      { "fact": "annualFamilyIncome", "op": "lte", "value": 350000 },
+      { "manualCheck": "Scored at least 55% in Class 7 (50% for SC/ST) and clears the state NMMS selection exam (MAT + SAT) in Class 8." }
+    ]
+  },
+  "benefitSummary": {
+    "en": "Rs 12,000 a year (Rs 1,000 a month) from Class 9 to Class 12 for students who clear the NMMS exam in Class 8. To keep it, the student needs 60% in Class 10 and must pass every year.",
+    "hi": "आठवीं में एनएमएमएस परीक्षा पास करने वाले विद्यार्थी को नौवीं से बारहवीं तक हर साल 12,000 रुपये, यानी महीने के 1,000 रुपये। जारी रखने के लिए दसवीं में 60 प्रतिशत और हर साल पास होना ज़रूरी है।",
+    "mr": "आठवीत एनएमएमएस परीक्षा उत्तीर्ण होणाऱ्या विद्यार्थ्याला नववी ते बारावी दरवर्षी 12,000 रुपये, म्हणजे महिन्याला 1,000 रुपये. चालू ठेवण्यासाठी दहावीत 60 टक्के आणि दरवर्षी उत्तीर्ण होणे आवश्यक."
+  },
+  "documents": [
+    { "en": "Family income certificate", "hi": "परिवार का आय प्रमाण पत्र", "mr": "कुटुंबाचा उत्पन्नाचा दाखला" },
+    { "en": "Class 7 marksheet", "hi": "सातवीं की मार्कशीट", "mr": "सातवीचे गुणपत्रक" },
+    { "en": "Caste certificate (SC/ST only)", "hi": "जाति प्रमाण पत्र (केवल एससी/एसटी)", "mr": "जातीचा दाखला (फक्त एससी/एसटी)" },
+    { "en": "Student's Aadhaar and bank account", "hi": "विद्यार्थी का आधार और बैंक खाता", "mr": "विद्यार्थ्याचे आधार आणि बँक खाते" }
+  ],
+  "applyAt": ["School headmaster (registers the student for the state NMMS exam)", "scholarships.gov.in (after selection)"],
+  "applyAtSpoken": { "hi": "अपने स्कूल के हेडमास्टर के पास, जो परीक्षा का फ़ॉर्म भरते हैं", "mr": "तुमच्या शाळेच्या मुख्याध्यापकांकडे, जे परीक्षेचा अर्ज भरतात", "en": "to the school headmaster, who registers the student for the exam" },
+  "notes": [
+    "Students of private schools, Kendriya Vidyalayas, Navodaya Vidyalayas and residential schools are not eligible.",
+    "Selection exam needs 40% aggregate (32% SC/ST). NSP applications for 2026-27 closed on 31 Aug 2026; the next exam registration is through the school."
+  ],
+  "helpline": null,
+  "source": "https://dsel.education.gov.in/sites/default/files/NMMSS_Guidelines_22.pdf",
+  "sourceSecondary": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2295776",
+  "sourceHash": null,
+  "version": 1,
+  "lastVerified": "2026-10-31",
+  "status": "approved"
+}

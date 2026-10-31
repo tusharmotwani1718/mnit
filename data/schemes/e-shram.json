@@ -1,0 +1,39 @@
+{
+  "id": "e-shram",
+  "name": { "en": "e-Shram card (unorganised workers)", "hi": "ई-श्रम कार्ड", "mr": "ई-श्रम कार्ड" },
+  "level": "central",
+  "tier": 1,
+  "topics": ["work", "insurance"],
+  "rules": {
+    "all": [
+      { "fact": "age", "op": "gte", "value": 16 },
+      { "fact": "age", "op": "lte", "value": 59 },
+      { "fact": "hasPfOrEsic", "op": "eq", "value": false },
+      { "fact": "isIncomeTaxPayer", "op": "eq", "value": false },
+      { "fact": "isGovtEmployee", "op": "eq", "value": false }
+    ]
+  },
+  "benefitSummary": {
+    "en": "Free registration as an unorganised worker, with a UAN card valid across India. Workers aged 18 to 59 get Rs 2 lakh accident insurance free for the first year, and the card helps you get other welfare schemes.",
+    "hi": "असंगठित मज़दूर के रूप में मुफ़्त पंजीकरण और पूरे देश में चलने वाला यूएएन कार्ड। 18 से 59 साल वालों को पहले साल 2 लाख रुपये का दुर्घटना बीमा मुफ़्त, और दूसरी योजनाओं का फ़ायदा लेने में मदद।",
+    "mr": "असंघटित कामगार म्हणून मोफत नोंदणी आणि देशभर चालणारे यूएएन कार्ड. 18 ते 59 वयाच्या कामगारांना पहिल्या वर्षी 2 लाख रुपयांचा अपघात विमा मोफत, आणि इतर योजनांचा लाभ घेण्यास मदत."
+  },
+  "documents": [
+    { "en": "Aadhaar card", "hi": "आधार कार्ड", "mr": "आधार कार्ड" },
+    { "en": "Mobile number linked to Aadhaar", "hi": "आधार से जुड़ा मोबाइल नंबर", "mr": "आधारशी जोडलेला मोबाईल नंबर" },
+    { "en": "Bank account details", "hi": "बैंक खाते की जानकारी", "mr": "बँक खात्याची माहिती" }
+  ],
+  "applyAt": ["CSC (free)", "eshram.gov.in (self registration)"],
+  "applyAtSpoken": { "hi": "नज़दीकी सीएससी केंद्र पर, जहाँ पंजीकरण मुफ़्त है", "mr": "जवळच्या सीएससी केंद्रावर, जिथे नोंदणी मोफत आहे", "en": "to your nearest CSC centre, where registration is free" },
+  "notes": [
+    "Members of EPFO, ESIC or govt-funded NPS and income-tax payers cannot register.",
+    "Farmers, farm labourers, construction workers, domestic workers, street vendors and other self-employed workers are all unorganised workers."
+  ],
+  "helpline": "14434",
+  "source": "https://indbiz.gov.in/around-270-million-unorganized-sector-workers-join-the-e-shram-portal",
+  "sourceSecondary": "https://eshram.gov.in/",
+  "sourceHash": null,
+  "version": 1,
+  "lastVerified": "2026-10-31",
+  "status": "approved"
+}

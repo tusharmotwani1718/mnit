@@ -1,0 +1,51 @@
+{
+  "id": "pmfby",
+  "name": { "en": "Pradhan Mantri Fasal Bima Yojana (crop insurance)", "hi": "प्रधानमंत्री फसल बीमा योजना", "mr": "प्रधानमंत्री पीक विमा योजना" },
+  "level": "central",
+  "tier": 1,
+  "topics": ["farming", "insurance"],
+  "rules": {
+    "all": [
+      {
+        "any": [
+          { "fact": "ownsCultivableLand", "op": "eq", "value": true },
+          { "fact": "isTenantFarmer", "op": "eq", "value": true }
+        ]
+      },
+      { "manualCheck": "The crop must be notified for the caller's area this season, and enrolment must be before the season's cut-off date." }
+    ]
+  },
+  "benefitSummary": {
+    "en": "Insurance payout if the crop is lost to drought, flood, hail, pests, disease, prevented sowing or post-harvest rain. Farmer pays at most 2% premium for kharif, 1.5% for rabi food and oilseed crops, 5% for commercial and horticulture crops; the government pays the rest.",
+    "hi": "सूखा, बाढ़, ओले, कीड़े या बेमौसम बारिश से फसल खराब होने पर बीमा का पैसा। किसान को खरीफ में ज़्यादा से ज़्यादा 2%, रबी में 1.5% और नकदी या बागवानी फसल में 5% प्रीमियम देना होता है, बाकी सरकार देती है।",
+    "mr": "दुष्काळ, पूर, गारपीट, कीड किंवा अवकाळी पावसाने पीक खराब झाल्यास विम्याची भरपाई. शेतकऱ्याला खरीपसाठी जास्तीत जास्त 2%, रब्बीसाठी 1.5% आणि नगदी किंवा फळबाग पिकांसाठी 5% हप्ता भरावा लागतो, बाकी सरकार भरते."
+  },
+  "documents": [
+    { "en": "Aadhaar card", "hi": "आधार कार्ड", "mr": "आधार कार्ड" },
+    { "en": "Land records (7/12 extract)", "hi": "ज़मीन के कागज़ (सात-बारा उतारा)", "mr": "सातबारा उतारा" },
+    { "en": "Tenant / sharecropping agreement (tenant farmers)", "hi": "बटाई या किराये का करार (बटाईदार किसान के लिए)", "mr": "भाडेपट्टा किंवा बटाई करार (कुळ शेतकऱ्यांसाठी)" },
+    { "en": "Declaration of the crop sown", "hi": "बोई गई फसल का घोषणा पत्र", "mr": "पेरलेल्या पिकाचे स्वयंघोषणापत्र" },
+    { "en": "Bank passbook", "hi": "बैंक पासबुक", "mr": "बँक पासबुक" }
+  ],
+  "applyAt": ["CSC", "Bank branch", "pmfby.gov.in", "Crop Insurance App"],
+  "applyAtSpoken": { "hi": "नज़दीकी सीएससी केंद्र या अपनी बैंक शाखा में", "mr": "जवळच्या सीएससी केंद्रावर किंवा तुमच्या बँक शाखेत", "en": "to your nearest CSC centre or your bank branch" },
+  "faq": [
+    {
+      "q": "crop loss reporting",
+      "hi": "फसल का नुकसान होने पर 72 घंटे के अंदर क्रॉप इंश्योरेंस ऐप पर या 14447 पर बताइए।",
+      "mr": "पिकाचे नुकसान झाल्यास 72 तासांच्या आत क्रॉप इन्शुरन्स ॲपवर किंवा 14447 वर कळवा.",
+      "en": "If your crop is damaged, report it within 72 hours on the Crop Insurance App or by calling 14447."
+    }
+  ],
+  "notes": [
+    "Voluntary for all farmers, including loanee farmers (who can opt out at their bank at least 7 days before the cut-off).",
+    "Maharashtra's 100%-premium-paid-by-state (Rs 1 crop insurance) approach was discontinued in 2025; standard premiums apply. Maharashtra is implementing PMFBY in Kharif 2026."
+  ],
+  "helpline": "14447 (Krishi Rakshak Portal & Helpline)",
+  "source": "https://pmfby.gov.in/pdf/Revamped%20Operational%20Guidelines_17th%20August%202020.pdf",
+  "sourceSecondary": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/aug/doc_9735_20260829_18493301.pdf",
+  "sourceHash": null,
+  "version": 1,
+  "lastVerified": "2026-10-30",
+  "status": "approved"
+}

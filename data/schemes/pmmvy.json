@@ -1,0 +1,48 @@
+{
+  "id": "pmmvy",
+  "name": { "en": "Pradhan Mantri Matru Vandana Yojana (maternity benefit)", "hi": "प्रधानमंत्री मातृ वंदना योजना", "mr": "प्रधानमंत्री मातृ वंदना योजना" },
+  "level": "central",
+  "tier": 1,
+  "topics": ["women", "health"],
+  "rules": {
+    "all": [
+      { "fact": "gender", "op": "eq", "value": "female" },
+      { "fact": "isPregnantOrLactating", "op": "eq", "value": true },
+      { "fact": "isGovtEmployee", "op": "eq", "value": false },
+      {
+        "any": [
+          { "fact": "socialCategory", "op": "in", "value": ["SC", "ST"] },
+          { "fact": "annualFamilyIncome", "op": "lte", "value": 800000 },
+          { "fact": "isDisabled", "op": "eq", "value": true },
+          { "fact": "isFrontlineWorker", "op": "eq", "value": true },
+          { "manualCheck": "Holds a BPL or NFSA ration card, e-Shram card, MGNREGA job card, is a PM-KISAN woman farmer or a PM-JAY beneficiary." }
+        ]
+      },
+      { "manualCheck": "Benefit applies to the first living child, or the second child if it is a girl; pregnancy must be registered (for the second child, during pregnancy)." }
+    ]
+  },
+  "benefitSummary": {
+    "en": "Rs 5,000 for the first child in two instalments (Rs 3,000 after the antenatal check-up, Rs 2,000 after birth registration and first vaccinations). Rs 6,000 in one instalment if the second child is a girl. Plus Janani Suraksha Yojana money for delivery in a hospital.",
+    "hi": "पहले बच्चे पर 5,000 रुपये, दो किस्तों में: जाँच के बाद 3,000 और जन्म के पंजीकरण और टीकों के बाद 2,000। दूसरा बच्चा लड़की हो तो एक बार में 6,000 रुपये। अस्पताल में डिलीवरी पर जननी सुरक्षा योजना का पैसा अलग से।",
+    "mr": "पहिल्या बाळासाठी 5,000 रुपये, दोन हप्त्यांत: तपासणीनंतर 3,000 आणि जन्मनोंदणी व लसीकरणानंतर 2,000. दुसरे अपत्य मुलगी असल्यास एकाच वेळी 6,000 रुपये. रुग्णालयात प्रसूती झाल्यास जननी सुरक्षा योजनेचे पैसे वेगळे."
+  },
+  "documents": [
+    { "en": "Mother and Child Protection (MCP) card", "hi": "माँ और बच्चे का एमसीपी कार्ड (ममता कार्ड)", "mr": "माता व बाल संरक्षण (एमसीपी) कार्ड" },
+    { "en": "Aadhaar card", "hi": "आधार कार्ड", "mr": "आधार कार्ड" },
+    { "en": "Aadhaar-linked bank or post office account", "hi": "आधार से जुड़ा बैंक या डाकघर खाता", "mr": "आधारशी जोडलेले बँक किंवा पोस्ट खाते" },
+    { "en": "Eligibility proof (e.g. ration card, job card, e-Shram card, income certificate)", "hi": "पात्रता का सबूत (जैसे राशन कार्ड, जॉब कार्ड, ई-श्रम कार्ड, आय प्रमाण पत्र)", "mr": "पात्रतेचा पुरावा (उदा. रेशन कार्ड, जॉब कार्ड, ई-श्रम कार्ड, उत्पन्नाचा दाखला)" }
+  ],
+  "applyAt": ["Anganwadi worker or ASHA (fills the form online)", "pmmvy.wcd.gov.in", "UMANG app"],
+  "applyAtSpoken": { "hi": "अपनी आंगनवाड़ी दीदी या आशा दीदी के पास", "mr": "तुमच्या अंगणवाडी ताई किंवा आशा ताईंकडे", "en": "to your Anganwadi worker or ASHA worker" },
+  "notes": [
+    "Women in regular employment with central/state government or PSUs are excluded.",
+    "isPregnantOrLactating is never asked; this scheme is only evaluated when the caller mentions it. Good fit for the ASHA-worker view."
+  ],
+  "helpline": null,
+  "source": "https://www.spniwcd.wcd.gov.in/uploads/pdf/1710098119_HDEXdpWMb1.pdf",
+  "sourceSecondary": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/aug/doc2025825619601.pdf",
+  "sourceHash": null,
+  "version": 1,
+  "lastVerified": "2026-10-30",
+  "status": "approved"
+}

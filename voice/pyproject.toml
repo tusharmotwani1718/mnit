@@ -1,0 +1,19 @@
+[project]
+name = "yojana-voice"
+version = "0.1.0"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "httpx>=0.28.1",
+    "livekit-agents[gnani,silero]~=1.8",
+    "livekit-plugins-noise-cancellation~=0.2",
+    "python-dotenv>=1.2.4",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

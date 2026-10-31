@@ -1,0 +1,38 @@
+{
+  "id": "apy",
+  "name": { "en": "Atal Pension Yojana", "hi": "अटल पेंशन योजना", "mr": "अटल पेन्शन योजना" },
+  "level": "central",
+  "tier": 1,
+  "topics": ["pension"],
+  "rules": {
+    "all": [
+      { "fact": "age", "op": "gte", "value": 18 },
+      { "fact": "age", "op": "lte", "value": 40 },
+      { "fact": "hasBankAccount", "op": "eq", "value": true },
+      { "fact": "isIncomeTaxPayer", "op": "eq", "value": false }
+    ]
+  },
+  "benefitSummary": {
+    "en": "Guaranteed monthly pension of Rs 1,000 to Rs 5,000 (your choice) from age 60 for life, then to the spouse. Monthly contribution depends on joining age and chosen pension: Rs 42-210 if joining at 18, Rs 291-1,454 at 40. Auto-debited from the bank account.",
+    "hi": "60 साल के बाद ज़िंदगी भर हर महीने 1,000 से 5,000 रुपये की पक्की पेंशन, आप जितनी चुनें। 18 साल में जुड़ने पर हर महीने 42 से 210 रुपये जमा करने होते हैं।",
+    "mr": "60 वर्षांनंतर आयुष्यभर दर महिना 1,000 ते 5,000 रुपयांची खात्रीशीर पेन्शन, तुम्ही निवडाल तेवढी. 18 व्या वर्षी सामील झाल्यास दर महिना 42 ते 210 रुपये भरावे लागतात."
+  },
+  "documents": [
+    { "en": "Savings bank account passbook", "hi": "बचत खाते की पासबुक", "mr": "बचत खात्याचे पासबुक" },
+    { "en": "Aadhaar card", "hi": "आधार कार्ड", "mr": "आधार कार्ड" },
+    { "en": "Mobile number", "hi": "मोबाइल नंबर", "mr": "मोबाईल नंबर" }
+  ],
+  "applyAt": ["Your bank or post office branch", "Net banking / e-APY"],
+  "applyAtSpoken": { "hi": "अपनी बैंक शाखा या डाकघर में", "mr": "तुमच्या बँक शाखेत किंवा पोस्टात", "en": "to your bank branch or post office" },
+  "notes": [
+    "From 1 Oct 2022, anyone who is or has been an income tax payer on the date of application cannot join. Becoming a taxpayer after joining does not affect the account.",
+    "The 'has been an income tax payer' part is stricter than isIncomeTaxPayer (current); treat a past taxpayer as not eligible if mentioned."
+  ],
+  "helpline": null,
+  "source": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/may/doc202558551701.pdf",
+  "sourceSecondary": "https://www.pfrda.org.in/w/faqs/atal-pension-yojana",
+  "sourceHash": null,
+  "version": 1,
+  "lastVerified": "2026-10-30",
+  "status": "approved"
+}

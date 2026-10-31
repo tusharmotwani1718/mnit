@@ -1,0 +1,51 @@
+{
+  "id": "magel-tyala-saur-pump",
+  "name": { "en": "Magel Tyala Saur Krushi Pump Yojana (solar pump)", "hi": "मागेल त्याला सौर कृषि पंप योजना", "mr": "मागेल त्याला सौर कृषी पंप योजना" },
+  "level": "state",
+  "state": "MH",
+  "tier": 1,
+  "topics": ["farming"],
+  "rules": {
+    "all": [
+      { "fact": "state", "op": "eq", "value": "MH" },
+      { "fact": "ownsCultivableLand", "op": "eq", "value": true },
+      { "fact": "hasWaterSource", "op": "eq", "value": true },
+      { "fact": "hasConventionalPump", "op": "eq", "value": false },
+      {
+        "fact": "hadSolarPumpSubsidy", "op": "eq", "value": false,
+        "assumeIfUnknown": true,
+        "caveat": {
+          "hi": "अगर पहले अटल या मुख्यमंत्री सौर पंप योजना में पंप नहीं मिला।",
+          "mr": "आधी अटल किंवा मुख्यमंत्री सौर पंप योजनेत पंप मिळाला नसेल तर.",
+          "en": "As long as you didn't already get a pump under the Atal or Mukhyamantri solar pump schemes."
+        }
+      },
+      { "manualCheck": "MSEDCL verifies the water source is assured and is not a water-conservation reservoir." }
+    ]
+  },
+  "benefitSummary": {
+    "en": "Solar pump set with panels, no electricity bill, daytime irrigation. General category farmers pay only 10%, SC/ST farmers 5%; the rest is subsidised. 5-year repair guarantee with insurance. Pump size by land: up to 2.5 acres 3 HP, 2.51-5 acres 5 HP, above 5 acres 7.5 HP.",
+    "hi": "सोलर पंप और पैनल, बिजली का बिल नहीं, दिन में सिंचाई। सामान्य वर्ग के किसान को सिर्फ़ 10% और अनुसूचित जाति या जनजाति के किसान को 5% पैसा देना होता है। 5 साल की मरम्मत की गारंटी और बीमा।",
+    "mr": "सौर पंप आणि पॅनल, वीज बिल नाही, दिवसा सिंचन. सर्वसाधारण गटातील शेतकऱ्याला फक्त 10% आणि अनुसूचित जाती किंवा जमातीच्या शेतकऱ्याला 5% रक्कम भरावी लागते. 5 वर्षांची दुरुस्ती हमी आणि विमा."
+  },
+  "documents": [
+    { "en": "Land records (7/12 extract) showing the water source", "hi": "सात-बारा उतारा, जिसमें पानी का स्रोत दर्ज हो", "mr": "जलस्रोताची नोंद असलेला सातबारा उतारा" },
+    { "en": "Aadhaar card", "hi": "आधार कार्ड", "mr": "आधार कार्ड" },
+    { "en": "Bank passbook", "hi": "बैंक पासबुक", "mr": "बँक पासबुक" },
+    { "en": "Caste certificate (SC/ST, for the 5% share)", "hi": "जाति प्रमाण पत्र (अनुसूचित जाति या जनजाति के लिए)", "mr": "जातीचा दाखला (अनुसूचित जाती किंवा जमातीसाठी)" },
+    { "en": "NOC from co-owners if the well or land is shared", "hi": "कुआँ या ज़मीन साझा हो तो बाकी हिस्सेदारों का अनापत्ति पत्र", "mr": "विहीर किंवा जमीन सामायिक असल्यास इतर हिस्सेदारांचे ना-हरकत प्रमाणपत्र" }
+  ],
+  "applyAt": ["MSEDCL (Mahavitaran) online portal: mahadiscom.in/solar_MTSKPY", "CSC (to fill the online form)"],
+  "applyAtSpoken": { "hi": "महावितरण के ऑनलाइन पोर्टल पर, या फ़ॉर्म भरने के लिए नज़दीकी सीएससी केंद्र पर", "mr": "महावितरणच्या ऑनलाइन पोर्टलवर, किंवा अर्ज भरण्यासाठी जवळच्या सीएससी केंद्रावर", "en": "to the MSEDCL online portal, or to your nearest CSC centre to fill the form" },
+  "notes": [
+    "MSEDCL circular 17.12.2024: a farmer who already has a conventional pump is not eligible for the subsidy; a second subsidised solar pump is not allowed.",
+    "The MSEDCL scheme page does not list documents; the list above is from the NOC clause in the circular plus standard requirements; the caller is told the MSEDCL form may ask for more."
+  ],
+  "helpline": "1912 / 19120; MSEDCL toll free 1800-212-3435, 1800-233-3435",
+  "source": "https://mahadiscom.in/solar_MTSKPY/scheme_info.php",
+  "sourceSecondary": "https://mahadiscom.in/solar_MTSKPY/media/Guidelines%20and%20Clarifications%20for%20offgrid%20Solar%20Pump%20Installations.pdf",
+  "sourceHash": null,
+  "version": 1,
+  "lastVerified": "2026-10-30",
+  "status": "approved"
+}

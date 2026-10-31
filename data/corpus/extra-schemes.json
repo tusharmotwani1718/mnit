@@ -1,0 +1,307 @@
+{
+  "notes": [
+    "RAG-only schemes: no eligibility rules, so the assistant only ever says 'you may be eligible, confirm at the CSC/office'.",
+    "Text is written conservatively from official or official-cited sources; anything that changes often (interest rates, open windows) is described, not quoted.",
+    "lastVerified: 2026-10-31"
+  ],
+  "schemes": [
+    {
+      "id": "ladki-bahin",
+      "name": { "en": "Mukhyamantri Majhi Ladki Bahin Yojana", "hi": "मुख्यमंत्री माझी लाडकी बहीण योजना", "mr": "मुख्यमंत्री माझी लाडकी बहीण योजना" },
+      "level": "state", "state": "MH", "topics": ["women"],
+      "source": "https://pune.gov.in/en/scheme/mukhyamantri-majhi-ladki-bahin-yojana/",
+      "text": [
+        "Majhi Ladki Bahin is a Maharashtra scheme that pays Rs 1,500 a month to women aged 21 to 65 who live in Maharashtra and whose family income is up to Rs 2.5 lakh a year. Married, widowed, divorced, abandoned and destitute women, and one unmarried woman per family, are covered. The money goes to an Aadhaar-linked bank account.",
+        "Families where someone pays income tax, works in government service, is a current or former MP or MLA, or owns a four-wheeler (tractors excepted) are excluded. Beneficiaries must complete e-KYC every year to keep getting the money.",
+        "New registrations are reported to be closed; the government has not announced a new window. Existing beneficiaries can check their status and e-KYC on ladakibahin.maharashtra.gov.in or at the Anganwadi worker. Nobody needs to pay an agent for this scheme."
+      ],
+      "summary": {
+        "hi": "माझी लाडकी बहीण योजना में महाराष्ट्र की 21 से 65 साल की महिलाओं को, जिनके परिवार की आय ढाई लाख तक है, हर महीने 1,500 रुपये मिलते हैं। नए पंजीकरण अभी बंद बताए जाते हैं; जिनका नाम है वे हर साल ई-केवाईसी करें। स्थिति आंगनवाड़ी दीदी से पूछें।",
+        "mr": "माझी लाडकी बहीण योजनेत महाराष्ट्रातील 21 ते 65 वयाच्या, कुटुंबाचे उत्पन्न अडीच लाखांपर्यंत असलेल्या महिलांना दरमहा 1,500 रुपये मिळतात. नवीन नोंदणी सध्या बंद असल्याचे सांगितले जाते; लाभार्थ्यांनी दरवर्षी ई-केवायसी करावी. स्थिती अंगणवाडी ताईंकडे विचारा."
+      }
+    },
+    {
+      "id": "mjpjay",
+      "name": { "en": "Mahatma Jyotirao Phule Jan Arogya Yojana (MJPJAY)", "hi": "महात्मा ज्योतिराव फुले जन आरोग्य योजना", "mr": "महात्मा ज्योतिराव फुले जन आरोग्य योजना" },
+      "level": "state", "state": "MH", "topics": ["health"],
+      "source": "https://www.jeevandayee.gov.in/",
+      "text": [
+        "Mahatma Jyotirao Phule Jan Arogya Yojana is Maharashtra's health scheme, run together with Ayushman Bharat PM-JAY. It gives free cashless treatment for listed surgeries and therapies in empanelled government and private hospitals. The cover was raised to Rs 5 lakh per family per year, and the scheme was extended to families of Maharashtra beyond the earlier yellow and orange ration card holders.",
+        "At the hospital, an Arogya Mitra helps the patient. Carry a ration card and Aadhaar card (or a Maharashtra domicile certificate). The ration card should be linked to Aadhaar so an Ayushman card can be made.",
+        "Exact coverage for each family category and the list of hospitals should be confirmed with the Arogya Mitra at an empanelled hospital or on jeevandayee.gov.in. Treatment under the scheme is free; no one should take money for registration."
+      ],
+      "summary": {
+        "hi": "महात्मा फुले जन आरोग्य योजना में महाराष्ट्र के परिवारों को चुने हुए अस्पतालों में साल में 5 लाख रुपये तक का मुफ़्त इलाज मिलता है। अस्पताल में आरोग्य मित्र से मिलें और राशन कार्ड व आधार साथ रखें।",
+        "mr": "महात्मा फुले जन आरोग्य योजनेत महाराष्ट्रातील कुटुंबांना निवडक रुग्णालयांत वर्षाला 5 लाख रुपयांपर्यंत मोफत उपचार मिळतात. रुग्णालयात आरोग्य मित्रांना भेटा आणि रेशन कार्ड व आधार सोबत ठेवा."
+      }
+    },
+    {
+      "id": "pm-sym",
+      "name": { "en": "PM Shram Yogi Maan-dhan (PM-SYM) pension", "hi": "प्रधानमंत्री श्रम योगी मानधन योजना", "mr": "प्रधानमंत्री श्रम योगी मानधन योजना" },
+      "level": "central", "topics": ["pension", "work"],
+      "source": "https://maandhan.in/",
+      "text": [
+        "PM Shram Yogi Maan-dhan is a voluntary pension scheme for unorganised workers such as rickshaw pullers, street vendors, domestic workers, construction workers and farm labourers. Workers aged 18 to 40 with a monthly income of up to Rs 15,000 can join.",
+        "The worker pays a small monthly contribution (from about Rs 55 to Rs 200 depending on joining age) and the government adds an equal amount. From age 60 the worker gets a guaranteed pension of Rs 3,000 a month; the spouse gets half if the worker dies.",
+        "People who are members of EPFO, ESIC or NPS, or who pay income tax, cannot join. Enrol at a CSC with Aadhaar and a savings bank account or Jan Dhan account; enrolment is free."
+      ],
+      "summary": {
+        "hi": "श्रम योगी मानधन योजना में 18 से 40 साल के असंगठित मज़दूर, जिनकी महीने की कमाई 15,000 तक है, थोड़ा-थोड़ा जमा करते हैं और उतना ही सरकार जोड़ती है। 60 साल के बाद हर महीने 3,000 रुपये पेंशन मिलती है। नज़दीकी सीएससी पर आधार और बैंक खाते के साथ मुफ़्त जुड़ें।",
+        "mr": "श्रम योगी मानधन योजनेत 18 ते 40 वयाचे, महिन्याला 15,000 पर्यंत कमावणारे असंघटित कामगार थोडी रक्कम भरतात आणि तितकीच सरकार भरते. 60 वर्षांनंतर दरमहा 3,000 रुपये पेन्शन मिळते. जवळच्या सीएससीवर आधार व बँक खात्यासह मोफत नोंदणी करा."
+      }
+    },
+    {
+      "id": "pm-vishwakarma",
+      "name": { "en": "PM Vishwakarma (artisans and craftspeople)", "hi": "पीएम विश्वकर्मा योजना", "mr": "पीएम विश्वकर्मा योजना" },
+      "level": "central", "topics": ["work"],
+      "source": "https://pmvishwakarma.gov.in/",
+      "text": [
+        "PM Vishwakarma supports artisans and craftspeople working with their hands and tools in 18 traditional trades, such as carpenter, blacksmith, potter, cobbler, tailor (darzi), barber, washerman, mason, goldsmith, basket and broom maker, fishing net maker, boat maker, armourer, locksmith, sculptor, doll and toy maker, hammer and toolkit maker, and garland maker.",
+        "Benefits: recognition through a PM Vishwakarma certificate and ID card, basic skill training with a stipend of Rs 500 a day, a toolkit incentive of up to Rs 15,000 as an e-voucher, collateral-free loans of up to Rs 1 lakh and then Rs 2 lakh at a concessional 5% interest, and incentives for digital transactions and marketing support.",
+        "The artisan must be at least 18, self-employed in the trade, and must not have taken a similar government credit-linked loan (PMEGP, PM SVANidhi or Mudra) in the last 5 years. Only one family member can register, and government employees and their families are excluded. Register at a CSC; verification is done by the Gram Panchayat or urban local body."
+      ],
+      "summary": {
+        "hi": "पीएम विश्वकर्मा में बढ़ई, लोहार, कुम्हार, मोची, दर्ज़ी, नाई जैसे 18 पारंपरिक कारीगरों को ट्रेनिंग के साथ रोज़ 500 रुपये, 15,000 रुपये तक का औज़ार वाउचर और 5 प्रतिशत ब्याज पर बिना गारंटी 1 लाख और फिर 2 लाख का लोन मिलता है। सीएससी पर पंजीकरण करें।",
+        "mr": "पीएम विश्वकर्मा योजनेत सुतार, लोहार, कुंभार, चर्मकार, शिंपी, न्हावी अशा 18 पारंपरिक कारागिरांना प्रशिक्षणासह दररोज 500 रुपये, 15,000 रुपयांपर्यंत अवजार व्हाउचर आणि 5 टक्के व्याजाने विनातारण 1 लाख व नंतर 2 लाख कर्ज मिळते. सीएससीवर नोंदणी करा."
+      }
+    },
+    {
+      "id": "nfsa-ration",
+      "name": { "en": "Free ration under NFSA (PM Garib Kalyan Anna Yojana)", "hi": "मुफ़्त राशन (राष्ट्रीय खाद्य सुरक्षा, पीएम गरीब कल्याण अन्न योजना)", "mr": "मोफत रेशन (राष्ट्रीय अन्न सुरक्षा, पीएम गरीब कल्याण अन्न योजना)" },
+      "level": "central", "topics": ["household"],
+      "source": "https://nfsa.gov.in/",
+      "text": [
+        "Under the National Food Security Act, families with an eligible ration card get free food grains through the ration shop (fair price shop) under PM Garib Kalyan Anna Yojana. Priority household card holders get 5 kg of grain per person per month free; Antyodaya (AAY) families get 35 kg per family per month free. The free grain has been extended to December 2028.",
+        "In Maharashtra, eligibility for a priority (orange) or Antyodaya (yellow) card depends on family income and is decided by the tahsil supply office. To get or update a ration card, apply at the tahsil supply office or online on the state's rationing portal with Aadhaar of all members, residence proof and an income certificate.",
+        "With One Nation One Ration Card, grain can be taken from any ration shop in India using Aadhaar authentication. Ration is free; report any shop asking for money for the free grain."
+      ],
+      "summary": {
+        "hi": "राशन कार्ड वाले पात्र परिवारों को राशन दुकान से हर व्यक्ति को महीने का 5 किलो अनाज मुफ़्त मिलता है, अंत्योदय परिवार को 35 किलो। नया कार्ड या नाम जोड़ने के लिए तहसील की आपूर्ति शाखा में आधार और आय प्रमाण पत्र के साथ आवेदन करें।",
+        "mr": "रेशन कार्ड असलेल्या पात्र कुटुंबांना रेशन दुकानातून प्रत्येक व्यक्तीला महिन्याला 5 किलो धान्य मोफत मिळते, अंत्योदय कुटुंबाला 35 किलो. नवीन कार्ड किंवा नाव जोडण्यासाठी तहसीलच्या पुरवठा शाखेत आधार आणि उत्पन्नाच्या दाखल्यासह अर्ज करा."
+      }
+    },
+    {
+      "id": "pm-vidyalaxmi",
+      "name": { "en": "PM Vidyalaxmi (education loans)", "hi": "पीएम विद्यालक्ष्मी (शिक्षा ऋण)", "mr": "पीएम विद्यालक्ष्मी (शैक्षणिक कर्ज)" },
+      "level": "central", "topics": ["education"],
+      "source": "https://pmvidyalaxmi.co.in/",
+      "text": [
+        "PM Vidyalaxmi gives collateral-free, guarantor-free education loans to students who get admission in quality higher education institutions (top-ranked institutions in the NIRF list). Students apply on the PM Vidyalaxmi portal, which sends the application to banks.",
+        "For students whose family income is up to Rs 8 lakh a year and who do not get any other government scholarship or interest subvention, the government pays 3% interest subvention on loans up to Rs 10 lakh during the moratorium period. A 75% credit guarantee is given to banks on loans up to Rs 7.5 lakh.",
+        "Students from families with income up to Rs 4.5 lakh studying technical or professional courses may get full interest subvention under a separate scheme. Apply on pmvidyalaxmi.co.in after getting admission."
+      ],
+      "summary": {
+        "hi": "पीएम विद्यालक्ष्मी में अच्छे कॉलेजों में दाख़िला पाने वाले विद्यार्थियों को बिना गारंटी शिक्षा लोन मिलता है। परिवार की आय 8 लाख तक हो तो 10 लाख तक के लोन पर सरकार 3 प्रतिशत ब्याज देती है। दाख़िले के बाद पीएम विद्यालक्ष्मी पोर्टल पर आवेदन करें।",
+        "mr": "पीएम विद्यालक्ष्मी योजनेत चांगल्या महाविद्यालयांत प्रवेश मिळालेल्या विद्यार्थ्यांना विनातारण शैक्षणिक कर्ज मिळते. कुटुंबाचे उत्पन्न 8 लाखांपर्यंत असल्यास 10 लाखांपर्यंतच्या कर्जावर सरकार 3 टक्के व्याज भरते. प्रवेशानंतर पीएम विद्यालक्ष्मी पोर्टलवर अर्ज करा."
+      }
+    },
+    {
+      "id": "pm-svanidhi",
+      "name": { "en": "PM SVANidhi (street vendor loans)", "hi": "पीएम स्वनिधि (रेहड़ी-पटरी वालों के लिए लोन)", "mr": "पीएम स्वनिधी (फेरीवाल्यांसाठी कर्ज)" },
+      "level": "central", "topics": ["work"],
+      "source": "https://newsonair.gov.in/union-cabinet-approves-restructuring-of-pm-svanidhi-scheme",
+      "text": [
+        "PM SVANidhi gives collateral-free working capital loans to street vendors. After the restructuring approved in August 2025, the first loan is up to Rs 15,000 (12 months), the second up to Rs 25,000 (18 months) after repaying the first, and the third up to Rs 50,000. The lending period runs until 31 March 2030.",
+        "Vendors who repay on time get an interest subsidy, and cashback for digital payments. Vendors who repay the second loan can get a UPI-linked RuPay credit card. Coverage is being extended from towns to census towns and peri-urban areas in stages.",
+        "Vendors need a vending certificate or identity card from the urban local body, or a letter of recommendation from it. Apply through a bank, a CSC or the PM SVANidhi portal with Aadhaar."
+      ],
+      "summary": {
+        "hi": "पीएम स्वनिधि में रेहड़ी-पटरी वालों को बिना गारंटी पहले 15,000, फिर 25,000 और फिर 50,000 रुपये तक का लोन मिलता है, समय पर चुकाने पर ब्याज में छूट। नगर पालिका का वेंडिंग प्रमाण पत्र और आधार लेकर बैंक या सीएससी पर आवेदन करें।",
+        "mr": "पीएम स्वनिधी योजनेत फेरीवाल्यांना विनातारण आधी 15,000, मग 25,000 आणि नंतर 50,000 रुपयांपर्यंत कर्ज मिळते, वेळेवर फेडल्यास व्याजात सूट. नगरपालिकेचे फेरीवाला प्रमाणपत्र आणि आधार घेऊन बँकेत किंवा सीएससीवर अर्ज करा."
+      }
+    },
+    {
+      "id": "mudra",
+      "name": { "en": "Pradhan Mantri Mudra Yojana (small business loans)", "hi": "प्रधानमंत्री मुद्रा योजना", "mr": "प्रधानमंत्री मुद्रा योजना" },
+      "level": "central", "topics": ["work"],
+      "source": "https://www.mudra.org.in/",
+      "text": [
+        "Pradhan Mantri Mudra Yojana gives collateral-free loans to non-farm small and micro businesses such as shops, small manufacturing, services, food processing and activities allied to agriculture like dairy, poultry and beekeeping.",
+        "Loans come in four categories: Shishu up to Rs 50,000, Kishore from Rs 50,000 to Rs 5 lakh, Tarun from Rs 5 lakh to Rs 10 lakh, and Tarun Plus up to Rs 20 lakh for those who have successfully repaid a Tarun loan. Interest rates are set by the lending bank.",
+        "Apply at any bank, regional rural bank, small finance bank or microfinance institution, or on the Udyamimitra portal, with Aadhaar, a business plan or quotation, and address proof. There is no processing fee for Shishu loans; nobody needs to pay an agent."
+      ],
+      "summary": {
+        "hi": "मुद्रा योजना में छोटे धंधे के लिए बिना गारंटी लोन मिलता है: शिशु 50,000 तक, किशोर 5 लाख तक, तरुण 10 लाख तक, और तरुण प्लस 20 लाख तक। किसी भी बैंक में आधार और धंधे की योजना लेकर आवेदन करें।",
+        "mr": "मुद्रा योजनेत छोट्या व्यवसायासाठी विनातारण कर्ज मिळते: शिशु 50,000 पर्यंत, किशोर 5 लाखांपर्यंत, तरुण 10 लाखांपर्यंत आणि तरुण प्लस 20 लाखांपर्यंत. कोणत्याही बँकेत आधार आणि व्यवसाय योजनेसह अर्ज करा."
+      }
+    },
+    {
+      "id": "stand-up-india",
+      "name": { "en": "Stand-Up India (loans for SC/ST and women entrepreneurs)", "hi": "स्टैंड-अप इंडिया", "mr": "स्टँड-अप इंडिया" },
+      "level": "central", "topics": ["work", "women"],
+      "source": "https://www.standupmitra.in/",
+      "text": [
+        "Stand-Up India gives bank loans of Rs 10 lakh to Rs 1 crore to at least one SC or ST borrower and at least one woman borrower per bank branch, to set up a new (greenfield) enterprise in manufacturing, services, trading or activities allied to agriculture.",
+        "The borrower must be at least 18. For a company or partnership, at least 51% must be held by an SC/ST person or a woman. The borrower must not be a defaulter with any bank. The loan covers up to 85% of the project cost, including working capital, and is repayable within 7 years.",
+        "Apply at a bank branch or on the Stand-Up Mitra portal (standupmitra.in), which also connects borrowers with handholding support."
+      ],
+      "summary": {
+        "hi": "स्टैंड-अप इंडिया में एससी, एसटी और महिला उद्यमियों को नया धंधा शुरू करने के लिए बैंक से 10 लाख से 1 करोड़ रुपये तक का लोन मिलता है। बैंक शाखा में या स्टैंड-अप मित्र पोर्टल पर आवेदन करें।",
+        "mr": "स्टँड-अप इंडिया योजनेत एससी, एसटी आणि महिला उद्योजकांना नवीन व्यवसाय सुरू करण्यासाठी बँकेकडून 10 लाख ते 1 कोटी रुपयांपर्यंत कर्ज मिळते. बँक शाखेत किंवा स्टँड-अप मित्र पोर्टलवर अर्ज करा."
+      }
+    },
+    {
+      "id": "pmegp",
+      "name": { "en": "PMEGP (subsidy to start a business)", "hi": "प्रधानमंत्री रोज़गार सृजन कार्यक्रम (पीएमईजीपी)", "mr": "प्रधानमंत्री रोजगार निर्मिती कार्यक्रम (पीएमईजीपी)" },
+      "level": "central", "topics": ["work"],
+      "source": "https://www.kviconline.gov.in/pmegpeportal/",
+      "text": [
+        "The Prime Minister's Employment Generation Programme (PMEGP) helps people start new micro enterprises in manufacturing or services with a bank loan plus a government margin-money subsidy. Projects up to Rs 50 lakh (manufacturing) and Rs 20 lakh (services) are covered.",
+        "The subsidy is 15% of the project cost in urban areas and 25% in rural areas for general category applicants, and 25% (urban) and 35% (rural) for SC, ST, OBC, minorities, women, ex-servicemen, persons with disabilities and people in hilly or border areas. The applicant puts in 10% (5% for special categories) and the bank lends the rest.",
+        "Anyone over 18 can apply; for projects above Rs 10 lakh in manufacturing or Rs 5 lakh in services, the applicant must have passed Class 8. Existing units and units that already got a government subsidy are not eligible. Apply online on the PMEGP e-portal; KVIC, the state Khadi board or the District Industries Centre processes it."
+      ],
+      "summary": {
+        "hi": "पीएमईजीपी में नया छोटा उद्योग या सेवा शुरू करने पर बैंक लोन के साथ सरकारी सब्सिडी मिलती है, गाँव में 25 से 35 प्रतिशत तक। 18 साल से ऊपर कोई भी पीएमईजीपी पोर्टल पर या ज़िला उद्योग केंद्र में आवेदन कर सकता है।",
+        "mr": "पीएमईजीपी योजनेत नवीन लघु उद्योग किंवा सेवा सुरू करण्यासाठी बँक कर्जासह सरकारी अनुदान मिळते, ग्रामीण भागात 25 ते 35 टक्क्यांपर्यंत. 18 वर्षांवरील कोणीही पीएमईजीपी पोर्टलवर किंवा जिल्हा उद्योग केंद्रात अर्ज करू शकतो."
+      }
+    },
+    {
+      "id": "sukanya-samriddhi",
+      "name": { "en": "Sukanya Samriddhi Yojana (savings for a girl child)", "hi": "सुकन्या समृद्धि योजना", "mr": "सुकन्या समृद्धी योजना" },
+      "level": "central", "topics": ["women"],
+      "source": "https://www.nsiindia.gov.in/",
+      "text": [
+        "Sukanya Samriddhi Yojana is a government small-savings account for a girl child. Parents or guardians can open it for a daughter below 10 years of age, at a post office or authorised bank, with as little as Rs 250. Up to two girls per family can have an account (three in case of twins or triplets).",
+        "Deposits of Rs 250 to Rs 1.5 lakh a year can be made for 15 years. The interest rate is set by the government every quarter and is among the highest of small-savings schemes; interest and maturity amount are tax-free. The account matures after 21 years.",
+        "Up to 50% can be withdrawn for the girl's higher education after she turns 18 or passes Class 10. Documents: the girl's birth certificate, and Aadhaar and address proof of the parent."
+      ],
+      "summary": {
+        "hi": "सुकन्या समृद्धि योजना में 10 साल से छोटी बेटी के नाम डाकघर या बैंक में सिर्फ़ 250 रुपये से खाता खुलता है, और साल में 1.5 लाख तक जमा कर सकते हैं। ब्याज अच्छा और टैक्स-फ़्री है; पढ़ाई के लिए 18 साल के बाद आधा पैसा निकाल सकते हैं।",
+        "mr": "सुकन्या समृद्धी योजनेत 10 वर्षांखालील मुलीच्या नावाने पोस्ट ऑफिस किंवा बँकेत फक्त 250 रुपयांत खाते उघडते, आणि वर्षाला 1.5 लाखांपर्यंत भरता येतात. व्याज चांगले आणि करमुक्त आहे; शिक्षणासाठी 18 वर्षांनंतर अर्धी रक्कम काढता येते."
+      }
+    },
+    {
+      "id": "pm-surya-ghar",
+      "name": { "en": "PM Surya Ghar Muft Bijli Yojana (rooftop solar)", "hi": "पीएम सूर्य घर मुफ़्त बिजली योजना", "mr": "पीएम सूर्य घर मोफत वीज योजना" },
+      "level": "central", "topics": ["household"],
+      "source": "https://pmsuryaghar.gov.in/",
+      "text": [
+        "PM Surya Ghar Muft Bijli Yojana gives a subsidy to households that put solar panels on their own roof, so they get up to 300 units of free electricity a month and can sell extra power to the electricity company.",
+        "The central subsidy is Rs 30,000 per kW for the first 2 kW and Rs 18,000 for the third kW, up to a maximum of Rs 78,000 for systems of 3 kW or more. Low-interest collateral-free bank loans are available for the rest of the cost.",
+        "The household must own a house with a suitable roof and have a valid electricity connection, and must not have taken any other solar subsidy. Apply on pmsuryaghar.gov.in, choose a registered vendor, and the subsidy comes to the bank account after the net meter is installed and inspected."
+      ],
+      "summary": {
+        "hi": "पीएम सूर्य घर योजना में अपनी छत पर सोलर पैनल लगाने पर 78,000 रुपये तक की सब्सिडी मिलती है और हर महीने 300 यूनिट तक बिजली मुफ़्त। अपना घर और बिजली कनेक्शन हो तो पीएम सूर्य घर पोर्टल पर आवेदन करें।",
+        "mr": "पीएम सूर्य घर योजनेत स्वतःच्या छतावर सौर पॅनल बसवल्यास 78,000 रुपयांपर्यंत अनुदान मिळते आणि दरमहा 300 युनिटपर्यंत वीज मोफत. स्वतःचे घर आणि वीज जोडणी असल्यास पीएम सूर्य घर पोर्टलवर अर्ज करा."
+      }
+    },
+    {
+      "id": "sbm-g-toilet",
+      "name": { "en": "Swachh Bharat Mission (Gramin): household toilet", "hi": "स्वच्छ भारत मिशन (ग्रामीण): घर में शौचालय", "mr": "स्वच्छ भारत मिशन (ग्रामीण): घरगुती शौचालय" },
+      "level": "central", "topics": ["household", "housing"],
+      "source": "https://swachhbharatmission.ddws.gov.in/",
+      "text": [
+        "Under Swachh Bharat Mission (Gramin), rural households that do not have a toilet can get an incentive of Rs 12,000 to build an individual household latrine (IHHL).",
+        "Eligible households include BPL households and identified above-poverty-line households: SC and ST households, small and marginal farmers, landless labourers with homestead, persons with disabilities, and women-headed households. The money is paid to the household's bank account after the toilet is built and verified.",
+        "Apply at the Gram Panchayat or on the SBM-G portal with Aadhaar and bank account details."
+      ],
+      "summary": {
+        "hi": "स्वच्छ भारत मिशन में गाँव के जिस घर में शौचालय नहीं है, उसे शौचालय बनाने के लिए 12,000 रुपये मिलते हैं। ग्राम पंचायत में आधार और बैंक खाते के साथ आवेदन करें।",
+        "mr": "स्वच्छ भारत मिशनमध्ये गावातील ज्या घरात शौचालय नाही, त्याला शौचालय बांधण्यासाठी 12,000 रुपये मिळतात. ग्रामपंचायतीत आधार आणि बँक खात्यासह अर्ज करा."
+      }
+    },
+    {
+      "id": "soil-health-card",
+      "name": { "en": "Soil Health Card", "hi": "मृदा स्वास्थ्य कार्ड", "mr": "मृदा आरोग्य पत्रिका" },
+      "level": "central", "topics": ["farming"],
+      "source": "https://soilhealth.dac.gov.in/",
+      "text": [
+        "Under the Soil Health Card scheme, farmers get their soil tested for free and receive a card that shows the nutrient status of their land and the right amount of fertiliser and soil amendments for their crops.",
+        "Soil samples are taken by the agriculture department from farmers' fields, and the card is renewed every few years. Using the recommendations helps cut fertiliser costs and improve yield.",
+        "Ask the village agriculture assistant (krishi sahayak) or the taluka agriculture office, or check the Soil Health Card portal for your card."
+      ],
+      "summary": {
+        "hi": "मृदा स्वास्थ्य कार्ड योजना में किसान की मिट्टी की मुफ़्त जाँच होती है और कार्ड पर लिखा होता है कि कौन सी खाद कितनी डालें। गाँव के कृषि सहायक या तालुका कृषि कार्यालय से पूछें।",
+        "mr": "मृदा आरोग्य पत्रिका योजनेत शेतकऱ्याच्या मातीची मोफत तपासणी होते आणि कोणते खत किती वापरावे हे पत्रिकेवर लिहिलेले असते. गावाच्या कृषी सहाय्यकांकडे किंवा तालुका कृषी कार्यालयात विचारा."
+      }
+    },
+    {
+      "id": "lek-ladki",
+      "name": { "en": "Lek Ladki Yojana (Maharashtra, girl child)", "hi": "लेक लाडकी योजना", "mr": "लेक लाडकी योजना" },
+      "level": "state", "state": "MH", "topics": ["women", "education"],
+      "source": "https://icds.gov.in/mr/node/624",
+      "text": [
+        "Lek Ladki Yojana is a Maharashtra scheme for girls born on or after 1 April 2023 in families holding a yellow or orange ration card. It replaced the earlier Majhi Kanya Bhagyashree scheme.",
+        "The girl gets Rs 1,01,000 in instalments: Rs 5,000 at birth, Rs 6,000 on joining Class 1, Rs 7,000 in Class 6, Rs 8,000 in Class 11, and Rs 75,000 when she turns 18. The family income limit (reported as Rs 1 lakh a year) and the number of daughters covered should be confirmed at the Anganwadi.",
+        "Apply through the Anganwadi worker with the girl's birth certificate, the ration card, the parents' Aadhaar, an income certificate and a bank account."
+      ],
+      "summary": {
+        "hi": "लेक लाडकी योजना में महाराष्ट्र के पीले या केसरी राशन कार्ड वाले परिवार में 1 अप्रैल 2023 के बाद जन्मी बेटी को 18 साल तक किस्तों में कुल 1,01,000 रुपये मिलते हैं। आंगनवाड़ी दीदी के पास जन्म प्रमाण पत्र और राशन कार्ड के साथ आवेदन करें।",
+        "mr": "लेक लाडकी योजनेत महाराष्ट्रातील पिवळ्या किंवा केशरी रेशन कार्डधारक कुटुंबात 1 एप्रिल 2023 नंतर जन्मलेल्या मुलीला 18 वर्षांपर्यंत हप्त्यांमध्ये एकूण 1,01,000 रुपये मिळतात. अंगणवाडी ताईंकडे जन्म दाखला आणि रेशन कार्डसह अर्ज करा."
+      }
+    },
+    {
+      "id": "mahabocw",
+      "name": { "en": "Construction workers welfare board (Bandhkam Kamgar, Maharashtra)", "hi": "बांधकाम कामगार कल्याण मंडल (महाराष्ट्र)", "mr": "बांधकाम कामगार कल्याण मंडळ (महाराष्ट्र)" },
+      "level": "state", "state": "MH", "topics": ["work"],
+      "source": "https://mahabocw.in/",
+      "text": [
+        "The Maharashtra Building and Other Construction Workers Welfare Board registers construction workers (masons, labourers, carpenters, painters, plumbers, electricians, tile and road workers and others) and gives them welfare benefits.",
+        "To register, a worker must be 18 to 60 years old and have worked at least 90 days in construction in the last 12 months, with a 90-day work certificate from an employer, contractor or the Gram Sevak. Registration must be renewed regularly.",
+        "Registered workers can get benefits such as education help for their children, maternity and medical assistance, accident and death assistance, and help for housing and tools; the exact list and amounts are on mahabocw.in. Register online on mahabocw.in or at the district office of the board, with Aadhaar, age proof, residence proof, the 90-day certificate, photos and bank details."
+      ],
+      "summary": {
+        "hi": "बांधकाम कामगार मंडल में 18 से 60 साल के वे मज़दूर पंजीकरण कर सकते हैं जिन्होंने पिछले साल में 90 दिन बांधकाम का काम किया हो। बच्चों की पढ़ाई, इलाज, दुर्घटना और घर के लिए मदद मिलती है। महाबीओसीडब्ल्यू पोर्टल पर या मंडल के ज़िला कार्यालय में पंजीकरण करें।",
+        "mr": "बांधकाम कामगार मंडळात 18 ते 60 वयाचे, मागील वर्षात 90 दिवस बांधकामाचे काम केलेले कामगार नोंदणी करू शकतात. मुलांचे शिक्षण, उपचार, अपघात आणि घरासाठी मदत मिळते. महाबीओसीडब्ल्यू पोर्टलवर किंवा मंडळाच्या जिल्हा कार्यालयात नोंदणी करा."
+      }
+    },
+    {
+      "id": "nfbs",
+      "name": { "en": "National Family Benefit Scheme", "hi": "राष्ट्रीय पारिवारिक लाभ योजना", "mr": "राष्ट्रीय कौटुंबिक लाभ योजना" },
+      "level": "central", "topics": ["welfare"],
+      "source": "https://nsap.nic.in/",
+      "text": [
+        "Under the National Family Benefit Scheme (part of the National Social Assistance Programme), a BPL household gets a one-time grant of Rs 20,000 when its primary breadwinner dies, if the person was aged 18 to 59.",
+        "The money goes to the surviving head of the household, such as the widow. In Maharashtra the application is made at the tahsil office (Sanjay Gandhi Yojana branch) with the death certificate, BPL proof, Aadhaar and bank details."
+      ],
+      "summary": {
+        "hi": "राष्ट्रीय पारिवारिक लाभ योजना में बीपीएल परिवार के कमाने वाले सदस्य (18 से 59 साल) की मृत्यु होने पर परिवार को एक बार 20,000 रुपये मिलते हैं। तहसील कार्यालय की संजय गांधी योजना शाखा में मृत्यु प्रमाण पत्र के साथ आवेदन करें।",
+        "mr": "राष्ट्रीय कौटुंबिक लाभ योजनेत बीपीएल कुटुंबातील कमावत्या व्यक्तीचा (18 ते 59 वर्षे) मृत्यू झाल्यास कुटुंबाला एकदा 20,000 रुपये मिळतात. तहसील कार्यालयातील संजय गांधी योजना शाखेत मृत्यू दाखल्यासह अर्ज करा."
+      }
+    },
+    {
+      "id": "jsy",
+      "name": { "en": "Janani Suraksha Yojana (safe delivery)", "hi": "जननी सुरक्षा योजना", "mr": "जननी सुरक्षा योजना" },
+      "level": "central", "topics": ["women", "health"],
+      "source": "https://nhm.gov.in/",
+      "text": [
+        "Janani Suraksha Yojana gives cash help to pregnant women who deliver in a government hospital or an accredited private hospital, to encourage safe institutional delivery. It is run under the National Health Mission and the ASHA worker helps the mother.",
+        "In states like Maharashtra, BPL, SC and ST women are eligible. In rural areas the mother gets Rs 700 and in urban areas Rs 600 after delivery in a hospital. Free delivery, medicines, diagnostics, food and transport in government hospitals are also given under Janani Shishu Suraksha Karyakram.",
+        "Register the pregnancy with the ASHA or at the government health centre and keep the MCP card; the money is paid to the mother's bank account."
+      ],
+      "summary": {
+        "hi": "जननी सुरक्षा योजना में सरकारी अस्पताल में डिलीवरी कराने पर बीपीएल, एससी, एसटी माँ को गाँव में 700 रुपये मिलते हैं, और सरकारी अस्पताल में डिलीवरी, दवा और आने-जाने का ख़र्च मुफ़्त। आशा दीदी से गर्भावस्था का पंजीकरण कराएँ।",
+        "mr": "जननी सुरक्षा योजनेत सरकारी रुग्णालयात प्रसूती केल्यास बीपीएल, एससी, एसटी मातेला ग्रामीण भागात 700 रुपये मिळतात, आणि सरकारी रुग्णालयात प्रसूती, औषधे आणि प्रवास मोफत. आशा ताईंकडे गर्भधारणेची नोंदणी करा."
+      }
+    },
+    {
+      "id": "gopinath-munde",
+      "name": { "en": "Gopinath Munde farmer accident grant (Maharashtra)", "hi": "गोपीनाथ मुंडे शेतकरी अपघात सुरक्षा सानुग्रह अनुदान योजना", "mr": "गोपीनाथ मुंडे शेतकरी अपघात सुरक्षा सानुग्रह अनुदान योजना" },
+      "level": "state", "state": "MH", "topics": ["farming", "insurance"],
+      "source": "https://myscheme.gov.in/schemes/gopinath-munde-shetkari-apghat-suraksha-sanugrah-audhan-yojana",
+      "text": [
+        "Under the Gopinath Munde Shetkari Apghat Suraksha Sanugrah Anudan Yojana, the Maharashtra government pays a grant to a farmer's family if the farmer dies or is disabled in an accident (for example a road accident, snake bite, electric shock, drowning, fall, or an accident while farming). It replaced the earlier insurance-based scheme with a direct government grant.",
+        "The family gets Rs 2 lakh for accidental death or loss of two limbs or both eyes, and Rs 1 lakh for loss of one limb or one eye. Registered farmers with a 7/12 extract and one member of their family are covered; no premium has to be paid by the farmer.",
+        "The claim is made by the farmer or legal heir through the taluka agriculture office or the MahaDBT farmer portal, with the 7/12 extract, death or disability certificate, FIR or police report and post-mortem report where applicable."
+      ],
+      "summary": {
+        "hi": "गोपीनाथ मुंडे योजना में महाराष्ट्र के किसान या उसके परिवार के एक सदस्य की दुर्घटना में मौत या दोनों हाथ-पैर या आँखें जाने पर 2 लाख रुपये, और एक अंग जाने पर 1 लाख रुपये मिलते हैं। तालुका कृषि कार्यालय में सात-बारा और प्रमाण पत्रों के साथ दावा करें।",
+        "mr": "गोपीनाथ मुंडे योजनेत महाराष्ट्रातील शेतकरी किंवा त्याच्या कुटुंबातील एका सदस्याचा अपघाती मृत्यू किंवा दोन अवयव किंवा डोळे गमावल्यास 2 लाख रुपये, आणि एक अवयव गमावल्यास 1 लाख रुपये मिळतात. तालुका कृषी कार्यालयात सात-बारा आणि दाखल्यांसह दावा करा."
+      }
+    },
+    {
+      "id": "udid",
+      "name": { "en": "UDID card for persons with disabilities", "hi": "दिव्यांग यूडीआईडी कार्ड", "mr": "दिव्यांग यूडीआयडी कार्ड" },
+      "level": "central", "topics": ["welfare", "health"],
+      "source": "https://www.swavlambancard.gov.in/",
+      "text": [
+        "The Unique Disability ID (UDID) card is a single national disability certificate and ID card for persons with disabilities. It is needed to get most disability benefits, such as the disability pension under Sanjay Gandhi Niradhar Yojana, assistive devices, concessions in travel, and reservation in education and jobs.",
+        "Apply free on swavlambancard.gov.in or at the district hospital / civil surgeon's office with Aadhaar, a photo and any medical records. A medical board assesses the disability and the card shows the type and percentage of disability; 40% or more is a benchmark disability."
+      ],
+      "summary": {
+        "hi": "यूडीआईडी कार्ड दिव्यांग लोगों का एक ही राष्ट्रीय प्रमाण पत्र है, जो दिव्यांग पेंशन और दूसरी मदद के लिए ज़रूरी है। स्वावलंबन कार्ड पोर्टल पर या ज़िला अस्पताल में मुफ़्त आवेदन करें।",
+        "mr": "यूडीआयडी कार्ड हे दिव्यांग व्यक्तींचे एकच राष्ट्रीय प्रमाणपत्र आहे, जे दिव्यांग पेन्शन आणि इतर मदतीसाठी आवश्यक आहे. स्वावलंबन कार्ड पोर्टलवर किंवा जिल्हा रुग्णालयात मोफत अर्ज करा."
+      }
+    }
+  ]
+}

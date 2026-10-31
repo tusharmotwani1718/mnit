@@ -1,0 +1,55 @@
+{
+  "id": "sgnay",
+  "name": { "en": "Sanjay Gandhi Niradhar Anudan Yojana", "hi": "संजय गांधी निराधार अनुदान योजना", "mr": "संजय गांधी निराधार अनुदान योजना" },
+  "level": "state",
+  "state": "MH",
+  "tier": 1,
+  "topics": ["welfare", "women", "pension"],
+  "rules": {
+    "all": [
+      { "fact": "state", "op": "eq", "value": "MH" },
+      { "fact": "age", "op": "lte", "value": 64 },
+      {
+        "any": [
+          {
+            "all": [
+              { "fact": "gender", "op": "eq", "value": "female" },
+              { "fact": "isWidowOrSingleWoman", "op": "eq", "value": true },
+              { "fact": "annualFamilyIncome", "op": "lte", "value": 21000 }
+            ]
+          },
+          {
+            "all": [
+              { "fact": "isDisabled", "op": "eq", "value": true },
+              { "fact": "annualFamilyIncome", "op": "lte", "value": 50000 }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "benefitSummary": {
+    "en": "Rs 1,500 a month, paid to your bank account. Persons with disabilities get Rs 2,500 a month (from October 2025).",
+    "hi": "हर महीने 1,500 रुपये, सीधे बैंक खाते में। दिव्यांग लोगों को अक्टूबर 2025 से हर महीने 2,500 रुपये।",
+    "mr": "दरमहा 1,500 रुपये, थेट बँक खात्यात. दिव्यांग व्यक्तींना ऑक्टोबर 2025 पासून दरमहा 2,500 रुपये."
+  },
+  "documents": [
+    { "en": "Aadhaar card and ration card", "hi": "आधार कार्ड और राशन कार्ड", "mr": "आधार कार्ड आणि रेशन कार्ड" },
+    { "en": "Income certificate from the tahsildar (or BPL proof)", "hi": "तहसीलदार का आय प्रमाण पत्र (या बीपीएल का सबूत)", "mr": "तहसीलदारांचा उत्पन्नाचा दाखला (किंवा बीपीएल पुरावा)" },
+    { "en": "Husband's death certificate (widows) or disability certificate", "hi": "पति का मृत्यु प्रमाण पत्र (विधवा के लिए) या दिव्यांग प्रमाण पत्र", "mr": "पतीचा मृत्यू दाखला (विधवांसाठी) किंवा दिव्यांग प्रमाणपत्र" },
+    { "en": "Age proof and residence certificate", "hi": "उम्र का सबूत और निवास प्रमाण पत्र", "mr": "वयाचा पुरावा आणि रहिवासी दाखला" }
+  ],
+  "applyAt": ["Tahsil office, Sanjay Gandhi Yojana branch", "Setu / Aaple Sarkar centre"],
+  "applyAtSpoken": { "hi": "अपने तहसील कार्यालय की संजय गांधी योजना शाखा में", "mr": "तुमच्या तहसील कार्यालयातील संजय गांधी योजना शाखेत", "en": "to the Sanjay Gandhi Yojana desk at your tahsil office" },
+  "notes": [
+    "Also covers destitute men and women, orphans, the terminally ill, and transgender persons with family income up to Rs 21,000 or on the BPL list. These are not modelled as rules (no fact for them); RAG answers questions about them.",
+    "Being on the BPL list is an alternative to the Rs 21,000 income limit; not modelled.",
+    "Disability means 40% or more (certificate from the civil surgeon). isDisabled is never asked; only used if the caller mentions it."
+  ],
+  "helpline": null,
+  "source": "https://thane.nic.in/en/sanjay-ghandhi-niradhar-yojana/",
+  "sourceHash": null,
+  "version": 1,
+  "lastVerified": "2026-10-31",
+  "status": "approved"
+}

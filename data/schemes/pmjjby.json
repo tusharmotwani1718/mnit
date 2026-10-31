@@ -1,0 +1,37 @@
+{
+  "id": "pmjjby",
+  "name": { "en": "Pradhan Mantri Jeevan Jyoti Bima Yojana (life insurance)", "hi": "प्रधानमंत्री जीवन ज्योति बीमा योजना", "mr": "प्रधानमंत्री जीवन ज्योती विमा योजना" },
+  "level": "central",
+  "tier": 1,
+  "topics": ["insurance"],
+  "rules": {
+    "all": [
+      { "fact": "age", "op": "gte", "value": 18 },
+      { "fact": "age", "op": "lte", "value": 50 },
+      { "fact": "hasBankAccount", "op": "eq", "value": true }
+    ]
+  },
+  "benefitSummary": {
+    "en": "Rs 2 lakh to the family on death from any cause. Premium Rs 436 a year, auto-debited from the bank account (less if joining later in the year). No claim for non-accidental death in the first 30 days after joining.",
+    "hi": "किसी भी कारण से मृत्यु होने पर परिवार को 2 लाख रुपये। साल का सिर्फ़ 436 रुपये, जो बैंक खाते से अपने आप कटता है।",
+    "mr": "कोणत्याही कारणाने मृत्यू झाल्यास कुटुंबाला 2 लाख रुपये. वर्षाला फक्त 436 रुपये, जे बँक खात्यातून आपोआप कापले जातात."
+  },
+  "documents": [
+    { "en": "Bank or post office passbook", "hi": "बैंक या डाकघर की पासबुक", "mr": "बँक किंवा पोस्टाचे पासबुक" },
+    { "en": "Aadhaar card", "hi": "आधार कार्ड", "mr": "आधार कार्ड" },
+    { "en": "Nominee details", "hi": "नॉमिनी (वारिस) का नाम", "mr": "वारसदाराचे (नॉमिनी) नाव" }
+  ],
+  "applyAt": ["Your bank or post office branch", "Bank's net banking / mobile app", "Bank Mitra / CSC"],
+  "applyAtSpoken": { "hi": "अपनी बैंक शाखा या डाकघर में", "mr": "तुमच्या बँक शाखेत किंवा पोस्टात", "en": "to your bank branch or post office" },
+  "notes": [
+    "Cover year 1 June to 31 May. Pro-rata premium: Jun-Aug Rs 436, Sep-Nov Rs 342, Dec-Feb Rs 228, Mar-May Rs 114.",
+    "One account per person only. Aadhaar is the primary KYC.",
+    "Cover can continue up to age 55 if joined before 50 and premium keeps being paid."
+  ],
+  "helpline": null,
+  "source": "https://jansuraksha.gov.in/Files/PMJJBY/English/Rules.pdf",
+  "sourceHash": null,
+  "version": 1,
+  "lastVerified": "2026-10-30",
+  "status": "approved"
+}

@@ -1,0 +1,42 @@
+{
+  "id": "shahu-fee",
+  "name": { "en": "Rajarshi Shahu Maharaj fee reimbursement (EBC/EWS)", "hi": "राजर्षि छत्रपति शाहू महाराज शिक्षण शुल्क शिष्यवृत्ति", "mr": "राजर्षी छत्रपती शाहू महाराज शिक्षण शुल्क शिष्यवृत्ती" },
+  "level": "state",
+  "state": "MH",
+  "tier": 1,
+  "topics": ["education"],
+  "rules": {
+    "all": [
+      { "fact": "state", "op": "eq", "value": "MH" },
+      { "fact": "socialCategory", "op": "eq", "value": "GEN" },
+      { "fact": "studentLevel", "op": "in", "value": ["diploma", "degree", "postgrad"] },
+      { "fact": "annualFamilyIncome", "op": "lte", "value": 800000 },
+      { "manualCheck": "Admitted through the State CET Cell's CAP round to a professional course (engineering, medical, pharmacy, management, etc.) in a government, aided or unaided non-minority college (not a deemed or private university); at most 2 children per family." }
+    ]
+  },
+  "benefitSummary": {
+    "en": "Girls get 100% of tuition and exam fees back (from 2024-25). Boys get 50%, or 100% in a government or aided college if family income is up to Rs 2.5 lakh.",
+    "hi": "लड़कियों की ट्यूशन और परीक्षा फ़ीस 100 प्रतिशत वापस (2024-25 से)। लड़कों की 50 प्रतिशत, और परिवार की आय ढाई लाख तक हो तो सरकारी या अनुदानित कॉलेज में 100 प्रतिशत।",
+    "mr": "मुलींचे शिक्षण शुल्क व परीक्षा शुल्क 100 टक्के परत (2024-25 पासून). मुलांचे 50 टक्के, आणि कुटुंबाचे उत्पन्न अडीच लाखांपर्यंत असल्यास सरकारी किंवा अनुदानित महाविद्यालयात 100 टक्के."
+  },
+  "documents": [
+    { "en": "Family income certificate from the tahsildar", "hi": "तहसीलदार का परिवार आय प्रमाण पत्र", "mr": "तहसीलदारांचा कुटुंब उत्पन्नाचा दाखला" },
+    { "en": "CAP allotment letter", "hi": "कैप राउंड का एडमिशन पत्र", "mr": "कॅप फेरीचे प्रवेश पत्र" },
+    { "en": "Maharashtra domicile certificate", "hi": "महाराष्ट्र अधिवास प्रमाण पत्र", "mr": "महाराष्ट्र अधिवास प्रमाणपत्र" },
+    { "en": "Student's Aadhaar-linked bank account", "hi": "विद्यार्थी का आधार से जुड़ा बैंक खाता", "mr": "विद्यार्थ्याचे आधारशी जोडलेले बँक खाते" }
+  ],
+  "applyAt": ["MahaDBT portal, mahadbt.maharashtra.gov.in", "College scholarship desk"],
+  "applyAtSpoken": { "hi": "महाडीबीटी पोर्टल पर, कॉलेज के स्कॉलरशिप विभाग की मदद से", "mr": "महाडीबीटी पोर्टलवर, महाविद्यालयाच्या शिष्यवृत्ती विभागाच्या मदतीने", "en": "on the MahaDBT portal, with help from the college scholarship desk" },
+  "notes": [
+    "For open-category (EBC/EWS) students. OBC, SEBC, VJNT and SBC students have separate MahaDBT schemes not yet modelled; socialCategory has no SEBC value yet.",
+    "Needs 50% attendance in the previous semester (except first-year fresh admissions) and no other scholarship or stipend.",
+    "GRs: 7 Oct 2017, 31 Mar 2018, 7 Aug 2018, 11 Jul 2019, and 8 Jul 2024 (100% for girls)."
+  ],
+  "helpline": null,
+  "source": "https://dte.maharashtra.gov.in/rajarshi-chhatrapati-shahu-maharaj/",
+  "sourceSecondary": "https://mahadbt.maharashtra.gov.in/SchemeData/SchemeData?str=E9DDFA703C38E51AA86467549C6E0CFFDFD61E992C8610ED352EC9DEF886C9CD",
+  "sourceHash": null,
+  "version": 1,
+  "lastVerified": "2026-10-31",
+  "status": "approved"
+}

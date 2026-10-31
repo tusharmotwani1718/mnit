@@ -1,0 +1,24 @@
+{
+  "notes": [
+    "Official source documents for RAG, as plain text extracted from the official PDFs (pypdf). One entry per file in docs/.",
+    "Every Tier 1 scheme also gets generated summary chunks (hi/mr/en) from data/schemes/<id>.json at ingest time, so Hindi and Marathi questions match well.",
+    "scholarships.gov.in currently serves a revoked TLS certificate, so the NMMS and CSSS guideline PDFs could not be downloaded; those schemes rely on their summary chunks."
+  ],
+  "documents": [
+    { "file": "apy--pib-factsheet.txt", "schemeId": "apy", "title": "Atal Pension Yojana: PIB factsheet", "url": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/may/doc202558551701.pdf" },
+    { "file": "pm-jay--health-ministry-2025.txt", "schemeId": "pm-jay", "title": "Ayushman Bharat: Health Ministry year-end 2025", "url": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/jan/doc202611749801.pdf" },
+    { "file": "kcc--pib-2026.txt", "schemeId": "kcc", "title": "Kisan Credit Card: PIB 2026", "url": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/mar/doc2026311819801.pdf" },
+    { "file": "magel-tyala-saur-pump--guidelines.txt", "schemeId": "magel-tyala-saur-pump", "title": "Magel Tyala Saur Krushi Pump: MSEDCL guidelines", "url": "https://mahadiscom.in/solar_MTSKPY/media/Guidelines%20and%20Clarifications%20for%20offgrid%20Solar%20Pump%20Installations.pdf" },
+    { "file": "pmay-g--pib-2024.txt", "schemeId": "pmay-g", "title": "PMAY-Gramin: PIB 2024", "url": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2024/nov/doc20241119437801.pdf" },
+    { "file": "pmfby--operational-guidelines.txt", "schemeId": "pmfby", "title": "PMFBY: Revamped Operational Guidelines", "url": "https://pmfby.gov.in/pdf/Revamped%20Operational%20Guidelines_17th%20August%202020.pdf" },
+    { "file": "pmfby--pib-2026.txt", "schemeId": "pmfby", "title": "PMFBY: PIB 2026", "url": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/aug/doc_9735_20260829_18493301.pdf" },
+    { "file": "pmjjby--rules.txt", "schemeId": "pmjjby", "title": "PMJJBY: Rules", "url": "https://jansuraksha.gov.in/Files/PMJJBY/English/Rules.pdf" },
+    { "file": "pm-kisan--operational-guidelines.txt", "schemeId": "pm-kisan", "title": "PM-KISAN: Revised Operational Guidelines", "url": "https://fw.pmkisan.gov.in/Documents/Revised%20Operational%20Guidelines%20-%20PM-Kisan%20Scheme.pdf" },
+    { "file": "pm-kmy--operational-guidelines.txt", "schemeId": "pm-kmy", "title": "PM Kisan Maandhan: Operational Guidelines", "url": "https://fw.pmkisan.gov.in/Documents/PM-KMY%20-%20Operational%20Guidelines.pdf" },
+    { "file": "pmmvy--faq.txt", "schemeId": "pmmvy", "title": "PMMVY: Guidelines and FAQ", "url": "https://www.spniwcd.wcd.gov.in/uploads/pdf/1710098119_HDEXdpWMb1.pdf" },
+    { "file": "pmmvy--pib-2025.txt", "schemeId": "pmmvy", "title": "PMMVY: PIB 2025", "url": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/aug/doc2025825619601.pdf" },
+    { "file": "pmsby--rules.txt", "schemeId": "pmsby", "title": "PMSBY: Rules", "url": "https://jansuraksha.gov.in/Files/PMSBY/English/Rules.pdf" },
+    { "file": "pmuy--pib-2025.txt", "schemeId": "pmuy", "title": "PM Ujjwala Yojana: PIB 2025", "url": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/aug/doc202588603301.pdf" },
+    { "file": "vb-g-ram-g--pib-2026.txt", "schemeId": "vb-g-ram-g", "title": "VB-G RAM G: PIB September 2026", "url": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/sep/doc_10028_20260929_12582401.pdf" }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "id": "pm-kisan",
+  "name": { "en": "PM-KISAN", "hi": "पीएम किसान सम्मान निधि", "mr": "पीएम किसान सन्मान निधी" },
+  "level": "central",
+  "tier": 1,
+  "topics": ["farming"],
+  "rules": {
+    "all": [
+      { "fact": "ownsCultivableLand", "op": "eq", "value": true },
+      { "fact": "familyPaysIncomeTax", "op": "eq", "value": false },
+      { "fact": "familyHasGovtEmployeeOrPensioner", "op": "eq", "value": false },
+      {
+        "fact": "familyHasRegisteredProfessional", "op": "eq", "value": false,
+        "assumeIfUnknown": true,
+        "caveat": {
+          "hi": "अगर परिवार में कोई डॉक्टर, इंजीनियर, वकील या सीए प्रैक्टिस नहीं करता।",
+          "mr": "कुटुंबात कोणी डॉक्टर, इंजिनिअर, वकील किंवा सीए प्रॅक्टिस करत नसेल तर.",
+          "en": "As long as no one in the family practises as a doctor, engineer, lawyer or CA."
+        }
+      },
+      {
+        "fact": "familyHasPublicOffice", "op": "eq", "value": false,
+        "assumeIfUnknown": true,
+        "caveat": {
+          "hi": "अगर परिवार में कोई मंत्री, सांसद, विधायक या महापौर नहीं है।",
+          "mr": "कुटुंबात कोणी मंत्री, खासदार, आमदार किंवा महापौर नसेल तर.",
+          "en": "As long as no one in the family is a minister, MP, MLA or mayor."
+        }
+      },
+      {
+        "fact": "landAcquiredAfterCutoff", "op": "eq", "value": false,
+        "assumeIfUnknown": true,
+        "caveat": {
+          "hi": "ज़मीन 1 फरवरी 2019 के बाद खरीदी गई हो तो लाभ नहीं मिलता, विरासत में मिली हो तो मिलता है।",
+          "mr": "जमीन 1 फेब्रुवारी 2019 नंतर विकत घेतली असेल तर लाभ मिळत नाही, वारसाहक्काने मिळाली असेल तर मिळतो.",
+          "en": "Land bought after 1 February 2019 does not qualify; inherited land does."
+        }
+      }
+    ]
+  },
+  "benefitSummary": {
+    "en": "Rs 6,000 per year in three instalments of Rs 2,000, paid directly into the bank account.",
+    "hi": "हर साल 6,000 रुपये, 2,000 रुपये की तीन किस्तों में, सीधे बैंक खाते में।",
+    "mr": "दर वर्षी 6,000 रुपये, 2,000 रुपयांच्या तीन हप्त्यांमध्ये, थेट बँक खात्यात."
+  },
+  "documents": [
+    { "en": "Aadhaar card", "hi": "आधार कार्ड", "mr": "आधार कार्ड" },
+    { "en": "Land records (7/12 extract)", "hi": "ज़मीन के कागज़ (सात-बारा उतारा)", "mr": "सातबारा उतारा" },
+    { "en": "Bank passbook (account linked to Aadhaar)", "hi": "बैंक पासबुक (आधार से जुड़ा खाता)", "mr": "बँक पासबुक (आधारशी जोडलेले खाते)" },
+    { "en": "Mobile number", "hi": "मोबाइल नंबर", "mr": "मोबाईल नंबर" }
+  ],
+  "applyAt": ["CSC", "pmkisan.gov.in (self registration)", "PM-KISAN mobile app"],
+  "applyAtSpoken": { "hi": "अपने नज़दीकी सीएससी केंद्र पर", "mr": "जवळच्या सीएससी केंद्रावर", "en": "to your nearest CSC centre" },
+  "notes": [
+    "eKYC, land seeding and Aadhaar-bank linking are mandatory before instalments are paid (PIB, Aug 2026).",
+    "Family = husband, wife and minor children; exclusions apply if any member falls in an excluded category.",
+    "Govt employee / pensioner exclusion does not apply to Multi-Tasking Staff / Class IV / Group D."
+  ],
+  "helpline": null,
+  "source": "https://fw.pmkisan.gov.in/Documents/Revised%20Operational%20Guidelines%20-%20PM-Kisan%20Scheme.pdf",
+  "sourceHash": null,
+  "version": 1,
+  "lastVerified": "2026-10-30",
+  "status": "approved"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "csss",
+  "name": { "en": "Central Sector Scholarship for college students (PM-USP)", "hi": "केंद्रीय छात्रवृत्ति योजना (कॉलेज विद्यार्थियों के लिए)", "mr": "केंद्रीय शिष्यवृत्ती योजना (महाविद्यालयीन विद्यार्थ्यांसाठी)" },
+  "level": "central",
+  "tier": 1,
+  "topics": ["education"],
+  "rules": {
+    "all": [
+      { "fact": "studentLevel", "op": "in", "value": ["degree", "postgrad"] },
+      { "fact": "annualFamilyIncome", "op": "lte", "value": 450000 },
+      { "manualCheck": "Scored above the 80th percentile of their Class 12 board in their stream, studies a regular (not distance) course, and gets no other scholarship." }
+    ]
+  },
+  "benefitSummary": {
+    "en": "Rs 12,000 a year for the first three years of college and Rs 20,000 a year at post-graduation, paid to the student's bank account. Half the scholarships are for girls.",
+    "hi": "कॉलेज के पहले तीन साल हर साल 12,000 रुपये और पोस्ट-ग्रेजुएशन में हर साल 20,000 रुपये, विद्यार्थी के बैंक खाते में। आधी छात्रवृत्तियाँ लड़कियों के लिए हैं।",
+    "mr": "महाविद्यालयाच्या पहिल्या तीन वर्षांत दरवर्षी 12,000 रुपये आणि पदव्युत्तर शिक्षणात दरवर्षी 20,000 रुपये, विद्यार्थ्याच्या बँक खात्यात. निम्म्या शिष्यवृत्ती मुलींसाठी आहेत."
+  },
+  "documents": [
+    { "en": "Class 12 marksheet", "hi": "बारहवीं की मार्कशीट", "mr": "बारावीचे गुणपत्रक" },
+    { "en": "Family income certificate", "hi": "परिवार का आय प्रमाण पत्र", "mr": "कुटुंबाचा उत्पन्नाचा दाखला" },
+    { "en": "Student's Aadhaar and bank account", "hi": "विद्यार्थी का आधार और बैंक खाता", "mr": "विद्यार्थ्याचे आधार आणि बँक खाते" }
+  ],
+  "applyAt": ["scholarships.gov.in (National Scholarship Portal)", "CSC (to fill the form)"],
+  "applyAtSpoken": { "hi": "नेशनल स्कॉलरशिप पोर्टल पर, फ़ॉर्म भरने के लिए नज़दीकी सीएससी केंद्र पर", "mr": "नॅशनल स्कॉलरशिप पोर्टलवर, अर्ज भरण्यासाठी जवळच्या सीएससी केंद्रावर", "en": "on the National Scholarship Portal, or to your nearest CSC centre to fill the form" },
+  "notes": [
+    "Diploma, distance and correspondence courses are not covered. B.Tech/BE get Rs 12,000 a year for up to 4 years.",
+    "Renewal needs 50% marks and 75% attendance each year. About 82,000 fresh scholarships a year."
+  ],
+  "helpline": null,
+  "source": "https://scholarships.gov.in/public/schemeGuidelines/CSSS_GUIDLINES_07022024_updated.pdf",
+  "sourceSecondary": "https://scholarships.gov.in/public/schemeGuidelines/FAQ_DOHE_CSSS.pdf",
+  "sourceHash": null,
+  "version": 1,
+  "lastVerified": "2026-10-31",
+  "status": "approved"
+}

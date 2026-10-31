@@ -1,0 +1,63 @@
+{
+  "id": "pm-kmy",
+  "name": { "en": "PM Kisan Maandhan Yojana (farmer pension)", "hi": "प्रधानमंत्री किसान मानधन योजना", "mr": "प्रधानमंत्री किसान मानधन योजना" },
+  "level": "central",
+  "tier": 1,
+  "topics": ["farming", "pension"],
+  "rules": {
+    "all": [
+      { "fact": "ownsCultivableLand", "op": "eq", "value": true },
+      { "fact": "landHectares", "op": "lte", "value": 2 },
+      { "fact": "age", "op": "gte", "value": 18 },
+      { "fact": "age", "op": "lte", "value": 40 },
+      { "fact": "hasOtherPensionScheme", "op": "eq", "value": false },
+      { "fact": "isIncomeTaxPayer", "op": "eq", "value": false },
+      { "fact": "isGovtEmployee", "op": "eq", "value": false },
+      {
+        "fact": "familyHasRegisteredProfessional", "op": "eq", "value": false,
+        "assumeIfUnknown": true,
+        "caveat": {
+          "hi": "अगर आप डॉक्टर, इंजीनियर, वकील या सीए के तौर पर प्रैक्टिस नहीं करते।",
+          "mr": "तुम्ही डॉक्टर, इंजिनिअर, वकील किंवा सीए म्हणून प्रॅक्टिस करत नसाल तर.",
+          "en": "As long as you don't practise as a doctor, engineer, lawyer or CA."
+        }
+      },
+      {
+        "fact": "familyHasPublicOffice", "op": "eq", "value": false,
+        "assumeIfUnknown": true,
+        "caveat": {
+          "hi": "अगर आप मंत्री, सांसद, विधायक या महापौर नहीं रहे।",
+          "mr": "तुम्ही मंत्री, खासदार, आमदार किंवा महापौर नसाल तर.",
+          "en": "As long as you have never been a minister, MP, MLA or mayor."
+        }
+      }
+    ]
+  },
+  "benefitSummary": {
+    "en": "Rs 3,000 per month pension after age 60. The farmer pays Rs 55 to Rs 200 a month depending on joining age (Rs 55 at 18, Rs 200 at 40); the government pays an equal amount. Can be auto-paid from PM-KISAN money.",
+    "hi": "60 साल की उम्र के बाद हर महीने 3,000 रुपये पेंशन। उम्र के हिसाब से हर महीने 55 से 200 रुपये जमा करने होते हैं, उतना ही सरकार भी जमा करती है। यह पैसा पीएम किसान की किस्त से अपने आप कट सकता है।",
+    "mr": "वयाच्या 60 वर्षांनंतर दर महिना 3,000 रुपये पेन्शन. वयानुसार दर महिना 55 ते 200 रुपये भरावे लागतात, तेवढीच रक्कम सरकारही भरते. ही रक्कम पीएम किसानच्या हप्त्यातून आपोआप कापली जाऊ शकते."
+  },
+  "contributionByEntryAge": {
+    "18": 55, "19": 58, "20": 61, "21": 64, "22": 68, "23": 72, "24": 76, "25": 80,
+    "26": 85, "27": 90, "28": 95, "29": 100, "30": 105, "31": 110, "32": 120, "33": 130,
+    "34": 140, "35": 150, "36": 160, "37": 170, "38": 180, "39": 190, "40": 200
+  },
+  "documents": [
+    { "en": "Aadhaar card", "hi": "आधार कार्ड", "mr": "आधार कार्ड" },
+    { "en": "Savings bank account / PM-KISAN account details", "hi": "बचत बैंक खाता या पीएम किसान वाला खाता", "mr": "बचत बँक खाते किंवा पीएम किसानचे खाते" },
+    { "en": "Land records (7/12 extract)", "hi": "ज़मीन के कागज़ (सात-बारा उतारा)", "mr": "सातबारा उतारा" }
+  ],
+  "applyAt": ["CSC"],
+  "applyAtSpoken": { "hi": "नज़दीकी सीएससी केंद्र पर", "mr": "जवळच्या सीएससी केंद्रावर", "en": "to your nearest CSC centre" },
+  "notes": [
+    "Small and marginal farmer = owns cultivable land up to 2 hectares as per land records.",
+    "Excluded: members of NPS, ESIC, EPFO, PM-SYM or PM-LVM; and the higher-economic-status categories (institutional landholders, constitutional posts, ministers/MPs/MLAs/mayors, govt employees except Class IV/Group D, income tax payers, registered professionals). Exclusions are personal, not family-level."
+  ],
+  "helpline": null,
+  "source": "https://fw.pmkisan.gov.in/Documents/PM-KMY%20-%20Operational%20Guidelines.pdf",
+  "sourceHash": null,
+  "version": 1,
+  "lastVerified": "2026-10-30",
+  "status": "approved"
+}

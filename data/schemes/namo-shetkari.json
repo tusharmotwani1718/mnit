@@ -1,0 +1,64 @@
+{
+  "id": "namo-shetkari",
+  "name": { "en": "Namo Shetkari Mahasanman Nidhi", "hi": "नमो शेतकरी महासन्मान निधि", "mr": "नमो शेतकरी महासन्मान निधी" },
+  "level": "state",
+  "state": "MH",
+  "tier": 1,
+  "topics": ["farming"],
+  "rules": {
+    "all": [
+      { "fact": "state", "op": "eq", "value": "MH" },
+      { "fact": "ownsCultivableLand", "op": "eq", "value": true },
+      { "fact": "familyPaysIncomeTax", "op": "eq", "value": false },
+      { "fact": "familyHasGovtEmployeeOrPensioner", "op": "eq", "value": false },
+      {
+        "fact": "familyHasRegisteredProfessional", "op": "eq", "value": false,
+        "assumeIfUnknown": true,
+        "caveat": {
+          "hi": "अगर परिवार में कोई डॉक्टर, इंजीनियर, वकील या सीए प्रैक्टिस नहीं करता।",
+          "mr": "कुटुंबात कोणी डॉक्टर, इंजिनिअर, वकील किंवा सीए प्रॅक्टिस करत नसेल तर.",
+          "en": "As long as no one in the family practises as a doctor, engineer, lawyer or CA."
+        }
+      },
+      {
+        "fact": "familyHasPublicOffice", "op": "eq", "value": false,
+        "assumeIfUnknown": true,
+        "caveat": {
+          "hi": "अगर परिवार में कोई मंत्री, सांसद, विधायक या महापौर नहीं है।",
+          "mr": "कुटुंबात कोणी मंत्री, खासदार, आमदार किंवा महापौर नसेल तर.",
+          "en": "As long as no one in the family is a minister, MP, MLA or mayor."
+        }
+      },
+      {
+        "fact": "landAcquiredAfterCutoff", "op": "eq", "value": false,
+        "assumeIfUnknown": true,
+        "caveat": {
+          "hi": "ज़मीन 1 फरवरी 2019 के बाद खरीदी गई हो तो लाभ नहीं मिलता।",
+          "mr": "जमीन 1 फेब्रुवारी 2019 नंतर विकत घेतली असेल तर लाभ मिळत नाही.",
+          "en": "Land bought after 1 February 2019 does not qualify."
+        }
+      }
+    ]
+  },
+  "benefitSummary": {
+    "en": "Another Rs 6,000 per year from the Maharashtra government, on top of PM-KISAN, in three instalments of Rs 2,000. No separate application: being an eligible PM-KISAN beneficiary in Maharashtra is enough.",
+    "hi": "महाराष्ट्र सरकार की ओर से हर साल 6,000 रुपये और, पीएम किसान के ऊपर, 2,000 रुपये की तीन किस्तों में। अलग से आवेदन नहीं करना पड़ता, पीएम किसान में नाम होना काफ़ी है।",
+    "mr": "महाराष्ट्र सरकारकडून दर वर्षी आणखी 6,000 रुपये, पीएम किसानच्या व्यतिरिक्त, 2,000 रुपयांच्या तीन हप्त्यांमध्ये. वेगळा अर्ज करावा लागत नाही, पीएम किसानमध्ये नाव असणे पुरेसे आहे."
+  },
+  "documents": [
+    { "en": "Same as PM-KISAN: Aadhaar, 7/12 extract, Aadhaar-linked bank account", "hi": "पीएम किसान वाले ही: आधार, सात-बारा उतारा, आधार से जुड़ा बैंक खाता", "mr": "पीएम किसानप्रमाणेच: आधार, सातबारा उतारा, आधारशी जोडलेले बँक खाते" }
+  ],
+  "applyAt": ["Register for PM-KISAN (CSC / pmkisan.gov.in); status at nsmny.mahait.org"],
+  "applyAtSpoken": { "hi": "पीएम किसान में नाम जुड़वाने के लिए नज़दीकी सीएससी केंद्र पर", "mr": "पीएम किसानमध्ये नाव नोंदवण्यासाठी जवळच्या सीएससी केंद्रावर", "en": "to your nearest CSC centre to register for PM-KISAN" },
+  "notes": [
+    "Eligibility rule mirrors PM-KISAN + Maharashtra. Source for the PM-KISAN linkage is a PIB release, not the state GR.",
+    "UNVERIFIED: a 2026 report says farmers receiving the Punyashlok Ahilyadevi Holkar farm loan waiver may not get this instalment. Not encoded until confirmed from the GR."
+  ],
+  "helpline": "020-25538755 (pmkisan-mh@gov.in)",
+  "source": "https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=1971575",
+  "sourceSecondary": "https://nsmny.mahait.org/",
+  "sourceHash": null,
+  "version": 1,
+  "lastVerified": "2026-10-30",
+  "status": "approved"
+}

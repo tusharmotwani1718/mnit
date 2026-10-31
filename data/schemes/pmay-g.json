@@ -1,0 +1,40 @@
+{
+  "id": "pmay-g",
+  "name": { "en": "Pradhan Mantri Awaas Yojana – Gramin (rural housing)", "hi": "प्रधानमंत्री आवास योजना – ग्रामीण", "mr": "प्रधानमंत्री आवास योजना – ग्रामीण" },
+  "level": "central",
+  "tier": 1,
+  "topics": ["housing"],
+  "rules": {
+    "all": [
+      { "fact": "residence", "op": "eq", "value": "rural" },
+      { "fact": "hasPuccaHouse", "op": "eq", "value": false },
+      { "fact": "familyPaysIncomeTax", "op": "eq", "value": false },
+      { "manualCheck": "Household must be on the SECC 2011 / Awaas+ list after Gram Sabha verification, and not hit any automatic exclusion: motorised 3/4-wheeler, mechanised farm equipment, KCC limit Rs 50,000+, govt employee in household, non-agricultural enterprise, any member earning over Rs 15,000/month, professional tax, irrigated land 2.5 acres+ with equipment or larger holdings." }
+    ]
+  },
+  "benefitSummary": {
+    "en": "Rs 1.20 lakh to build a pucca house (Rs 1.30 lakh in hill and north-eastern states), plus 90-95 days of MGNREGA wages for working on your own house and help for a toilet.",
+    "hi": "पक्का घर बनाने के लिए 1 लाख 20 हज़ार रुपये। साथ में अपना घर बनाने की मज़दूरी के लिए मनरेगा के 90 से 95 दिन, और शौचालय के लिए मदद।",
+    "mr": "पक्के घर बांधण्यासाठी 1 लाख 20 हजार रुपये. सोबत स्वतःचे घर बांधण्याच्या मजुरीसाठी मनरेगाचे 90 ते 95 दिवस, आणि शौचालयासाठी मदत."
+  },
+  "documents": [
+    { "en": "Aadhaar card", "hi": "आधार कार्ड", "mr": "आधार कार्ड" },
+    { "en": "Bank passbook (Aadhaar-linked)", "hi": "बैंक पासबुक (आधार से जुड़ा)", "mr": "बँक पासबुक (आधारशी जोडलेले)" },
+    { "en": "MGNREGA job card", "hi": "मनरेगा जॉब कार्ड", "mr": "मनरेगा जॉब कार्ड" },
+    { "en": "Proof of land for the house site", "hi": "घर की ज़मीन का कागज़", "mr": "घराच्या जागेचा कागद" }
+  ],
+  "applyAt": ["Gram Panchayat (name must be on the Awaas+ survey list)", "Awaas+ 2024 app (self-survey)"],
+  "applyAtSpoken": { "hi": "अपनी ग्राम पंचायत में, ताकि सर्वे में नाम जुड़ सके", "mr": "तुमच्या ग्रामपंचायतीत, म्हणजे सर्वेक्षणात नाव नोंदवले जाईल", "en": "to your Gram Panchayat, so your name gets on the survey" },
+  "notes": [
+    "Eligible: houseless households, or those in kutcha houses with 0, 1 or 2 rooms. Destitute, manual scavengers, primitive tribal groups and released bonded labourers are compulsorily included.",
+    "Exclusion list revised Dec 2024: 13 criteria cut to 10; two-wheeler, fishing boat, landline and refrigerator removed; income threshold raised from Rs 10,000 to Rs 15,000/month. A Nov 2024 PIB backgrounder still lists refrigerator/landline; the Dec 2024 release is later and is followed here.",
+    "A new beneficiary cannot 'apply' on the spot: they must get surveyed (Awaas+ app or the panchayat's survey) and then be approved by the Gram Sabha."
+  ],
+  "helpline": null,
+  "source": "https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=2080091",
+  "sourceSecondary": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2024/nov/doc20241119437801.pdf",
+  "sourceHash": null,
+  "version": 1,
+  "lastVerified": "2026-10-30",
+  "status": "approved"
+}

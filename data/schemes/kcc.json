@@ -1,0 +1,38 @@
+{
+  "id": "kcc",
+  "name": { "en": "Kisan Credit Card", "hi": "किसान क्रेडिट कार्ड", "mr": "किसान क्रेडिट कार्ड" },
+  "level": "central",
+  "tier": 1,
+  "topics": ["farming"],
+  "rules": {
+    "any": [
+      { "fact": "ownsCultivableLand", "op": "eq", "value": true },
+      { "fact": "isTenantFarmer", "op": "eq", "value": true }
+    ]
+  },
+  "benefitSummary": {
+    "en": "Low-interest farm loan on a RuPay card, valid up to 5 years. Short-term loans up to Rs 3 lakh at 7% interest, effectively 4% with timely repayment. Up to Rs 2 lakh without collateral.",
+    "hi": "खेती के लिए सस्ता कर्ज़, रुपे कार्ड पर, 5 साल तक के लिए। 3 लाख तक का कर्ज़ 7% ब्याज पर, समय पर चुकाने पर सिर्फ़ 4%। 2 लाख तक बिना कुछ गिरवी रखे।",
+    "mr": "शेतीसाठी स्वस्त कर्ज, रुपे कार्डवर, 5 वर्षांपर्यंत. 3 लाखांपर्यंत कर्ज 7% व्याजाने, वेळेवर फेडल्यास फक्त 4%. 2 लाखांपर्यंत काहीही तारण न ठेवता."
+  },
+  "documents": [
+    { "en": "One-page KCC application form", "hi": "केसीसी का एक पन्ने का फॉर्म", "mr": "केसीसीचा एक पानी अर्ज" },
+    { "en": "Land records (7/12 extract) or tenancy agreement", "hi": "ज़मीन के कागज़ (सात-बारा) या बटाई का करार", "mr": "सातबारा उतारा किंवा भाडेपट्टा करार" },
+    { "en": "Details of crops grown", "hi": "कौन सी फसल उगाते हैं, उसकी जानकारी", "mr": "कोणती पिके घेता त्याची माहिती" },
+    { "en": "Aadhaar card", "hi": "आधार कार्ड", "mr": "आधार कार्ड" }
+  ],
+  "applyAt": ["Bank branch (commercial, regional rural or cooperative bank)", "CSC (helps fill and send the form)"],
+  "applyAtSpoken": { "hi": "अपनी बैंक शाखा में", "mr": "तुमच्या बँक शाखेत", "en": "to your bank branch" },
+  "notes": [
+    "Eligible: owner-cultivators, tenant farmers, oral lessees, sharecroppers, and SHGs/JLGs of farmers.",
+    "Age limits (commonly 18-75, co-borrower needed above 60) are bank policy, not scheme rules, so they are not encoded. Mention as 'bank will confirm'.",
+    "PM-KISAN beneficiaries get a pre-filled form at their bank.",
+    "MISS crop loan limit was raised from Rs 3 lakh to Rs 5 lakh in 2025-26."
+  ],
+  "helpline": null,
+  "source": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/mar/doc2026311819801.pdf",
+  "sourceHash": null,
+  "version": 1,
+  "lastVerified": "2026-10-30",
+  "status": "approved"
+}

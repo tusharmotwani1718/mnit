@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-geist-sans), var(--font-devanagari), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Fixed light theme: the panel is shown on projectors, where dark mode washes out. */
+html {
+  color-scheme: light;
+}
+
+body {
+  background: #f8fafc;
+  color: #0f172a;
+}

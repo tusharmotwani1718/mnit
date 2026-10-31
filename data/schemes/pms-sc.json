@@ -1,0 +1,38 @@
+{
+  "id": "pms-sc",
+  "name": { "en": "Post-Matric Scholarship for SC students", "hi": "अनुसूचित जाति विद्यार्थियों के लिए पोस्ट-मैट्रिक छात्रवृत्ति", "mr": "अनुसूचित जाती विद्यार्थ्यांसाठी मॅट्रिकोत्तर शिष्यवृत्ती" },
+  "level": "central",
+  "tier": 1,
+  "topics": ["education"],
+  "rules": {
+    "all": [
+      { "fact": "socialCategory", "op": "eq", "value": "SC" },
+      { "fact": "studentLevel", "op": "in", "value": ["class11to12", "diploma", "degree", "postgrad"] },
+      { "fact": "annualFamilyIncome", "op": "lte", "value": 250000 }
+    ]
+  },
+  "benefitSummary": {
+    "en": "Covers the full compulsory fees (tuition and other non-refundable fees fixed by the fee committee) plus a yearly academic allowance, for the whole course after Class 10.",
+    "hi": "दसवीं के बाद पूरे कोर्स की ज़रूरी फ़ीस (ट्यूशन और बाक़ी न लौटने वाली फ़ीस) पूरी माफ़, और साथ में हर साल पढ़ाई का भत्ता।",
+    "mr": "दहावीनंतर संपूर्ण अभ्यासक्रमाची आवश्यक फी (शिक्षण शुल्क व इतर परत न मिळणारी फी) पूर्ण, आणि दरवर्षी शैक्षणिक भत्ता."
+  },
+  "documents": [
+    { "en": "SC caste certificate", "hi": "एससी जाति प्रमाण पत्र", "mr": "एससी जातीचा दाखला" },
+    { "en": "Family income certificate from the tahsildar", "hi": "तहसीलदार का परिवार आय प्रमाण पत्र", "mr": "तहसीलदारांचा कुटुंब उत्पन्नाचा दाखला" },
+    { "en": "Previous year's marksheet", "hi": "पिछले साल की मार्कशीट", "mr": "मागील वर्षाचे गुणपत्रक" },
+    { "en": "Student's Aadhaar-linked bank account", "hi": "विद्यार्थी का आधार से जुड़ा बैंक खाता", "mr": "विद्यार्थ्याचे आधारशी जोडलेले बँक खाते" }
+  ],
+  "applyAt": ["MahaDBT portal, mahadbt.maharashtra.gov.in (Maharashtra)", "College scholarship desk"],
+  "applyAtSpoken": { "hi": "महाडीबीटी पोर्टल पर, कॉलेज के स्कॉलरशिप विभाग की मदद से", "mr": "महाडीबीटी पोर्टलवर, महाविद्यालयाच्या शिष्यवृत्ती विभागाच्या मदतीने", "en": "on the MahaDBT portal, with help from the college scholarship desk" },
+  "notes": [
+    "Central scheme implemented by states (60:40). In Maharashtra, Neo-Buddhist students are covered and applications go through MahaDBT.",
+    "Callers from other states apply on their state's scholarship portal."
+  ],
+  "helpline": null,
+  "source": "https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=2209488",
+  "sourceSecondary": "https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=1696526",
+  "sourceHash": null,
+  "version": 1,
+  "lastVerified": "2026-10-31",
+  "status": "approved"
+}

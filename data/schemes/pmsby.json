@@ -1,0 +1,36 @@
+{
+  "id": "pmsby",
+  "name": { "en": "Pradhan Mantri Suraksha Bima Yojana (accident insurance)", "hi": "प्रधानमंत्री सुरक्षा बीमा योजना", "mr": "प्रधानमंत्री सुरक्षा विमा योजना" },
+  "level": "central",
+  "tier": 1,
+  "topics": ["insurance"],
+  "rules": {
+    "all": [
+      { "fact": "age", "op": "gte", "value": 18 },
+      { "fact": "age", "op": "lte", "value": 70 },
+      { "fact": "hasBankAccount", "op": "eq", "value": true }
+    ]
+  },
+  "benefitSummary": {
+    "en": "Accident cover: Rs 2 lakh on accidental death or total permanent disability, Rs 1 lakh on partial permanent disability. Premium only Rs 20 a year, auto-debited from the bank account.",
+    "hi": "दुर्घटना बीमा: दुर्घटना में मृत्यु या पूरी विकलांगता पर 2 लाख रुपये, आंशिक विकलांगता पर 1 लाख रुपये। साल का सिर्फ़ 20 रुपये।",
+    "mr": "अपघात विमा: अपघाती मृत्यू किंवा पूर्ण अपंगत्व आल्यास 2 लाख रुपये, अंशतः अपंगत्व आल्यास 1 लाख रुपये. वर्षाला फक्त 20 रुपये."
+  },
+  "documents": [
+    { "en": "Bank or post office passbook", "hi": "बैंक या डाकघर की पासबुक", "mr": "बँक किंवा पोस्टाचे पासबुक" },
+    { "en": "Aadhaar card", "hi": "आधार कार्ड", "mr": "आधार कार्ड" },
+    { "en": "Nominee details", "hi": "नॉमिनी (वारिस) का नाम", "mr": "वारसदाराचे (नॉमिनी) नाव" }
+  ],
+  "applyAt": ["Your bank or post office branch", "Bank's net banking / mobile app", "Bank Mitra / CSC"],
+  "applyAtSpoken": { "hi": "अपनी बैंक शाखा या डाकघर में", "mr": "तुमच्या बँक शाखेत किंवा पोस्टात", "en": "to your bank branch or post office" },
+  "notes": [
+    "Cover year 1 June to 31 May; premium auto-debited on or before 1 June.",
+    "Age 18 (completed) to 70 (age nearer birthday). One account per person only."
+  ],
+  "helpline": null,
+  "source": "https://jansuraksha.gov.in/Files/PMSBY/English/Rules.pdf",
+  "sourceHash": null,
+  "version": 1,
+  "lastVerified": "2026-10-30",
+  "status": "approved"
+}

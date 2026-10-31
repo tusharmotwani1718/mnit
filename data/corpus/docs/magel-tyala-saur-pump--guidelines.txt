@@ -1,0 +1,103 @@
+Ref. No.: ED(Infra)/MTSKPY/No.39114                Date: 17.12.2024 
+To, 
+All Chief Engineer,(O&M) Zone,  
+All Superintending Engineer,(O&M) Circle, 
+MSEDCL. 
+ 
+Sub.: Guidelines and clarifications for Offgrid solar Pump Installations  
+ 
+The Maharashtra government has launched the "Magel Tyla  Saur Krushi Pump Yojana" to 
+promote the use of off -grid solar pumps for irrigation. The scheme aims to install 1 lakh 
+solar pumps ev ery year for the next 5 years. The KUSUM B scheme is another ongoing  
+scheme for off-grid solar pumps.  
+There are several qu eries and concerns regarding the implementation of the Magel Tyla 
+Saur Krushi Pump Yojana and the KUSUM B scheme  at field offices.T o address these 
+concerns, some guidelines and clarifications are provided below: 
+1. According to the Government of Maharashtra's  GR dated 12.05.2021, farmers can avail 
+of a one-time subsidy benefit for installing an off -grid solar pump. However, if a farmer 
+already has a solar pump and wishes to install another one on their nearby land, either in 
+the same village or another village , it's not feasible. Additionally, even if a farmer has a 
+conventional pump, they are not eligible for a solar pump subsidy. 
+ In such cases , Additional solar Pump can be approved if beneficiary wishes to install 
+another solar Pump in his nearby land in same village or another village by contributing 
+100 % cost of DC Off grid solar pump in ORC scheme.  
+ 
+2. In cases where multiple consumers share a common well and want to install an off -grid 
+solar pump , One beneficiary collects a No Objection Certificate (NOC) from the other 
+beneficiaries and the beneficiary who collected the NOC can then avail of the off -grid 
+solar pump with subsidy benefits. 
+ In such cases Additional solar Pump can be approved for ot her beneficiary who wishes 
+to install solar Pump on common well in ORC scheme. 
+ 
+3. If a beneficiary has an off -grid solar pump with subsidy benefits that lifts water from a 
+river to their farm land, which is located at a height or distance, the discharge of t he 
+ 
+(Govt. of Maharashtra Undertaking) 
+CIN : U40109MH2005SGC153645 
+Office  of  the  Executive Director ( Infra ) 
+Plot G-9 ,  “Prakashgad”, 5th Floor, Anant 
+Kanekar Marg, Bandra (E), Mumbai – 51 
+Email: cespd@mahadiscom.in 
+
+solar pump may be reduced" In such cases, the treneficiary wants to install another solar
+pump to irrigate their farm land with full discharge'
+install solar Pump at Suitable location in ORC scheme'
+4. If tl.re water head (the vertical distance between the water source and the farm land) is
+more, the discharge of the solar pump will be less.In such cases, the beneficiary wants to
+install another solar pump with higher discharge capacity to effectively irrigate their
+farm land
+install another solar Pump in ORC scheme'
+5. In case conventional pump beneficiary wishes to install another solar Pump, Additional
+solar Pump can be approved for beneficiary to install another solar Pump irr oRC
+scheme.
+For solar purnp installation under the ORC scheme is sanctioned subject to following
+conditions
+Empanelled vendor: Applicants must select an empanelled vendor for solar
+pumps from the ongoing tender.
+AMC Period: The Annual Maintenance Contract (AMC) period will be 5 years
+from the commissioning of the solar pumps.
+Rates of solar Pumps: The rates of solar pumps will be published by MSEDCL
+(Maharashtra State Electricity Distribution Company Limited) on a yearly basis on
+their portal.
+Pump cost without GST : A
+Supervision charges 5 oZ : B: A *0.05
+GSTapplicable : C:13.8%of(A+B)
+TotalPumpCost : A+B+C
+Vendors will mandatorily provide CMC for a period of 5 years for SPWPS from
+the date of commissioning of the systems including insurance coverage for the
+installed systems against all eventualities including natural calarnities and theft.
+Liquidated damages: ln case of any delay in the execution of the order or delay in
+maintenance beyond the stipulated time schedule decided including any extension
+pennitted in writing, MSEDCL reselves the right to recover from the veudor a sum
+equivalent to 0.5 o/o of the value of the delayed SPWPS installation or on the
+unexecuted portiol of the work for each week of the delay and parl thereof subject
+1
+2
+J
+4
+-
+-!
+to a maximum of l0 Yo of the total value of SPWPS, The penalty for delay in
+maintenance will be limited to l0o/o of SPWPS at every instance.
+Remote Monitoring System : Provision for remote monitoring unit for the pumps
+will be made by vendor in the pump controller using GSM/GPRS Gateway with
+Geo tagging and through an internal/extemal arrangement having following basic
+functions:
+a) Controller shall be assigned with a unique serial number and its live status shall
+be observed remotely on online portal through login credentials;
+b) Live status shall indicate whether controller is ON/OFF
+c) The parameter that is, the water output, water flow rate(calculated based on
+parameters),in fault condition; array input voltage/cuffent and power shall be
+logged at an interual of 10min; and
+d) Controller shall have a back up to store the data locally(at least for 1 year)
+In view of above, It is requested to follow the instructions given in letter
+5
+(DR#ffiIi'1
+Executive Director-III (Infra)
+Copy s.w.rs to
+1. Director [Projects)/[0perations)/[Commercial)/[ Finance), MSEDCL, Mumbai
+Copy to :
+1.. CE ( Dist)/(PP)/(B&R)/(MMC)/(Projects)/[SPD)(RE)[Comm),MSEDCL Mumbai
+2. CGM(IT), MSEDCL, Mumbai
+3. AII Chief Engineers, O&M Zone, MSEDCL
+4. All Superintending Engineers, O&M Circle, MSEDCL

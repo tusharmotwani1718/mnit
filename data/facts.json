@@ -1,0 +1,329 @@
+{
+  "version": 1,
+  "notes": "Fact vocabulary. Rules may only reference these keys. priority = tie-break order for nextQuestion (lower asks first). askable=false facts are never asked; they are used only if the caller volunteers them. Rules may reference them with assumeIfUnknown + caveat (rare exclusions) or as one branch of an `any`.",
+  "facts": {
+    "state": {
+      "type": "enum",
+      "values": ["MH", "OTHER"],
+      "askable": true,
+      "priority": 1,
+      "ask": {
+        "hi": "आप किस राज्य में रहते हैं?",
+        "mr": "तुम्ही कोणत्या राज्यात राहता?",
+        "en": "Which state do you live in?"
+      }
+    },
+    "ownsCultivableLand": {
+      "type": "boolean",
+      "askable": true,
+      "priority": 2,
+      "ask": {
+        "hi": "क्या आपके या आपके परिवार के नाम पर खेती की ज़मीन है?",
+        "mr": "तुमच्या किंवा तुमच्या कुटुंबाच्या नावावर शेतजमीन आहे का?",
+        "en": "Is there farmland in your name or your family's name?"
+      }
+    },
+    "isTenantFarmer": {
+      "type": "boolean",
+      "askable": true,
+      "priority": 3,
+      "ask": {
+        "hi": "क्या आप किसी और की ज़मीन पर बटाई या किराये पर खेती करते हैं?",
+        "mr": "तुम्ही दुसऱ्याची जमीन बटाईने किंवा भाड्याने कसता का?",
+        "en": "Do you farm someone else's land as a tenant or sharecropper?"
+      }
+    },
+    "age": {
+      "type": "number",
+      "askable": true,
+      "priority": 4,
+      "ask": {
+        "hi": "आपकी उम्र कितनी है?",
+        "mr": "तुमचे वय किती आहे?",
+        "en": "How old are you?"
+      }
+    },
+    "familyPaysIncomeTax": {
+      "type": "boolean",
+      "askable": true,
+      "priority": 5,
+      "ask": {
+        "hi": "क्या आपके परिवार में कोई इनकम टैक्स भरता है?",
+        "mr": "तुमच्या कुटुंबात कोणी इन्कम टॅक्स भरतो का?",
+        "en": "Does anyone in your family pay income tax?"
+      },
+      "derives": [{ "when": false, "set": { "isIncomeTaxPayer": false } }]
+    },
+    "isIncomeTaxPayer": {
+      "type": "boolean",
+      "askable": true,
+      "priority": 6,
+      "ask": {
+        "hi": "क्या आप ख़ुद इनकम टैक्स भरते हैं?",
+        "mr": "तुम्ही स्वतः इन्कम टॅक्स भरता का?",
+        "en": "Do you yourself pay income tax?"
+      },
+      "derives": [{ "when": true, "set": { "familyPaysIncomeTax": true } }]
+    },
+    "familyHasGovtEmployeeOrPensioner": {
+      "type": "boolean",
+      "askable": true,
+      "priority": 7,
+      "description": "A family member (husband, wife, minor children) is a serving or retired central/state govt, PSU or local-body regular employee, or draws a pension of Rs 10,000+/month. Multi-Tasking Staff / Class IV / Group D are NOT counted.",
+      "ask": {
+        "hi": "क्या आपके परिवार में कोई सरकारी नौकरी में है, या 10,000 रुपये से ज़्यादा पेंशन पाता है?",
+        "mr": "तुमच्या कुटुंबात कोणी सरकारी नोकरीत आहे का, किंवा 10,000 रुपयांपेक्षा जास्त पेन्शन घेतो का?",
+        "en": "Does anyone in your family have a government job, or get a pension of more than 10,000 rupees?"
+      },
+      "derives": [{ "when": false, "set": { "isGovtEmployee": false } }]
+    },
+    "isGovtEmployee": {
+      "type": "boolean",
+      "askable": true,
+      "priority": 8,
+      "description": "The caller personally is a serving or retired govt/PSU/local-body regular employee (excluding Class IV / Group D).",
+      "ask": {
+        "hi": "क्या आप ख़ुद सरकारी नौकरी में हैं या थे?",
+        "mr": "तुम्ही स्वतः सरकारी नोकरीत आहात किंवा होता का?",
+        "en": "Do you yourself have, or did you have, a government job?"
+      },
+      "derives": [{ "when": true, "set": { "familyHasGovtEmployeeOrPensioner": true } }]
+    },
+    "hasOtherPensionScheme": {
+      "type": "boolean",
+      "askable": true,
+      "priority": 9,
+      "description": "Covered by NPS, ESIC, EPFO, PM Shram Yogi Maandhan or PM Laghu Vyapari Maandhan.",
+      "ask": {
+        "hi": "क्या आप पहले से किसी पेंशन या पीएफ योजना में हैं, जैसे एनपीएस या पीएफ?",
+        "mr": "तुम्ही आधीपासून कोणत्या पेन्शन किंवा पीएफ योजनेत आहात का, जसे एनपीएस किंवा पीएफ?",
+        "en": "Are you already in a pension or PF scheme, like NPS or PF?"
+      }
+    },
+    "landHectares": {
+      "type": "number",
+      "askable": true,
+      "priority": 10,
+      "description": "Cultivable land owned, in hectares. Normalised from acre/guntha/hectare/bigha using the caller's state.",
+      "unitNormalisation": {
+        "hectare": 1,
+        "acre": 0.404686,
+        "guntha": 0.0101172,
+        "bigha": { "note": "Not a standard unit in Maharashtra; varies by state. Ask the caller to say it in acre or guntha if state is MH." }
+      },
+      "ask": {
+        "hi": "आपके पास कितनी ज़मीन है? एकड़ या गुंठा में बताइए।",
+        "mr": "तुमच्याकडे किती जमीन आहे? एकर किंवा गुंठ्यात सांगा.",
+        "en": "How much land do you have? Tell me in acres or guntha."
+      }
+    },
+    "hasWaterSource": {
+      "type": "boolean",
+      "askable": true,
+      "priority": 11,
+      "description": "Owns a well, borewell or farm pond, or the land is next to a perennial river/stream.",
+      "ask": {
+        "hi": "क्या आपके खेत में कुआँ, बोरवेल या तालाब है?",
+        "mr": "तुमच्या शेतात विहीर, बोअरवेल किंवा शेततळे आहे का?",
+        "en": "Is there a well, borewell or farm pond on your field?"
+      }
+    },
+    "hasConventionalPump": {
+      "type": "boolean",
+      "askable": true,
+      "priority": 12,
+      "description": "Already has a conventional (grid electricity) agricultural pump.",
+      "ask": {
+        "hi": "क्या आपके खेत में पहले से बिजली वाला पंप है?",
+        "mr": "तुमच्या शेतात आधीपासून विजेचा पंप आहे का?",
+        "en": "Do you already have an electric pump on your field?"
+      }
+    },
+    "crop": {
+      "type": "string",
+      "askable": true,
+      "priority": 13,
+      "ask": {
+        "hi": "आप कौन सी फसल उगाते हैं?",
+        "mr": "तुम्ही कोणते पीक घेता?",
+        "en": "Which crop do you grow?"
+      }
+    },
+    "gender": {
+      "type": "enum",
+      "values": ["female", "male", "other"],
+      "askable": true,
+      "priority": 14,
+      "description": "Usually inferred from how the caller speaks (verb gender in Hindi/Marathi); asked only if unclear.",
+      "ask": {
+        "hi": "यह जानकारी किसके लिए चाहिए, किसी महिला के लिए या पुरुष के लिए?",
+        "mr": "ही माहिती कोणासाठी हवी आहे, स्त्रीसाठी की पुरुषासाठी?",
+        "en": "Who is this information for, a woman or a man?"
+      }
+    },
+    "hasBankAccount": {
+      "type": "boolean",
+      "askable": true,
+      "priority": 15,
+      "description": "Has a savings account in a bank or post office.",
+      "ask": {
+        "hi": "क्या आपका बैंक या डाकघर में खाता है?",
+        "mr": "तुमचे बँकेत किंवा पोस्टात खाते आहे का?",
+        "en": "Do you have a bank or post office account?"
+      }
+    },
+    "residence": {
+      "type": "enum",
+      "values": ["rural", "urban"],
+      "askable": true,
+      "priority": 16,
+      "ask": {
+        "hi": "आप गाँव में रहते हैं या शहर में?",
+        "mr": "तुम्ही गावात राहता की शहरात?",
+        "en": "Do you live in a village or a town?"
+      }
+    },
+    "hasPuccaHouse": {
+      "type": "boolean",
+      "askable": true,
+      "priority": 17,
+      "description": "Lives in a pucca house (pucca walls and roof, more than two rooms). Houseless or kutcha house = false.",
+      "ask": {
+        "hi": "क्या आपका पक्का मकान है?",
+        "mr": "तुमचे पक्के घर आहे का?",
+        "en": "Do you have a pucca house?"
+      }
+    },
+    "hasLpgConnection": {
+      "type": "boolean",
+      "askable": true,
+      "priority": 18,
+      "description": "Anyone in the household already has an LPG connection.",
+      "ask": {
+        "hi": "क्या आपके घर में पहले से गैस कनेक्शन है?",
+        "mr": "तुमच्या घरात आधीपासून गॅस कनेक्शन आहे का?",
+        "en": "Does your household already have a gas connection?"
+      }
+    },
+    "annualFamilyIncome": {
+      "type": "number",
+      "askable": true,
+      "priority": 19,
+      "description": "Approximate net family income per year, in rupees.",
+      "ask": {
+        "hi": "आपके परिवार की साल भर की कमाई लगभग कितनी है?",
+        "mr": "तुमच्या कुटुंबाचे वर्षभराचे उत्पन्न साधारण किती आहे?",
+        "en": "Roughly how much does your family earn in a year?"
+      }
+    },
+    "isPregnantOrLactating": {
+      "type": "boolean",
+      "askable": false,
+      "description": "The woman the call is about is pregnant or breastfeeding. Used only if volunteered."
+    },
+    "isFrontlineWorker": {
+      "type": "boolean",
+      "askable": false,
+      "description": "ASHA, Anganwadi worker or Anganwadi helper (or their family, for PM-JAY)."
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "askable": false,
+      "description": "40% or more disability."
+    },
+    "familyHasRegisteredProfessional": {
+      "type": "boolean",
+      "askable": false,
+      "description": "A family member is a practising doctor, engineer, lawyer, CA or architect registered with a professional body."
+    },
+    "familyHasPublicOffice": {
+      "type": "boolean",
+      "askable": false,
+      "description": "A family member holds/held a constitutional post, is/was a minister, MP, MLA, MLC, mayor of a municipal corporation, or district panchayat chairperson."
+    },
+    "landAcquiredAfterCutoff": {
+      "type": "boolean",
+      "askable": false,
+      "description": "PM-KISAN: land came into the family by purchase (not inheritance) after 01.02.2019."
+    },
+    "hadSolarPumpSubsidy": {
+      "type": "boolean",
+      "askable": false,
+      "description": "Already got a solar pump under Atal Saur Krushi Pump Yojana 1/2 or Mukhyamantri Saur Krushi Pump Yojana."
+    },
+    "socialCategory": {
+      "type": "enum",
+      "values": ["GEN", "OBC", "SC", "ST"],
+      "askable": true,
+      "priority": 30,
+      "topics": ["education"],
+      "description": "Family's social category. Neo-Buddhist counts as SC; VJ/NT/SBC count as OBC. Asked only for scholarships.",
+      "ask": {
+        "hi": "छात्रवृत्ति के लिए पूछ रही हूँ: आपका परिवार किस वर्ग में आता है, जनरल, ओबीसी, एससी या एसटी?",
+        "mr": "शिष्यवृत्तीसाठी विचारत आहे: तुमचे कुटुंब कोणत्या प्रवर्गात येते, जनरल, ओबीसी, एससी की एसटी?",
+        "en": "For scholarships, which category is your family in: General, OBC, SC or ST?"
+      }
+    },
+    "willingManualWork": {
+      "type": "boolean",
+      "askable": true,
+      "priority": 20,
+      "topics": ["work"],
+      "description": "The caller or an adult in their household is willing to do unskilled manual work.",
+      "ask": {
+        "hi": "क्या आप या घर के कोई बड़े सदस्य मज़दूरी वाला काम करने को तैयार हैं?",
+        "mr": "तुम्ही किंवा घरातील कोणी प्रौढ व्यक्ती मजुरीचे काम करायला तयार आहे का?",
+        "en": "Are you or another adult at home willing to do manual labour work?"
+      }
+    },
+    "hasPfOrEsic": {
+      "type": "boolean",
+      "askable": true,
+      "priority": 21,
+      "topics": ["work", "insurance"],
+      "description": "The caller is a member of EPFO, ESIC or govt-funded NPS (PF/ESIC is deducted from their pay).",
+      "ask": {
+        "hi": "क्या आपकी तनख़्वाह से पीएफ या ईएसआईसी कटता है?",
+        "mr": "तुमच्या पगारातून पीएफ किंवा ईएसआयसी कापला जातो का?",
+        "en": "Is PF or ESIC deducted from your pay?"
+      }
+    },
+    "isWidowOrSingleWoman": {
+      "type": "boolean",
+      "askable": true,
+      "priority": 22,
+      "topics": ["welfare", "women", "pension"],
+      "description": "The woman is a widow, divorced, or abandoned by her husband.",
+      "ask": {
+        "hi": "क्या आप विधवा, तलाक़शुदा या पति द्वारा छोड़ी गई महिला हैं?",
+        "mr": "तुम्ही विधवा, घटस्फोटित किंवा पतीने सोडलेल्या महिला आहात का?",
+        "en": "Are you a widow, divorced, or a woman whose husband has left her?"
+      }
+    },
+    "studentLevel": {
+      "type": "enum",
+      "values": ["upto7", "class8", "class9to10", "class11to12", "diploma", "degree", "postgrad"],
+      "askable": true,
+      "priority": 2,
+      "topics": ["education"],
+      "description": "What the student (the caller or their child) is studying now. Degree includes professional degrees (engineering, medical, etc.).",
+      "ask": {
+        "hi": "विद्यार्थी अभी कौन सी कक्षा या कोर्स में पढ़ रहा है?",
+        "mr": "विद्यार्थी सध्या कोणत्या इयत्तेत किंवा कोर्समध्ये शिकत आहे?",
+        "en": "Which class or course is the student studying in now?"
+      }
+    },
+    "studentInGovtSchool": {
+      "type": "boolean",
+      "askable": true,
+      "priority": 23,
+      "topics": ["education"],
+      "description": "The student attends a government, government-aided or local-body school (not private, KV, JNV or a residential school).",
+      "ask": {
+        "hi": "क्या विद्यार्थी सरकारी या अनुदानित स्कूल में पढ़ता है?",
+        "mr": "विद्यार्थी सरकारी किंवा अनुदानित शाळेत शिकतो का?",
+        "en": "Does the student go to a government or government-aided school?"
+      }
+    }
+  }
+}
