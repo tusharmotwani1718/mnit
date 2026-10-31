@@ -98,4 +98,31 @@ export type CatalogFact = {
 
 export type Catalog = { schemes: CatalogScheme[]; facts: Record<string, CatalogFact> };
 
-export type Profile = { phone: string; name: string | null; lang: Lang; facts: Record<string, string | number | boolean>; consent: boolean };
+export type Profile = {
+  phone: string;
+  name: string | null;
+  lang: Lang;
+  facts: Record<string, string | number | boolean>;
+  documents: string[];
+  consent: boolean;
+};
+
+export type Leaf = { fact: string; op: "eq" | "lte" | "gte" | "in"; expected: unknown } | { manualCheck: string };
+export type Band = "ready" | "almost" | "missing_info" | "not_eligible";
+
+/** Response of core's POST /schemes/:id/readiness (see core/src/engine/readiness.ts). */
+export type Readiness = {
+  schemeId: string;
+  status: SchemeStatus;
+  score: number;
+  band: Band;
+  rows: { options: Leaf[][]; result: Tri; partial: boolean; missing: string[]; points: number; max: number }[];
+  documents: { name: string; have: boolean }[];
+  points: { conditions: number; documents: number; bank: number };
+  bank: Tri;
+  ideal: { name: string; gender: "female" | "male"; facts: Record<string, string | number | boolean>; score: number };
+  facts: string[];
+  known: Record<string, string | number | boolean>;
+  documentsHave: string[];
+  saved: boolean;
+};

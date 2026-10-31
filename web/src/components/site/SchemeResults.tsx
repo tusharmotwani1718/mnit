@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { t } from "@/lib/i18n";
 import { useLang } from "@/lib/lang";
 import type { Catalog, SchemeResult } from "@/lib/types";
@@ -73,6 +74,13 @@ export function SchemeResults({ results, catalog }: { results: SchemeResult[] | 
               </div>
             )}
 
+            <Link
+              href={`/schemes/${s.id}`}
+              className="mt-3 inline-block rounded-full bg-emerald-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-emerald-700"
+            >
+              📊 {t("checkReadiness", lang)}
+            </Link>
+
             <p className="mt-3 text-xs text-slate-500">
               <a href={s.source} target="_blank" rel="noreferrer" className="font-medium text-emerald-700 hover:underline">
                 {t("officialSource", lang)} ↗
@@ -87,6 +95,10 @@ export function SchemeResults({ results, catalog }: { results: SchemeResult[] | 
           </article>
         );
       })}
+
+      <Link href={`/schemes/${matches[0]?.schemeId ?? catalog?.schemes[0]?.id ?? "pm-kisan"}`} className="block text-sm font-medium text-emerald-700 hover:underline">
+        {t("checkOtherSchemes", lang)}
+      </Link>
 
       {pending > 0 && matches.length > 0 && (
         <p className="text-xs text-slate-500">

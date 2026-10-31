@@ -7,6 +7,7 @@ import type { FactDef, Facts, NextQuestion, Scheme, SchemeResult } from "./types
 export * from "./types.js";
 export { toHectares } from "./units.js";
 export { applyDerivations, evaluateScheme, nextQuestion };
+export { readiness, idealFacts, POINTS, NOT_ELIGIBLE_CAP, type Readiness, type ReadinessRow, type Band, type Leaf } from "./readiness.js";
 
 export type Evaluation = {
   facts: Facts; // stated + derived

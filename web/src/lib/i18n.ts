@@ -146,6 +146,58 @@ const STRINGS = {
   },
   loading: { hi: "लोड हो रहा है…", mr: "लोड होत आहे…", en: "Loading…" },
   needLogin: { hi: "प्रोफ़ाइल देखने के लिए लॉगिन करें।", mr: "प्रोफाइल पाहण्यासाठी लॉगिन करा.", en: "Log in to see your profile." },
+
+  // Readiness
+  checkReadiness: { hi: "आवेदन की तैयारी जाँचें", mr: "अर्जाची तयारी तपासा", en: "Check my readiness" },
+  readinessTitle: { hi: "आवेदन की तैयारी", mr: "अर्जाची तयारी", en: "Application readiness" },
+  readinessIntro: {
+    hi: "आपकी जानकारी और कागज़ों से हम बताते हैं कि आपका आवेदन कितना तैयार है, और क्या कमी है।",
+    mr: "तुमची माहिती आणि कागदपत्रांवरून तुमचा अर्ज किती तयार आहे आणि काय कमी आहे ते सांगतो.",
+    en: "From your details and documents, see how ready your application is and what's missing.",
+  },
+  chooseScheme: { hi: "योजना चुनें", mr: "योजना निवडा", en: "Choose a scheme" },
+  band_ready: { hi: "आवेदन के लिए तैयार", mr: "अर्जासाठी तयार", en: "Ready to apply" },
+  band_almost: { hi: "लगभग तैयार", mr: "जवळजवळ तयार", en: "Almost ready" },
+  band_missing_info: { hi: "जानकारी अधूरी", mr: "माहिती अपूर्ण", en: "Missing information" },
+  band_not_eligible: { hi: "इस योजना के लिए पात्र नहीं", mr: "या योजनेसाठी पात्र नाही", en: "Not eligible for this scheme" },
+  conditionsPart: { hi: "पात्रता की शर्तें", mr: "पात्रतेच्या अटी", en: "Eligibility conditions" },
+  documentsPart: { hi: "कागज़ तैयार", mr: "कागदपत्रे तयार", en: "Documents ready" },
+  bankPart: { hi: "बैंक खाता (पैसा सीधे खाते में)", mr: "बँक खाते (पैसे थेट खात्यात)", en: "Bank account (money is paid into it)" },
+  idealApplicant: { hi: "आदर्श आवेदक", mr: "आदर्श अर्जदार", en: "Ideal applicant" },
+  idealIntro: {
+    hi: "योजना के नियमों से बना एक उदाहरण, जो हर शर्त पूरी करता है:",
+    mr: "योजनेच्या नियमांवरून तयार केलेले उदाहरण, जे प्रत्येक अट पूर्ण करते:",
+    en: "A sample person, built from the scheme's rules, who meets every condition:",
+  },
+  allDocumentsReady: { hi: "सारे कागज़ तैयार", mr: "सर्व कागदपत्रे तयार", en: "All documents ready" },
+  compareTitle: { hi: "आप और आदर्श आवेदक", mr: "तुम्ही आणि आदर्श अर्जदार", en: "You vs the ideal applicant" },
+  requirement: { hi: "शर्त", mr: "अट", en: "What the scheme checks" },
+  you: { hi: "आप", mr: "तुम्ही", en: "You" },
+  whatToDo: { hi: "क्या करें", mr: "काय करावे", en: "What to do" },
+  anyOneOf: { hi: "इनमें से कोई एक:", mr: "यापैकी कोणतीही एक:", en: "Any one of:" },
+  checkedAtOffice: { hi: "दफ़्तर / सीएससी पर जाँच होगी", mr: "कार्यालय / सीएससीवर तपासणी होईल", en: "Checked at the office / CSC" },
+  doMet: { hi: "ठीक है", mr: "ठीक आहे", en: "All good" },
+  doAnswer: { hi: "नीचे जवाब दें", mr: "खाली उत्तर द्या", en: "Answer below" },
+  doConfirm: { hi: "सीएससी पर पक्का करें", mr: "सीएससीवर खात्री करा", en: "Confirm at a CSC" },
+  doNotMet: { hi: "यह शर्त पूरी नहीं होती", mr: "ही अट पूर्ण होत नाही", en: "This condition isn't met" },
+  notEligibleHelp: {
+    hi: "इस योजना की कोई शर्त पूरी नहीं होती। बातचीत में दूसरी योजनाएँ देखें।",
+    mr: "या योजनेची एक अट पूर्ण होत नाही. संवादात इतर योजना पाहा.",
+    en: "A condition of this scheme isn't met. Look at other schemes in the chat.",
+  },
+  yourDetails: { hi: "इस योजना के लिए आपकी जानकारी", mr: "या योजनेसाठी तुमची माहिती", en: "Your details for this scheme" },
+  documentsYouHave: { hi: "आपके पास कौन से कागज़ हैं?", mr: "तुमच्याकडे कोणती कागदपत्रे आहेत?", en: "Which documents do you have?" },
+  getDocument: { hi: "बनवाएँ", mr: "मिळवा", en: "Get" },
+  nextSteps: { hi: "आगे क्या करें", mr: "पुढे काय करावे", en: "Next steps" },
+  readinessDisclaimer: {
+    hi: "यह सरकारी नियमों के आधार पर तैयारी की जाँच है, मंज़ूरी की गारंटी नहीं। अंतिम फ़ैसला संबंधित दफ़्तर करता है।",
+    mr: "ही सरकारी नियमांवर आधारित तयारीची तपासणी आहे, मंजुरीची हमी नाही. अंतिम निर्णय संबंधित कार्यालय घेते.",
+    en: "This is a readiness check based on the official rules, not a guarantee of approval. The office makes the final decision.",
+  },
+  savedToProfile: { hi: "आपके जवाब प्रोफ़ाइल में सेव हो रहे हैं।", mr: "तुमची उत्तरे प्रोफाइलमध्ये जतन होत आहेत.", en: "Your answers are being saved to your profile." },
+  notSavedGuest: { hi: "लॉगिन करके अपने जवाब सेव करें।", mr: "लॉगिन करून तुमची उत्तरे जतन करा.", en: "Log in to save your answers." },
+  updating: { hi: "हिसाब लग रहा है…", mr: "गणना होत आहे…", en: "Updating…" },
+  checkOtherSchemes: { hi: "किसी भी योजना के लिए तैयारी जाँचें →", mr: "कोणत्याही योजनेसाठी तयारी तपासा →", en: "Check readiness for any scheme →" },
 } satisfies Record<string, Record<Lang, string>>;
 
 export type StringKey = keyof typeof STRINGS;
@@ -212,6 +264,14 @@ export const FACT_LABELS: Record<string, Record<Lang, string>> = {
   isWidowOrSingleWoman: { hi: "विधवा / तलाक़शुदा / परित्यक्ता", mr: "विधवा / घटस्फोटित / परित्यक्ता", en: "Widow, divorced or abandoned" },
   studentLevel: { hi: "विद्यार्थी की कक्षा / कोर्स", mr: "विद्यार्थ्याची इयत्ता / कोर्स", en: "Student's class or course" },
   studentInGovtSchool: { hi: "विद्यार्थी सरकारी / अनुदानित स्कूल में", mr: "विद्यार्थी सरकारी / अनुदानित शाळेत", en: "Student in a govt or aided school" },
+  // Never asked in the chat, but checked by some schemes (and shown in the readiness comparison).
+  isPregnantOrLactating: { hi: "गर्भवती या स्तनपान कराने वाली माँ", mr: "गरोदर किंवा स्तनदा माता", en: "Pregnant or breastfeeding" },
+  isFrontlineWorker: { hi: "आशा / आंगनवाड़ी कार्यकर्ता", mr: "आशा / अंगणवाडी कार्यकर्ती", en: "ASHA / Anganwadi worker" },
+  isDisabled: { hi: "40% या ज़्यादा दिव्यांगता", mr: "40% किंवा जास्त दिव्यांगत्व", en: "Disability of 40% or more" },
+  familyHasRegisteredProfessional: { hi: "परिवार में डॉक्टर / वकील / इंजीनियर / सीए", mr: "कुटुंबात डॉक्टर / वकील / इंजिनिअर / सीए", en: "Doctor, lawyer, engineer or CA in the family" },
+  familyHasPublicOffice: { hi: "परिवार में मंत्री / सांसद / विधायक", mr: "कुटुंबात मंत्री / खासदार / आमदार", en: "Minister, MP or MLA in the family" },
+  landAcquiredAfterCutoff: { hi: "ज़मीन 1 फ़रवरी 2019 के बाद ख़रीदी", mr: "जमीन 1 फेब्रुवारी 2019 नंतर खरेदी", en: "Land bought after 1 Feb 2019" },
+  hadSolarPumpSubsidy: { hi: "पहले सोलर पंप सब्सिडी मिली", mr: "आधी सौर पंप अनुदान मिळाले", en: "Already got a solar pump subsidy" },
 };
 
 /** Labels for the options of multiple-choice facts; also the text sent when a quick-reply button is tapped. */
@@ -248,3 +308,33 @@ export const VALUE_LABELS: Record<string, Record<string, Record<Lang, string>>> 
 
 /** Hectares are stored; people think in acres. */
 export const HECTARES_PER_ACRE = 0.404686;
+
+/** Sample names core gives the ideal applicant, in Devanagari. */
+const NAMES: Record<string, string> = {
+  Sunita: "सुनीता", Priya: "प्रिया", Lata: "लता", Meena: "मीना", Ramesh: "रमेश", Suresh: "सुरेश", Ganesh: "गणेश", Vijay: "विजय",
+};
+export const personName = (name: string, lang: Lang) => (lang === "en" ? name : (NAMES[name] ?? name));
+
+const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
+
+/** A fact's value for people: yes/no, the option's label, ₹ amounts, acres. */
+export function formatFact(fact: string, value: unknown, lang: Lang): string {
+  if (value === undefined || value === null) return "?";
+  if (typeof value === "boolean") return t(value ? "yes" : "no", lang);
+  if (typeof value === "number") {
+    if (fact === "annualFamilyIncome") return inr(value);
+    if (fact === "landHectares") return `${Math.round((value / HECTARES_PER_ACRE) * 100) / 100} ${t("acres", lang)}`;
+    return String(value);
+  }
+  return VALUE_LABELS[fact]?.[String(value)]?.[lang] ?? String(value);
+}
+
+/** "Age: ≤ 40"-style text for one rule condition. */
+export function describeRule(fact: string, op: string, expected: unknown, lang: Lang): string {
+  const label = FACT_LABELS[fact]?.[lang] ?? fact;
+  const v = (x: unknown) => formatFact(fact, x, lang);
+  const need =
+    op === "lte" ? `≤ ${v(expected)}` : op === "gte" ? `≥ ${v(expected)}` : op === "in" ? (expected as unknown[]).map(v).join(" / ") : v(expected);
+  return `${label}: ${need}`;
+}
+

@@ -6,7 +6,7 @@ import { checkPassword, hashPassword, PASSWORD_RULE } from "./account/password.j
 import type { AccountStore, Profile } from "./account/store.js";
 import { createToken, verifyToken } from "./account/token.js";
 import type { Agent } from "./agent/index.js";
-import { cleanFacts, type Facts } from "./engine/index.js";
+import { cleanFacts, readiness, type Facts } from "./engine/index.js";
 import { LiveBus, maskNumber } from "./live.js";
 import { toIndianMobile } from "./sms/number.js";
 import { composeChecklistSms } from "./sms/checklist.js";
@@ -44,7 +44,14 @@ const MAX_LOGIN_FAILURES = 5;
 const LOGIN_WINDOW_MS = 15 * 60 * 1000;
 
 // Never includes the password hash.
-const profileView = (p: Profile) => ({ phone: p.phone, name: p.name, lang: p.lang, facts: p.facts, consent: !!p.consentAt });
+const profileView = (p: Profile) => ({
+  phone: p.phone,
+  name: p.name,
+  lang: p.lang,
+  facts: p.facts,
+  documents: p.documents,
+  consent: !!p.consentAt,
+});
 
 const HEARTBEAT_MS = 15_000;
 
@@ -227,6 +234,44 @@ export function createApp(
     });
   });
 
+  /**
+   * Application readiness for one scheme (see engine/readiness.ts). Uses the logged-in user's saved answers and documents
+   * (if they agreed to saving) plus whatever the request adds; what the request adds is saved back to the profile.
+   */
+  app.post("/schemes/:id/readiness", async (req, res) => {
+    const scheme = agent.engine.schemes.find((s) => s.id === req.params.id);
+    if (!scheme) return void res.status(404).json({ error: "unknown_scheme" });
+    const body = z
+      .object({
+        facts: z.record(z.string(), z.union([z.string().max(40), z.number(), z.boolean(), z.null()])).optional(),
+        documents: z.array(z.string().max(200)).max(30).optional(),
+      })
+      .safeParse(req.body ?? {});
+    if (!body.success) return void res.status(400).json({ error: "invalid_request", details: body.error.issues });
+
+    const user = userPhone(req);
+    const profile = user && accounts ? await loadProfile(user) : null;
+    const consented = !!profile?.consentAt;
+    const merged: Record<string, unknown> = { ...(consented ? profile!.facts : {}) };
+    for (const [k, v] of Object.entries(body.data.facts ?? {})) {
+      if (v === null) delete merged[k];
+      else merged[k] = v;
+    }
+    const facts = cleanFacts(agent.engine.facts, merged);
+    const schemeDocs = new Set(scheme.documents.map((d) => d.en));
+    const documents = (body.data.documents ?? (consented ? profile!.documents : [])).filter((d) => schemeDocs.has(d));
+
+    if (consented && (body.data.facts || body.data.documents)) {
+      const otherDocs = profile!.documents.filter((d) => !schemeDocs.has(d));
+      try {
+        await accounts!.store.saveProfile({ ...profile!, facts, documents: [...otherDocs, ...documents], updatedAt: new Date().toISOString() });
+      } catch (err) {
+        console.error("Saving readiness answers failed:", err instanceof Error ? err.message : err);
+      }
+    }
+    res.json({ ...readiness(scheme, facts, documents, agent.engine.facts), known: facts, documentsHave: documents, saved: consented });
+  });
+
   // --- Citizen accounts: phone + password login and saved profiles --------------------------------------------------
   const requireAccounts: RequestHandler = (_req, res, next) => {
     if (accounts) return next();
@@ -245,7 +290,7 @@ export function createApp(
     if (existing?.passwordHash) return void res.status(409).json({ error: "phone_taken" });
     const now = new Date().toISOString();
     const profile = await accounts!.store.saveProfile({
-      ...(existing ?? { phone, name: null, facts: {}, consentAt: null, createdAt: now }),
+      ...(existing ?? { phone, name: null, facts: {}, documents: [], consentAt: null, createdAt: now }),
       lang: body.data.lang ?? existing?.lang ?? "hi",
       passwordHash: await hashPassword(body.data.password),
       updatedAt: now,
@@ -335,7 +380,7 @@ export function createApp(
     const phone = res.locals.phone as string;
     const now = new Date().toISOString();
     const current: Profile = (await accounts!.store.getProfile(phone)) ?? {
-      phone, name: null, lang: "hi", facts: {}, consentAt: null, passwordHash: null, createdAt: now, updatedAt: now,
+      phone, name: null, lang: "hi", facts: {}, documents: [], consentAt: null, passwordHash: null, createdAt: now, updatedAt: now,
     };
     const { name, lang, consent, facts } = body.data;
     let nextFacts = current.facts;
@@ -348,13 +393,14 @@ export function createApp(
       nextFacts = cleanFacts(agent.engine.facts, merged);
     }
     const consentAt = consent === undefined ? current.consentAt : consent ? (current.consentAt ?? now) : null;
-    // Without consent nothing is stored; withdrawing consent deletes the saved answers.
+    // Without consent nothing is stored; withdrawing consent deletes the saved answers and documents.
     if (!consentAt) nextFacts = {};
     const saved = await accounts!.store.saveProfile({
       ...current,
       name: name === undefined ? current.name : name || null,
       lang: lang ?? current.lang,
       facts: nextFacts,
+      documents: consentAt ? current.documents : [],
       consentAt,
       updatedAt: now,
     });

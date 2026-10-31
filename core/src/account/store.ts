@@ -10,6 +10,8 @@ export type Profile = {
   consentAt: string | null;
   /** scrypt hash (src/account/password.ts); null for profiles created by the (disabled) OTP login. */
   passwordHash: string | null;
+  /** English names of documents the person has (shared across schemes: Aadhaar once is Aadhaar everywhere). */
+  documents: string[];
   createdAt: string;
   updatedAt: string;
 };
@@ -66,6 +68,7 @@ type ProfileRow = {
   facts: Facts;
   consent_at: string | null;
   password_hash: string | null;
+  documents: string[] | null;
   created_at: string;
   updated_at: string;
 };
@@ -94,6 +97,7 @@ export class SupabaseAccountStore implements AccountStore {
         facts: p.facts,
         consent_at: p.consentAt,
         password_hash: p.passwordHash,
+        documents: p.documents,
         created_at: p.createdAt,
         updated_at: p.updatedAt,
       },
@@ -149,6 +153,7 @@ function fromProfileRow(r: ProfileRow): Profile {
     facts: r.facts ?? {},
     consentAt: r.consent_at,
     passwordHash: r.password_hash,
+    documents: r.documents ?? [],
     createdAt: r.created_at,
     updatedAt: r.updated_at,
   };

@@ -134,7 +134,7 @@ describe("account endpoints and profile-aware turns", () => {
     expect((await call("POST", "/auth/signup", { phone: "9876543210", password: "onlyletters" })).body.error).toBe("weak_password");
     const signup = await call("POST", "/auth/signup", { phone: "98765 43210", password: "khet2026pass", lang: "mr" });
     expect(signup.status).toBe(201);
-    expect(signup.body.profile).toEqual({ phone: PHONE, name: null, lang: "mr", facts: {}, consent: false }); // no hash leaked
+    expect(signup.body.profile).toEqual({ phone: PHONE, name: null, lang: "mr", facts: {}, documents: [], consent: false }); // no hash leaked
     expect((await store.getProfile(PHONE))!.passwordHash).toMatch(/^scrypt\$/);
     expect((await call("POST", "/auth/signup", { phone: "9876543210", password: "another123" })).status).toBe(409);
 

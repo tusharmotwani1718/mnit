@@ -112,3 +112,9 @@ export function evaluateScheme(scheme: Scheme, facts: Facts, defs: Record<string
   if (second.tri === "unknown") return result("likely_eligible", second);
   return result(second.tri ? "eligible" : "not_eligible", second);
 }
+
+/** One condition on its own (no second pass): its result, and whether it rests on an assumption or an office check. */
+export function evaluateCondition(c: Cond, facts: Facts): { result: Tri; assumed: boolean; manual: boolean; missing: string[] } {
+  const o = evalCond(c, facts, { pessimistic: false, askable: () => true });
+  return { result: o.tri, assumed: o.caveats.length > 0, manual: o.manualChecks.length > 0, missing: [...o.missing] };
+}
