@@ -1,32 +1,188 @@
 {
-  "notes": "Retrieval test set: each question should retrieve a chunk of `expect` in the top 4 with no scheme filter (the hardest case: caller names no scheme). Run with npm run rag:eval.",
+  "notes": "Retrieval test set: each question should retrieve a chunk of `expect` in the top 4 with no scheme filter (the hardest case: caller names no scheme). Run with npm run rag:eval. Cases with heldOut=true were written after the alias/hint tuning and were not used to tune it.",
   "cases": [
-    { "q": "पीएम किसान की किस्त कब आती है?", "lang": "hi", "expect": "pm-kisan" },
-    { "q": "किसान को साल में 6000 रुपये वाली योजना", "lang": "hi", "expect": "pm-kisan" },
-    { "q": "फसल खराब हो गई, बीमा का पैसा कैसे मिलेगा?", "lang": "hi", "expect": "pmfby" },
-    { "q": "खेती के लिए कम ब्याज पर कर्ज़ चाहिए", "lang": "hi", "expect": "kcc" },
-    { "q": "गैस सिलेंडर का कनेक्शन मुफ़्त मिलता है क्या?", "lang": "hi", "expect": "pmuy" },
-    { "q": "पक्का घर बनाने के लिए सरकार से पैसा", "lang": "hi", "expect": "pmay-g" },
-    { "q": "अस्पताल में मुफ़्त इलाज 5 लाख तक", "lang": "hi", "expect": "pm-jay" },
-    { "q": "गर्भवती महिला को 5000 रुपये", "lang": "hi", "expect": "pmmvy" },
-    { "q": "गाँव में मज़दूरी का काम 125 दिन", "lang": "hi", "expect": "vb-g-ram-g" },
-    { "q": "बुढ़ापे में पेंशन चाहिए, उम्र 68 है", "lang": "hi", "expect": "shravanbal" },
-    { "q": "ट्रैक्टर नहीं, सिलाई का काम करती हूँ, औज़ार के लिए मदद", "lang": "hi", "expect": "pm-vishwakarma" },
-    { "q": "ठेले वाले को लोन कैसे मिलेगा?", "lang": "hi", "expect": "pm-svanidhi" },
-    { "q": "छत पर सोलर लगाने की सब्सिडी", "lang": "hi", "expect": "pm-surya-ghar" },
-    { "q": "राशन कार्ड पर मुफ़्त अनाज कितना मिलता है?", "lang": "hi", "expect": "nfsa-ration" },
-    { "q": "लाडकी बहीण योजनेचे पैसे कधी येणार?", "lang": "mr", "expect": "ladki-bahin" },
-    { "q": "शेतात सौर पंप बसवायचा आहे", "lang": "mr", "expect": "magel-tyala-saur-pump" },
-    { "q": "नमो शेतकरी योजनेचे हप्ते किती?", "lang": "mr", "expect": "namo-shetkari" },
-    { "q": "शेतकऱ्याचा अपघाती मृत्यू झाला, कुटुंबाला मदत", "lang": "mr", "expect": "gopinath-munde" },
-    { "q": "बांधकाम कामगार नोंदणी कशी करायची?", "lang": "mr", "expect": "mahabocw" },
-    { "q": "मुलीच्या जन्मानंतर एक लाख रुपये मिळतात का?", "lang": "mr", "expect": "lek-ladki" },
-    { "q": "इंजिनिअरिंगच्या फीसाठी शिष्यवृत्ती", "lang": "mr", "expect": "shahu-fee" },
-    { "q": "विधवा महिलेला दरमहा पेन्शन", "lang": "mr", "expect": "sgnay" },
-    { "q": "How much is the accident insurance for Rs 20 a year?", "lang": "en", "expect": "pmsby" },
-    { "q": "Pension of 3000 a month for unorganised workers", "lang": "en", "expect": "pm-sym" },
-    { "q": "Scholarship for class 8 students in government schools", "lang": "en", "expect": "nmms" },
-    { "q": "Education loan without collateral for college", "lang": "en", "expect": "pm-vidyalaxmi" },
-    { "q": "Free soil testing for my farm", "lang": "en", "expect": "soil-health-card" }
+    {
+      "q": "पीएम किसान की किस्त कब आती है?",
+      "lang": "hi",
+      "expect": "pm-kisan"
+    },
+    {
+      "q": "किसान को साल में 6000 रुपये वाली योजना",
+      "lang": "hi",
+      "expect": "pm-kisan"
+    },
+    {
+      "q": "फसल खराब हो गई, बीमा का पैसा कैसे मिलेगा?",
+      "lang": "hi",
+      "expect": "pmfby"
+    },
+    {
+      "q": "खेती के लिए कम ब्याज पर कर्ज़ चाहिए",
+      "lang": "hi",
+      "expect": "kcc"
+    },
+    {
+      "q": "गैस सिलेंडर का कनेक्शन मुफ़्त मिलता है क्या?",
+      "lang": "hi",
+      "expect": "pmuy"
+    },
+    {
+      "q": "पक्का घर बनाने के लिए सरकार से पैसा",
+      "lang": "hi",
+      "expect": "pmay-g"
+    },
+    {
+      "q": "अस्पताल में मुफ़्त इलाज 5 लाख तक",
+      "lang": "hi",
+      "expect": "pm-jay"
+    },
+    {
+      "q": "गर्भवती महिला को 5000 रुपये",
+      "lang": "hi",
+      "expect": "pmmvy"
+    },
+    {
+      "q": "गाँव में मज़दूरी का काम 125 दिन",
+      "lang": "hi",
+      "expect": "vb-g-ram-g"
+    },
+    {
+      "q": "बुढ़ापे में पेंशन चाहिए, उम्र 68 है",
+      "lang": "hi",
+      "expect": "shravanbal"
+    },
+    {
+      "q": "ट्रैक्टर नहीं, सिलाई का काम करती हूँ, औज़ार के लिए मदद",
+      "lang": "hi",
+      "expect": "pm-vishwakarma"
+    },
+    {
+      "q": "ठेले वाले को लोन कैसे मिलेगा?",
+      "lang": "hi",
+      "expect": "pm-svanidhi"
+    },
+    {
+      "q": "छत पर सोलर लगाने की सब्सिडी",
+      "lang": "hi",
+      "expect": "pm-surya-ghar"
+    },
+    {
+      "q": "राशन कार्ड पर मुफ़्त अनाज कितना मिलता है?",
+      "lang": "hi",
+      "expect": "nfsa-ration"
+    },
+    {
+      "q": "लाडकी बहीण योजनेचे पैसे कधी येणार?",
+      "lang": "mr",
+      "expect": "ladki-bahin"
+    },
+    {
+      "q": "शेतात सौर पंप बसवायचा आहे",
+      "lang": "mr",
+      "expect": "magel-tyala-saur-pump"
+    },
+    {
+      "q": "नमो शेतकरी योजनेचे हप्ते किती?",
+      "lang": "mr",
+      "expect": "namo-shetkari"
+    },
+    {
+      "q": "शेतकऱ्याचा अपघाती मृत्यू झाला, कुटुंबाला मदत",
+      "lang": "mr",
+      "expect": "gopinath-munde"
+    },
+    {
+      "q": "बांधकाम कामगार नोंदणी कशी करायची?",
+      "lang": "mr",
+      "expect": "mahabocw"
+    },
+    {
+      "q": "मुलीच्या जन्मानंतर एक लाख रुपये मिळतात का?",
+      "lang": "mr",
+      "expect": "lek-ladki"
+    },
+    {
+      "q": "इंजिनिअरिंगच्या फीसाठी शिष्यवृत्ती",
+      "lang": "mr",
+      "expect": "shahu-fee"
+    },
+    {
+      "q": "विधवा महिलेला दरमहा पेन्शन",
+      "lang": "mr",
+      "expect": "sgnay"
+    },
+    {
+      "q": "How much is the accident insurance for Rs 20 a year?",
+      "lang": "en",
+      "expect": "pmsby"
+    },
+    {
+      "q": "Pension of 3000 a month for unorganised workers",
+      "lang": "en",
+      "expect": "pm-sym"
+    },
+    {
+      "q": "Scholarship for class 8 students in government schools",
+      "lang": "en",
+      "expect": "nmms"
+    },
+    {
+      "q": "Education loan without collateral for college",
+      "lang": "en",
+      "expect": "pm-vidyalaxmi"
+    },
+    {
+      "q": "Free soil testing for my farm",
+      "lang": "en",
+      "expect": "soil-health-card"
+    },
+    {
+      "q": "मेरी बेटी बारहवीं में है, कॉलेज की फ़ीस के लिए मदद?",
+      "lang": "hi",
+      "expect": "csss",
+      "heldOut": true
+    },
+    {
+      "q": "सब्ज़ी का ठेला लगाता हूँ, धंधा बढ़ाने के लिए पैसे चाहिए",
+      "lang": "hi",
+      "expect": "pm-svanidhi",
+      "heldOut": true
+    },
+    {
+      "q": "मेरे पति गुज़र गए, घर चलाने के लिए कोई मदद?",
+      "lang": "hi",
+      "expect": "sgnay",
+      "heldOut": true
+    },
+    {
+      "q": "घर में चूल्हे पर खाना बनता है, गैस कैसे मिलेगी?",
+      "lang": "hi",
+      "expect": "pmuy",
+      "heldOut": true
+    },
+    {
+      "q": "माझ्या आईचे वय सत्तर आहे, तिला महिन्याला काही पैसे मिळतील का?",
+      "lang": "mr",
+      "expect": "shravanbal",
+      "heldOut": true
+    },
+    {
+      "q": "गावात काम मिळत नाही, रोजंदारीचे काम हवे",
+      "lang": "mr",
+      "expect": "vb-g-ram-g",
+      "heldOut": true
+    },
+    {
+      "q": "I make pots from clay, is there any help for tools?",
+      "lang": "en",
+      "expect": "pm-vishwakarma",
+      "heldOut": true
+    },
+    {
+      "q": "My wife is pregnant, do we get any money from the government?",
+      "lang": "en",
+      "expect": "pmmvy",
+      "heldOut": true
+    }
   ]
 }

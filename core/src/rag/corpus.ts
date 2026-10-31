@@ -21,6 +21,25 @@ type ExtraScheme = {
   summary: { hi: string; mr: string };
 };
 
+export type Aliases = Record<string, { names: string[]; hints: string }>;
+
+export function loadAliases(dataDir = DEFAULT_DATA_DIR): Aliases {
+  return (JSON.parse(readFileSync(join(dataDir, "corpus", "aliases.json"), "utf8")) as { schemes: Aliases }).schemes;
+}
+
+/** For name matching: lower-case, no nukta, hyphens as spaces, single spaces. */
+export function matchKey(text: string): string {
+  return text.toLowerCase().replace(/\u093C/g, "").replace(/[-‐–]/g, " ").replace(/\s+/g, " ").trim();
+}
+
+/**
+ * Hindi pages of official PDFs come out of text extraction with broken conjuncts ("पीएम-िेएमवाई"), and garbled Devanagari
+ * passages then sit close to every Hindi question. Hindi/Marathi are covered by the verified summaries instead.
+ */
+export function isMostlyDevanagari(text: string): boolean {
+  return (text.match(/[\u0900-\u097F]/g)?.length ?? 0) / Math.max(text.length, 1) > 0.2;
+}
+
 const hash = (s: string) => createHash("sha256").update(s).digest("hex").slice(0, 16);
 
 /**
@@ -69,7 +88,7 @@ function make(c: Omit<CorpusChunk, "hash">): CorpusChunk {
 }
 
 /** One summary chunk per language per rule scheme, from the verified scheme file (matches hi/mr questions well). */
-function schemeSummaries(scheme: Scheme): CorpusChunk[] {
+function schemeSummaries(scheme: Scheme, hints: string): CorpusChunk[] {
   const notes = Array.isArray(scheme.notes) ? (scheme.notes as string[]) : [];
   return LANGS.map((lang) =>
     make({
@@ -87,6 +106,7 @@ function schemeSummaries(scheme: Scheme): CorpusChunk[] {
         `${{ hi: "आवेदन", mr: "अर्ज", en: "Apply" }[lang]}: ${scheme.applyAtSpoken[lang]}.`,
         scheme.helpline ? `Helpline: ${scheme.helpline}.` : "",
         lang === "en" ? notes.join(" ") : "",
+        hints,
       ]
         .filter(Boolean)
         .join(" "),
@@ -96,18 +116,25 @@ function schemeSummaries(scheme: Scheme): CorpusChunk[] {
 
 export function buildCorpus(schemes: Scheme[], dataDir = DEFAULT_DATA_DIR): CorpusChunk[] {
   const dir = join(dataDir, "corpus");
-  const chunks: CorpusChunk[] = schemes.flatMap(schemeSummaries);
+  const aliases = loadAliases(dataDir);
+  const hintsFor = (id: string) => {
+    const a = aliases[id];
+    if (!a) throw new Error(`aliases.json: no entry for scheme "${id}"`);
+    return `${a.names.join(", ")}. ${a.hints}`;
+  };
+  const chunks: CorpusChunk[] = schemes.flatMap((s) => schemeSummaries(s, hintsFor(s.id)));
   const known = new Set(schemes.map((s) => s.id));
 
   const { documents } = JSON.parse(readFileSync(join(dir, "documents.json"), "utf8")) as { documents: DocumentEntry[] };
   for (const doc of documents) {
     if (!known.has(doc.schemeId)) throw new Error(`documents.json: ${doc.file} refers to unknown scheme "${doc.schemeId}"`);
     const text = readFileSync(join(dir, "docs", doc.file), "utf8");
-    chunkText(text).forEach((piece, i) =>
+    for (const [i, piece] of chunkText(text).entries()) {
+      if (isMostlyDevanagari(piece)) continue;
       chunks.push(
         make({ id: `${doc.file}#${i}`, schemeId: doc.schemeId, tier: "tier1", title: doc.title, section: "official", lang: "en", sourceUrl: doc.url, text: piece }),
-      ),
-    );
+      );
+    }
   }
 
   const { schemes: extras } = JSON.parse(readFileSync(join(dir, "extra-schemes.json"), "utf8")) as { schemes: ExtraScheme[] };
@@ -118,7 +145,7 @@ export function buildCorpus(schemes: Scheme[], dataDir = DEFAULT_DATA_DIR): Corp
     );
     for (const lang of ["hi", "mr"] as const) {
       chunks.push(
-        make({ id: `${s.id}:summary:${lang}`, schemeId: s.id, tier: "extra", title: `${s.name.en}: summary`, section: "summary", lang, sourceUrl: s.source, text: `${s.name[lang]}. ${s.summary[lang]}` }),
+        make({ id: `${s.id}:summary:${lang}`, schemeId: s.id, tier: "extra", title: `${s.name.en}: summary`, section: "summary", lang, sourceUrl: s.source, text: `${s.name[lang]}. ${s.summary[lang]} ${hintsFor(s.id)}` }),
       );
     }
   }

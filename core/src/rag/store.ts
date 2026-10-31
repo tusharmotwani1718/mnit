@@ -1,9 +1,12 @@
 import OpenAI from "openai";
 import type { Lang } from "../engine/index.js";
 import type { Chunk, Retriever } from "../agent/retriever.js";
-import type { CorpusChunk } from "./corpus.js";
+import { loadAliases, matchKey, type Aliases, type CorpusChunk } from "./corpus.js";
 
-export const EMBED_MODEL = process.env.RAG_EMBED_MODEL ?? "text-embedding-3-small";
+// Large beats small clearly on Hindi/Marathi (rag:eval Hit@4 97% vs 83%); cost is still a few cents for the corpus.
+export const EMBED_MODEL = process.env.RAG_EMBED_MODEL ?? "text-embedding-3-large";
+/** Matches vector(1536) in db/rag.sql; text-embedding-3-large is shortened to this size. */
+export const EMBED_DIMS = 1536;
 
 const TIMEOUT_MS = 15_000;
 const SETUP_HINT = "Run core/db/rag.sql once in Supabase → SQL Editor.";
@@ -48,7 +51,7 @@ export class Embedder {
   }
 
   async embed(texts: string[]): Promise<number[][]> {
-    const res = await this.client.embeddings.create({ model: EMBED_MODEL, input: texts });
+    const res = await this.client.embeddings.create({ model: EMBED_MODEL, input: texts, dimensions: EMBED_DIMS });
     return res.data.sort((a, b) => a.index - b.index).map((d) => d.embedding);
   }
 }
@@ -70,7 +73,9 @@ async function existingHashes(db: SupabaseRest): Promise<Map<string, string>> {
 /** Embeds new or changed chunks and deletes ones no longer in the corpus. Returns counts. */
 export async function syncCorpus(db: SupabaseRest, embedder: Embedder, chunks: CorpusChunk[], log = console.log) {
   const existing = await existingHashes(db);
-  const todo = chunks.filter((c) => existing.get(c.id) !== c.hash);
+  // The stored hash covers the model too, so changing RAG_EMBED_MODEL re-embeds everything.
+  const hashOf = (c: CorpusChunk) => `${c.hash}:${EMBED_MODEL}`;
+  const todo = chunks.filter((c) => existing.get(c.id) !== hashOf(c));
   const keep = new Set(chunks.map((c) => c.id));
   const stale = [...existing.keys()].filter((id) => !keep.has(id));
 
@@ -90,7 +95,7 @@ export async function syncCorpus(db: SupabaseRest, embedder: Embedder, chunks: C
         lang: c.lang,
         source_url: c.sourceUrl,
         content: c.text,
-        content_hash: c.hash,
+        content_hash: hashOf(c),
         embedding: toVector(vectors[j]!),
         updated_at: new Date().toISOString(),
       })),
@@ -106,12 +111,39 @@ export async function syncCorpus(db: SupabaseRest, embedder: Embedder, chunks: C
 
 type Row = { id: string; scheme_id: string; tier: "tier1" | "extra"; title: string; section: string; source_url: string; content: string; score: number };
 
-/** Vector search via the match_rag_chunks function. With schemes in focus, the best of those come first, then the best overall. */
+/** Keeps the best-ranked chunks, at most `perScheme` from any one scheme (long guideline PDFs otherwise fill every slot). */
+export function diversify(chunks: Chunk[], k: number, perScheme = 2): Chunk[] {
+  const seen = new Set<string>();
+  const count = new Map<string, number>();
+  const out: Chunk[] = [];
+  for (const c of chunks) {
+    if (seen.has(c.id) || (count.get(c.schemeId) ?? 0) >= perScheme) continue;
+    seen.add(c.id);
+    count.set(c.schemeId, (count.get(c.schemeId) ?? 0) + 1);
+    out.push(c);
+    if (out.length === k) break;
+  }
+  return out;
+}
+
+/** Scheme ids whose distinctive names appear in the query ("पीएम किसान की किस्त" → pm-kisan). */
+export function namedSchemes(query: string, aliases: Aliases): string[] {
+  const q = ` ${matchKey(query)} `;
+  return Object.entries(aliases)
+    .filter(([, a]) => a.names.some((n) => q.includes(matchKey(n))))
+    .map(([id]) => id);
+}
+
+/**
+ * Hybrid search: schemes named in the query and schemes in focus are searched first (vector search filtered to them),
+ * then the best overall; at most 2 passages per scheme.
+ */
 export class PgVectorRetriever implements Retriever {
   constructor(
     private db: SupabaseRest,
     private embedder: Embedder,
     private k = 4,
+    private aliases: Aliases = loadAliases(),
   ) {}
 
   async search(vector: number[], schemeIds: string[] | null, k: number): Promise<Chunk[]> {
@@ -132,12 +164,16 @@ export class PgVectorRetriever implements Retriever {
   }
 
   async retrieve(query: string, { schemeIds }: { schemeIds: string[]; lang: Lang }): Promise<Chunk[]> {
+    const named = namedSchemes(query, this.aliases);
+    const priority = [...new Set([...named, ...schemeIds])];
     const [vector] = await this.embedder.embed([query]);
     const [focused, overall] = await Promise.all([
-      schemeIds.length ? this.search(vector!, schemeIds, this.k - 1) : Promise.resolve([]),
-      this.search(vector!, null, this.k),
+      priority.length ? this.search(vector!, priority, this.k * 2) : Promise.resolve([]),
+      this.search(vector!, null, this.k * 4),
     ]);
-    const seen = new Set<string>();
-    return [...focused, ...overall].filter((c) => !seen.has(c.id) && seen.add(c.id)).slice(0, this.k);
+    // Named schemes outrank focus: the caller asked about them by name.
+    const rank = (c: Chunk) => (named.includes(c.schemeId) ? 0 : 1);
+    const prioritised = [...focused].sort((a, b) => rank(a) - rank(b));
+    return diversify([...prioritised.slice(0, this.k - 1), ...overall], this.k);
   }
 }

@@ -1,0 +1,172 @@
+{
+  "notes": [
+    "names: distinctive names callers use for a scheme. A query containing one gets that scheme's passages first (lexical half of hybrid search). Keep them specific: no generic words like किसान or पेंशन.",
+    "hints: everyday words for who it is for and what it gives, in hi / mr / en. Added to the scheme's summary passages so caller vocabulary matches."
+  ],
+  "schemes": {
+    "pm-kisan": {
+      "names": ["पीएम किसान", "पीएम-किसान", "किसान सम्मान निधि", "किसान सन्मान निधी", "pm kisan", "pm-kisan"],
+      "hints": "किसान को साल में 6000 रुपये, तीन किस्तों में 2000-2000, किस्त कब आएगी, ई-केवाईसी. शेतकऱ्यांना वर्षाला 6000 रुपये, हप्ता कधी येणार. Rs 6000 a year to farmers in three instalments."
+    },
+    "namo-shetkari": {
+      "names": ["नमो शेतकरी", "नमो किसान", "महासन्मान निधी", "namo shetkari"],
+      "hints": "महाराष्ट्र के किसानों को राज्य से अलग से 6000 रुपये. महाराष्ट्रातील शेतकऱ्यांना राज्याकडून वेगळे 6000 रुपये, नमो हप्ता. Maharashtra's extra Rs 6000 for PM-KISAN farmers."
+    },
+    "pmfby": {
+      "names": ["फसल बीमा", "पीक विमा", "पीएमएफबीवाई", "pmfby", "crop insurance"],
+      "hints": "फसल खराब, ओले, सूखा, बाढ़, बारिश से नुकसान का बीमा, क्लेम कैसे मिलेगा. पीक नुकसान, अवकाळी पाऊस, दुष्काळ, विमा भरपाई. Crop loss insurance claim."
+    },
+    "kcc": {
+      "names": ["किसान क्रेडिट कार्ड", "केसीसी", "kcc", "kisan credit card"],
+      "hints": "खेती के लिए सस्ता कर्ज़, कम ब्याज, बैंक लोन, बीज खाद के लिए पैसा. शेतीसाठी कमी व्याजाने कर्ज, पीक कर्ज. Cheap farm loan from a bank."
+    },
+    "pm-kmy": {
+      "names": ["किसान मानधन", "पीएम-केएमवाई", "pm-kmy", "kisan maandhan"],
+      "hints": "छोटे किसान की बुढ़ापा पेंशन, 60 साल के बाद 3000 रुपये महीना. लहान शेतकऱ्यांसाठी पेन्शन. Pension for small farmers after 60."
+    },
+    "magel-tyala-saur-pump": {
+      "names": ["मागेल त्याला", "सौर पंप", "सोलर पंप", "saur pump", "solar pump"],
+      "hints": "खेत में सोलर पंप, बिजली के बिना सिंचाई, कुआँ बोरवेल. शेतात सौर पंप, विहीर, बोअरवेल, सिंचन. Solar water pump for the farm."
+    },
+    "pmuy": {
+      "names": ["उज्ज्वला", "उज्वला", "ujjwala"],
+      "hints": "मुफ़्त गैस कनेक्शन, एलपीजी सिलेंडर, चूल्हा, गैस सब्सिडी. मोफत गॅस जोडणी, सिलिंडर. Free LPG gas connection for women."
+    },
+    "pmay-g": {
+      "names": ["आवास योजना", "घरकुल", "पीएम आवास", "pmay", "awas"],
+      "hints": "पक्का घर बनाने के लिए पैसा, कच्चा मकान, घर नहीं है. पक्के घर, घरकुल यादी. Money to build a pucca house in a village."
+    },
+    "pm-jay": {
+      "names": ["आयुष्मान", "आयुष्मान भारत", "आयुष्मान कार्ड", "pm-jay", "ayushman"],
+      "hints": "अस्पताल में 5 लाख तक मुफ़्त इलाज, ऑपरेशन, 70 साल से ऊपर बुज़ुर्ग. रुग्णालयात मोफत उपचार, ऑपरेशन. Free hospital treatment up to Rs 5 lakh."
+    },
+    "pmmvy": {
+      "names": ["मातृ वंदना", "पीएमएमवीवाई", "pmmvy", "matru vandana"],
+      "hints": "गर्भवती महिला, पहला बच्चा, डिलीवरी, माँ को 5000 रुपये, दूसरी बेटी पर 6000. गरोदर महिला, बाळंतपण, स्तनदा माता. Pregnant women get Rs 5000."
+    },
+    "pmjjby": {
+      "names": ["जीवन ज्योति", "पीएमजेजेबीवाई", "pmjjby", "jeevan jyoti"],
+      "hints": "436 रुपये में 2 लाख का जीवन बीमा, मृत्यु पर परिवार को पैसा. 436 रुपयांत जीवन विमा. Rs 2 lakh life insurance for Rs 436 a year."
+    },
+    "pmsby": {
+      "names": ["सुरक्षा बीमा", "पीएमएसबीवाई", "pmsby", "suraksha bima"],
+      "hints": "20 रुपये में 2 लाख का दुर्घटना बीमा, एक्सीडेंट. 20 रुपयांत अपघात विमा. Rs 20 a year accident insurance."
+    },
+    "apy": {
+      "names": ["अटल पेंशन", "एपीवाई", "apy", "atal pension"],
+      "hints": "बुढ़ापे के लिए पेंशन, हर महीने थोड़ा जमा करें, 60 के बाद 1000 से 5000 रुपये. वृद्धापकाळ पेन्शन, बचत. Pension savings for workers aged 18 to 40."
+    },
+    "vb-g-ram-g": {
+      "names": ["मनरेगा", "नरेगा", "रोज़गार गारंटी", "रोजगार हमी", "जॉब कार्ड", "जी राम जी", "mgnrega", "nrega", "job card"],
+      "hints": "गाँव में मज़दूरी का काम, 125 दिन काम, जॉब कार्ड, बेरोज़गार. गावात मजुरीचे काम, रोहयो. Rural wage work guarantee."
+    },
+    "e-shram": {
+      "names": ["ई-श्रम", "ई श्रम", "श्रम कार्ड", "e-shram", "eshram"],
+      "hints": "मज़दूर कार्ड, दिहाड़ी मज़दूर, असंगठित कामगार, 2 लाख दुर्घटना बीमा. मजूर कार्ड, असंघटित कामगार नोंदणी. Card for unorganised and daily wage workers."
+    },
+    "sgnay": {
+      "names": ["संजय गांधी", "निराधार", "sanjay gandhi"],
+      "hints": "विधवा पेंशन, तलाक़शुदा, बेसहारा महिला, अनाथ, दिव्यांग पेंशन, 1500 रुपये महीना. विधवा महिलेला पेन्शन, निराधार, परित्यक्ता, अपंग. Pension for widows, destitute and disabled people."
+    },
+    "shravanbal": {
+      "names": ["श्रावणबाळ", "श्रावण बाल", "shravanbal", "shravan bal"],
+      "hints": "बुज़ुर्ग, 65 साल से ऊपर, बुढ़ापा पेंशन, 1500 रुपये महीना. वृद्ध, म्हातारपणी पेन्शन. Old-age pension for people over 65."
+    },
+    "nmms": {
+      "names": ["एनएमएमएस", "nmms", "means cum merit"],
+      "hints": "आठवीं कक्षा, सरकारी स्कूल, छात्रवृत्ति परीक्षा, 12000 रुपये साल. आठवी, सरकारी शाळा, शिष्यवृत्ती परीक्षा. Class 8 scholarship exam."
+    },
+    "csss": {
+      "names": ["केंद्रीय छात्रवृत्ति", "central sector scholarship", "पीएम-यूएसपी"],
+      "hints": "कॉलेज, ग्रेजुएशन, बारहवीं में अच्छे नंबर, छात्रवृत्ति. महाविद्यालय, बारावीत चांगले गुण, शिष्यवृत्ती. College scholarship for top Class 12 students."
+    },
+    "pms-sc": {
+      "names": ["पोस्ट मैट्रिक", "मॅट्रिकोत्तर", "post matric"],
+      "hints": "एससी, दलित, बौद्ध विद्यार्थी, कॉलेज फ़ीस माफ़, छात्रवृत्ति, महाडीबीटी. अनुसूचित जाती, बौद्ध विद्यार्थी, फी माफी, शिष्यवृत्ती. Scholarship and fees for SC students."
+    },
+    "shahu-fee": {
+      "names": ["शाहू महाराज", "राजर्षी शाहू", "ईबीसी", "ebc scholarship"],
+      "hints": "इंजीनियरिंग, मेडिकल, डिप्लोमा फ़ीस वापस, ओपन कैटेगरी, लड़कियों की पूरी फ़ीस. इंजिनिअरिंग, वैद्यकीय, फी परतावा, मुलींची पूर्ण फी. Fee reimbursement for professional courses."
+    },
+    "ladki-bahin": {
+      "names": ["लाडकी बहीण", "लाडकी बहिण", "लाडली बहन", "ladki bahin"],
+      "hints": "महिलाओं को 1500 रुपये महीना, ई-केवाईसी, किस्त. महिलांना दरमहा 1500 रुपये. Rs 1500 a month for women in Maharashtra."
+    },
+    "mjpjay": {
+      "names": ["महात्मा फुले", "जन आरोग्य", "जीवनदायी", "mjpjay"],
+      "hints": "महाराष्ट्र में मुफ़्त इलाज, ऑपरेशन, आरोग्य मित्र, राशन कार्ड. मोफत उपचार, शस्त्रक्रिया, आरोग्य मित्र. Free treatment in Maharashtra hospitals."
+    },
+    "pm-sym": {
+      "names": ["श्रम योगी", "मानधन", "pm-sym", "shram yogi"],
+      "hints": "मज़दूरों की पेंशन, 3000 रुपये महीना 60 के बाद, घरेलू कामगार. कामगार पेन्शन. Pension for unorganised workers."
+    },
+    "pm-vishwakarma": {
+      "names": ["विश्वकर्मा", "vishwakarma"],
+      "hints": "कारीगर, बढ़ई, लोहार, कुम्हार, मोची, दर्ज़ी, सिलाई, नाई, धोबी, राजमिस्त्री, औज़ार, टूलकिट, लोन. कारागीर, सुतार, शिंपी, शिवणकाम, अवजारे. Artisans: toolkit, training and cheap loans."
+    },
+    "nfsa-ration": {
+      "names": ["राशन कार्ड", "रेशन कार्ड", "गरीब कल्याण अन्न", "ration card"],
+      "hints": "मुफ़्त अनाज, गेहूँ चावल, राशन दुकान, अंत्योदय. मोफत धान्य, रेशन दुकान. Free food grain on a ration card."
+    },
+    "pm-vidyalaxmi": {
+      "names": ["विद्यालक्ष्मी", "vidyalaxmi"],
+      "hints": "पढ़ाई के लिए लोन, एजुकेशन लोन, बिना गारंटी. शिक्षणासाठी कर्ज. Collateral-free education loan."
+    },
+    "pm-svanidhi": {
+      "names": ["स्वनिधि", "स्वनिधी", "svanidhi"],
+      "hints": "ठेला, रेहड़ी, पटरी, फेरीवाला, सब्ज़ी बेचने वाला, लोन. फेरीवाले, हातगाडी, भाजीवाला, कर्ज. Loans for street vendors and cart sellers."
+    },
+    "mudra": {
+      "names": ["मुद्रा", "mudra"],
+      "hints": "छोटा धंधा, दुकान, बिज़नेस लोन, शिशु किशोर तरुण. छोटा व्यवसाय, दुकान, कर्ज. Small business loan."
+    },
+    "stand-up-india": {
+      "names": ["स्टैंड-अप इंडिया", "स्टँड-अप इंडिया", "stand up india"],
+      "hints": "महिला, एससी, एसटी उद्यमी, नया धंधा, 10 लाख से 1 करोड़ लोन. महिला उद्योजक, नवीन व्यवसाय. Loans for women and SC/ST entrepreneurs."
+    },
+    "pmegp": {
+      "names": ["पीएमईजीपी", "pmegp"],
+      "hints": "नया उद्योग, फैक्ट्री, सब्सिडी, ज़िला उद्योग केंद्र. नवीन उद्योग, अनुदान. Subsidy to start a new unit."
+    },
+    "sukanya-samriddhi": {
+      "names": ["सुकन्या", "sukanya"],
+      "hints": "बेटी के नाम बचत खाता, डाकघर, पढ़ाई और शादी के लिए पैसा. मुलीसाठी बचत खाते. Savings account for a daughter."
+    },
+    "pm-surya-ghar": {
+      "names": ["सूर्य घर", "surya ghar"],
+      "hints": "छत पर सोलर पैनल, मुफ़्त बिजली, 300 यूनिट, सब्सिडी, बिजली बिल. छतावर सौर पॅनल, मोफत वीज. Rooftop solar and free electricity."
+    },
+    "sbm-g-toilet": {
+      "names": ["स्वच्छ भारत", "शौचालय", "swachh bharat"],
+      "hints": "घर में शौचालय बनाने के लिए 12000 रुपये. घरात शौचालय बांधण्यासाठी पैसे. Rs 12000 to build a toilet."
+    },
+    "soil-health-card": {
+      "names": ["मृदा स्वास्थ्य", "मृदा आरोग्य", "soil health"],
+      "hints": "मिट्टी की जाँच, खाद कितनी डालें. माती परीक्षण, खत. Free soil testing."
+    },
+    "lek-ladki": {
+      "names": ["लेक लाडकी", "lek ladki"],
+      "hints": "बेटी के जन्म पर पैसा, लड़की को 1 लाख 1 हज़ार, पीला केसरी राशन कार्ड. मुलगी जन्मली, मुलीला एक लाख. Money for a girl child from birth to 18."
+    },
+    "mahabocw": {
+      "names": ["बांधकाम कामगार", "बिल्डिंग मज़दूर", "mahabocw", "bocw"],
+      "hints": "निर्माण मज़दूर, राजमिस्त्री, कंस्ट्रक्शन, 90 दिन काम, पंजीकरण. बांधकाम मजूर, गवंडी, नोंदणी. Construction workers' welfare registration."
+    },
+    "nfbs": {
+      "names": ["पारिवारिक लाभ", "कौटुंबिक लाभ", "family benefit"],
+      "hints": "घर के कमाने वाले की मौत, परिवार को 20000 रुपये. कमावत्या व्यक्तीचा मृत्यू. Rs 20000 when the breadwinner dies."
+    },
+    "jsy": {
+      "names": ["जननी सुरक्षा", "jsy", "janani suraksha"],
+      "hints": "अस्पताल में डिलीवरी, प्रसव, गर्भवती, आशा दीदी. रुग्णालयात प्रसूती. Cash for delivery in a hospital."
+    },
+    "gopinath-munde": {
+      "names": ["गोपीनाथ मुंडे", "gopinath munde"],
+      "hints": "किसान की दुर्घटना में मौत, अपघात, साँप काटना, बिजली का झटका, परिवार को 2 लाख. शेतकरी अपघात, सर्पदंश, अपघाती मृत्यू, कुटुंबाला मदत. Farmer accident death grant."
+    },
+    "udid": {
+      "names": ["यूडीआईडी", "यूडीआयडी", "udid", "स्वावलंबन कार्ड"],
+      "hints": "दिव्यांग प्रमाण पत्र, विकलांग कार्ड, अपंग. दिव्यांग प्रमाणपत्र, अपंग दाखला. Disability certificate and ID card."
+    }
+  }
+}
