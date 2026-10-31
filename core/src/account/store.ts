@@ -8,6 +8,8 @@ export type Profile = {
   facts: Facts;
   /** When the user agreed to save their answers; facts are only read and saved after this. */
   consentAt: string | null;
+  /** scrypt hash (src/account/password.ts); null for profiles created by the (disabled) OTP login. */
+  passwordHash: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -57,7 +59,16 @@ export class MemoryAccountStore implements AccountStore {
   }
 }
 
-type ProfileRow = { phone: string; name: string | null; lang: Lang; facts: Facts; consent_at: string | null; created_at: string; updated_at: string };
+type ProfileRow = {
+  phone: string;
+  name: string | null;
+  lang: Lang;
+  facts: Facts;
+  consent_at: string | null;
+  password_hash: string | null;
+  created_at: string;
+  updated_at: string;
+};
 type OtpRow = { phone: string; code_hash: string; expires_at: string; attempts: number; send_count: number; window_start: string; last_sent_at: string };
 
 const eq = (phone: string) => `phone=eq.${encodeURIComponent(phone)}`;
@@ -76,7 +87,16 @@ export class SupabaseAccountStore implements AccountStore {
     const rows = await this.db.request<ProfileRow[]>("/profiles?on_conflict=phone", {
       method: "POST",
       headers: upsert,
-      body: { phone: p.phone, name: p.name, lang: p.lang, facts: p.facts, consent_at: p.consentAt, created_at: p.createdAt, updated_at: p.updatedAt },
+      body: {
+        phone: p.phone,
+        name: p.name,
+        lang: p.lang,
+        facts: p.facts,
+        consent_at: p.consentAt,
+        password_hash: p.passwordHash,
+        created_at: p.createdAt,
+        updated_at: p.updatedAt,
+      },
     });
     return fromProfileRow(rows[0]!);
   }
@@ -122,5 +142,14 @@ export class SupabaseAccountStore implements AccountStore {
 }
 
 function fromProfileRow(r: ProfileRow): Profile {
-  return { phone: r.phone, name: r.name, lang: r.lang, facts: r.facts ?? {}, consentAt: r.consent_at, createdAt: r.created_at, updatedAt: r.updated_at };
+  return {
+    phone: r.phone,
+    name: r.name,
+    lang: r.lang,
+    facts: r.facts ?? {},
+    consentAt: r.consent_at,
+    passwordHash: r.password_hash,
+    createdAt: r.created_at,
+    updatedAt: r.updated_at,
+  };
 }

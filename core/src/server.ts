@@ -1,9 +1,10 @@
 import { timingSafeEqual } from "node:crypto";
 import express, { type ErrorRequestHandler, type RequestHandler } from "express";
 import { z } from "zod";
-import { OtpError, OtpService } from "./account/otp.js";
+// import { OtpError, OtpService } from "./account/otp.js"; // OTP login switched off, see /auth routes
+import { checkPassword, hashPassword, PASSWORD_RULE } from "./account/password.js";
 import type { AccountStore, Profile } from "./account/store.js";
-import { verifyToken } from "./account/token.js";
+import { createToken, verifyToken } from "./account/token.js";
 import type { Agent } from "./agent/index.js";
 import { cleanFacts, type Facts } from "./engine/index.js";
 import { LiveBus, maskNumber } from "./live.js";
@@ -35,10 +36,14 @@ export type ServerOptions = {
 
 const langSchema = z.enum(["hi", "mr", "en"]);
 const USER_TOKEN_HEADER = "x-user-token";
-/** OTP requests per client IP per hour (on top of the per-phone limits in OtpService). */
-const OTP_SENDS_PER_IP = 10;
-const IP_WINDOW_MS = 60 * 60 * 1000;
+// /** OTP requests per client IP per hour (on top of the per-phone limits in OtpService). */
+// const OTP_SENDS_PER_IP = 10;
+// const IP_WINDOW_MS = 60 * 60 * 1000;
+/** Wrong passwords allowed per number before a 15-minute lockout. */
+const MAX_LOGIN_FAILURES = 5;
+const LOGIN_WINDOW_MS = 15 * 60 * 1000;
 
+// Never includes the password hash.
 const profileView = (p: Profile) => ({ phone: p.phone, name: p.name, lang: p.lang, facts: p.facts, consent: !!p.consentAt });
 
 const HEARTBEAT_MS = 15_000;
@@ -77,8 +82,9 @@ export function createApp(
   agent: Agent,
   { apiKey, corsOrigin, liveToken, bus = new LiveBus(), sms = new LogSender(), accounts }: ServerOptions = {},
 ) {
-  const otp = accounts ? new OtpService(accounts.store, sms, accounts.secret) : null;
-  const ipSends = new Map<string, { count: number; start: number }>();
+  // const otp = accounts ? new OtpService(accounts.store, sms, accounts.secret) : null;
+  // const ipSends = new Map<string, { count: number; start: number }>();
+  const loginFailures = new Map<string, { count: number; start: number }>();
   const app = express();
   app.disable("x-powered-by");
   if (corsOrigin) app.use(cors(corsOrigin));
@@ -221,45 +227,86 @@ export function createApp(
     });
   });
 
-  // --- Citizen accounts: phone + OTP login and saved profiles -------------------------------------------------------
+  // --- Citizen accounts: phone + password login and saved profiles --------------------------------------------------
   const requireAccounts: RequestHandler = (_req, res, next) => {
-    if (accounts && otp) return next();
+    if (accounts) return next();
     res.status(503).json({ error: "accounts_disabled" });
   };
 
-  app.post("/auth/otp/send", requireAccounts, async (req, res) => {
-    const body = z.object({ phone: z.string().max(20), lang: langSchema.optional() }).safeParse(req.body);
+  const credentials = z.object({ phone: z.string().max(20), password: z.string().max(200), lang: langSchema.optional() });
+
+  app.post("/auth/signup", requireAccounts, async (req, res) => {
+    const body = credentials.safeParse(req.body);
     if (!body.success) return void res.status(400).json({ error: "invalid_request" });
-    const ip = req.get("x-client-ip") || req.ip || "unknown";
-    const now = Date.now();
-    const w = ipSends.get(ip);
-    const window = w && now - w.start < IP_WINDOW_MS ? w : { count: 0, start: now };
-    if (window.count >= OTP_SENDS_PER_IP) return void res.status(429).json({ error: "too_many_codes" });
-    try {
-      await otp!.send(body.data.phone, body.data.lang);
-      ipSends.set(ip, { ...window, count: window.count + 1 });
-      res.json({ sent: true });
-    } catch (err) {
-      if (err instanceof OtpError) return void res.status(err.status).json({ error: err.code, retryAfterSec: err.retryAfterSec ?? null });
-      throw err;
-    }
+    const phone = toIndianMobile(body.data.phone);
+    if (!phone) return void res.status(400).json({ error: "invalid_phone" });
+    if (!PASSWORD_RULE.test(body.data.password)) return void res.status(400).json({ error: "weak_password" });
+    const existing = await accounts!.store.getProfile(phone);
+    if (existing?.passwordHash) return void res.status(409).json({ error: "phone_taken" });
+    const now = new Date().toISOString();
+    const profile = await accounts!.store.saveProfile({
+      ...(existing ?? { phone, name: null, facts: {}, consentAt: null, createdAt: now }),
+      lang: body.data.lang ?? existing?.lang ?? "hi",
+      passwordHash: await hashPassword(body.data.password),
+      updatedAt: now,
+    });
+    res.status(201).json({ token: createToken(phone, accounts!.secret), profile: profileView(profile) });
   });
 
-  app.post("/auth/otp/verify", requireAccounts, async (req, res) => {
-    const body = z.object({ phone: z.string().max(20), code: z.string().regex(/^\s*\d{6}\s*$/), lang: langSchema.optional() }).safeParse(req.body);
-    if (!body.success) return void res.status(400).json({ error: "invalid_code" });
-    try {
-      const { phone, token } = await otp!.verify(body.data.phone, body.data.code);
-      const now = new Date().toISOString();
-      const profile =
-        (await accounts!.store.getProfile(phone)) ??
-        (await accounts!.store.saveProfile({ phone, name: null, lang: body.data.lang ?? "hi", facts: {}, consentAt: null, createdAt: now, updatedAt: now }));
-      res.json({ token, profile: profileView(profile) });
-    } catch (err) {
-      if (err instanceof OtpError) return void res.status(err.status).json({ error: err.code });
-      throw err;
+  app.post("/auth/login", requireAccounts, async (req, res) => {
+    const body = credentials.safeParse(req.body);
+    if (!body.success) return void res.status(400).json({ error: "invalid_credentials" });
+    const phone = toIndianMobile(body.data.phone);
+    if (!phone) return void res.status(400).json({ error: "invalid_phone" });
+    const now = Date.now();
+    const f = loginFailures.get(phone);
+    const window = f && now - f.start < LOGIN_WINDOW_MS ? f : { count: 0, start: now };
+    if (window.count >= MAX_LOGIN_FAILURES) return void res.status(429).json({ error: "too_many_logins" });
+    const profile = await accounts!.store.getProfile(phone);
+    // Same answer for an unknown number and a wrong password, so the endpoint doesn't reveal who has an account.
+    if (!profile || !(await checkPassword(body.data.password, profile.passwordHash))) {
+      loginFailures.set(phone, { ...window, count: window.count + 1 });
+      return void res.status(401).json({ error: "invalid_credentials" });
     }
+    loginFailures.delete(phone);
+    res.json({ token: createToken(phone, accounts!.secret), profile: profileView(profile) });
   });
+
+  // OTP login is switched off for now: the SMS gateway's SIM rejects the messages (RESULT_RIL_GENERIC_ERROR).
+  // OtpService (src/account/otp.ts) and its tests are kept; uncomment these routes to bring it back.
+  // app.post("/auth/otp/send", requireAccounts, async (req, res) => {
+  //   const body = z.object({ phone: z.string().max(20), lang: langSchema.optional() }).safeParse(req.body);
+  //   if (!body.success) return void res.status(400).json({ error: "invalid_request" });
+  //   const ip = req.get("x-client-ip") || req.ip || "unknown";
+  //   const now = Date.now();
+  //   const w = ipSends.get(ip);
+  //   const window = w && now - w.start < IP_WINDOW_MS ? w : { count: 0, start: now };
+  //   if (window.count >= OTP_SENDS_PER_IP) return void res.status(429).json({ error: "too_many_codes" });
+  //   try {
+  //     await otp!.send(body.data.phone, body.data.lang);
+  //     ipSends.set(ip, { ...window, count: window.count + 1 });
+  //     res.json({ sent: true });
+  //   } catch (err) {
+  //     if (err instanceof OtpError) return void res.status(err.status).json({ error: err.code, retryAfterSec: err.retryAfterSec ?? null });
+  //     throw err;
+  //   }
+  // });
+  //
+  // app.post("/auth/otp/verify", requireAccounts, async (req, res) => {
+  //   const body = z.object({ phone: z.string().max(20), code: z.string().regex(/^\s*\d{6}\s*$/), lang: langSchema.optional() }).safeParse(req.body);
+  //   if (!body.success) return void res.status(400).json({ error: "invalid_code" });
+  //   try {
+  //     const { phone, token } = await otp!.verify(body.data.phone, body.data.code);
+  //     const now = new Date().toISOString();
+  //     const profile =
+  //       (await accounts!.store.getProfile(phone)) ??
+  //       (await accounts!.store.saveProfile({ phone, name: null, lang: body.data.lang ?? "hi", facts: {}, consentAt: null, createdAt: now, updatedAt: now }));
+  //     res.json({ token, profile: profileView(profile) });
+  //   } catch (err) {
+  //     if (err instanceof OtpError) return void res.status(err.status).json({ error: err.code });
+  //     throw err;
+  //   }
+  // });
 
   const requireUser: RequestHandler = (req, res, next) => {
     const phone = userPhone(req);
@@ -288,7 +335,7 @@ export function createApp(
     const phone = res.locals.phone as string;
     const now = new Date().toISOString();
     const current: Profile = (await accounts!.store.getProfile(phone)) ?? {
-      phone, name: null, lang: "hi", facts: {}, consentAt: null, createdAt: now, updatedAt: now,
+      phone, name: null, lang: "hi", facts: {}, consentAt: null, passwordHash: null, createdAt: now, updatedAt: now,
     };
     const { name, lang, consent, facts } = body.data;
     let nextFacts = current.facts;

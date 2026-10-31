@@ -91,26 +91,29 @@ const STRINGS = {
     en: "Eligibility is decided by the official rules, not by AI.",
   },
 
-  // Login
-  loginTitle: { hi: "मोबाइल नंबर से लॉगिन", mr: "मोबाईल नंबरने लॉगिन", en: "Log in with your mobile number" },
+  // Login / sign up
+  loginTitle: { hi: "लॉगिन या नया खाता", mr: "लॉगिन किंवा नवीन खाते", en: "Log in or sign up" },
   loginWhy: {
-    hi: "लॉगिन करने से आपके जवाब सेव होते हैं, और इसी नंबर से कॉल करने पर भी सवाल नहीं दोहराने पड़ते।",
-    mr: "लॉगिन केल्याने तुमची उत्तरे जतन होतात, आणि याच नंबरवरून कॉल केल्यावरही प्रश्न पुन्हा विचारले जात नाहीत.",
-    en: "Logging in saves your answers, so you won't be asked again here or when you call from this number.",
+    hi: "खाता बनाने से आपके जवाब सेव होते हैं, और इसी नंबर से कॉल करने पर भी सवाल नहीं दोहराने पड़ते।",
+    mr: "खाते बनवल्याने तुमची उत्तरे जतन होतात, आणि याच नंबरवरून कॉल केल्यावरही प्रश्न पुन्हा विचारले जात नाहीत.",
+    en: "An account saves your answers, so you won't be asked again here or when you call from this number.",
   },
+  signup: { hi: "नया खाता", mr: "नवीन खाते", en: "Sign up" },
+  createAccount: { hi: "खाता बनाएँ", mr: "खाते बनवा", en: "Create account" },
   mobileNumber: { hi: "मोबाइल नंबर", mr: "मोबाईल नंबर", en: "Mobile number" },
-  sendCode: { hi: "कोड भेजें", mr: "कोड पाठवा", en: "Send code" },
-  sending: { hi: "भेज रहे हैं…", mr: "पाठवत आहे…", en: "Sending…" },
-  codeSentTo: { hi: "कोड भेजा गया:", mr: "कोड पाठवला:", en: "Code sent to" },
-  enterCode: { hi: "6 अंकों का कोड", mr: "6 अंकी कोड", en: "6-digit code" },
-  verify: { hi: "लॉगिन करें", mr: "लॉगिन करा", en: "Log in" },
-  verifying: { hi: "जाँच रहे हैं…", mr: "तपासत आहे…", en: "Checking…" },
-  resendIn: { hi: "दोबारा कोड भेजें", mr: "पुन्हा कोड पाठवा", en: "Resend code" },
-  changeNumber: { hi: "नंबर बदलें", mr: "नंबर बदला", en: "Change number" },
-  otpWarning: {
-    hi: "यह कोड सिर्फ़ इस वेबसाइट पर डालें। फ़ोन पर किसी को न बताएँ।",
-    mr: "हा कोड फक्त या वेबसाइटवर टाका. फोनवर कोणालाही सांगू नका.",
-    en: "Enter this code only on this website. Never tell it to anyone on a call.",
+  password: { hi: "पासवर्ड", mr: "पासवर्ड", en: "Password" },
+  confirmPassword: { hi: "पासवर्ड दोबारा", mr: "पासवर्ड पुन्हा", en: "Confirm password" },
+  passwordRule: {
+    hi: "कम से कम 8 अक्षर, जिनमें एक अक्षर और एक अंक हो।",
+    mr: "किमान 8 अक्षरे, त्यात एक अक्षर आणि एक अंक असावा.",
+    en: "At least 8 characters, with a letter and a number.",
+  },
+  showPassword: { hi: "पासवर्ड दिखाएँ", mr: "पासवर्ड दाखवा", en: "Show password" },
+  pleaseWait: { hi: "रुकिए…", mr: "थांबा…", en: "Please wait…" },
+  passwordTip: {
+    hi: "यह पासवर्ड किसी को न बताएँ। हम कभी फ़ोन पर पासवर्ड नहीं माँगते।",
+    mr: "हा पासवर्ड कोणालाही सांगू नका. आम्ही फोनवर कधीही पासवर्ड मागत नाही.",
+    en: "Don't share this password. We never ask for it on a call.",
   },
 
   // Profile
@@ -155,6 +158,23 @@ const ERRORS: Record<string, Record<Lang, string>> = {
   too_soon: { hi: "थोड़ा रुककर दोबारा भेजें।", mr: "थोडे थांबून पुन्हा पाठवा.", en: "Please wait a moment before asking for another code." },
   too_many_codes: { hi: "बहुत सारे कोड माँगे गए। 15 मिनट बाद कोशिश करें।", mr: "खूप कोड मागितले. 15 मिनिटांनी प्रयत्न करा.", en: "Too many codes requested. Try again in 15 minutes." },
   sms_failed: { hi: "एसएमएस नहीं जा सका। थोड़ी देर बाद कोशिश करें।", mr: "एसएमएस गेला नाही. थोड्या वेळाने प्रयत्न करा.", en: "We couldn't send the SMS. Try again shortly." },
+  invalid_credentials: { hi: "मोबाइल नंबर या पासवर्ड गलत है।", mr: "मोबाईल नंबर किंवा पासवर्ड चुकीचा आहे.", en: "Wrong mobile number or password." },
+  phone_taken: {
+    hi: "इस नंबर से पहले से खाता है। लॉगिन करें।",
+    mr: "या नंबरने आधीच खाते आहे. लॉगिन करा.",
+    en: "There's already an account with this number. Please log in.",
+  },
+  weak_password: {
+    hi: "पासवर्ड कम से कम 8 अक्षर का हो, जिसमें एक अक्षर और एक अंक हो।",
+    mr: "पासवर्ड किमान 8 अक्षरी असावा, त्यात एक अक्षर आणि एक अंक असावा.",
+    en: "Use at least 8 characters, with a letter and a number.",
+  },
+  password_mismatch: { hi: "दोनों पासवर्ड एक जैसे नहीं हैं।", mr: "दोन्ही पासवर्ड जुळत नाहीत.", en: "The passwords don't match." },
+  too_many_logins: {
+    hi: "बहुत बार गलत पासवर्ड डाला गया। 15 मिनट बाद कोशिश करें।",
+    mr: "खूप वेळा चुकीचा पासवर्ड टाकला. 15 मिनिटांनी प्रयत्न करा.",
+    en: "Too many wrong passwords. Try again in 15 minutes.",
+  },
   invalid_code: { hi: "कोड गलत है।", mr: "कोड चुकीचा आहे.", en: "That code is wrong." },
   expired: { hi: "कोड की समय-सीमा खत्म हो गई, नया कोड मँगाएँ।", mr: "कोडची मुदत संपली, नवीन कोड मागवा.", en: "The code has expired; ask for a new one." },
   too_many_attempts: { hi: "बहुत बार गलत कोड डाला गया। नया कोड मँगाएँ।", mr: "खूप वेळा चुकीचा कोड टाकला. नवीन कोड मागवा.", en: "Too many wrong tries. Ask for a new code." },

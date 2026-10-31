@@ -128,13 +128,22 @@ describe("account endpoints and profile-aware turns", () => {
     return { status: res.status, body: (await res.json()) as Record<string, unknown> };
   };
 
-  it("logs in with an OTP, then saves and reads a profile", async () => {
-    expect((await call("POST", "/auth/otp/send", { phone: "9876543210", lang: "en" })).status).toBe(200);
-    expect((await call("POST", "/auth/otp/verify", { phone: "9876543210", code: "12345" })).status).toBe(400);
-    const login = await call("POST", "/auth/otp/verify", { phone: "9876543210", code: sms.lastCode() });
+  it("signs up with a password, logs in, then saves and reads a profile", async () => {
+    expect((await call("POST", "/auth/signup", { phone: "12345", password: "secret123" })).body.error).toBe("invalid_phone");
+    expect((await call("POST", "/auth/signup", { phone: "9876543210", password: "short1" })).body.error).toBe("weak_password");
+    expect((await call("POST", "/auth/signup", { phone: "9876543210", password: "onlyletters" })).body.error).toBe("weak_password");
+    const signup = await call("POST", "/auth/signup", { phone: "98765 43210", password: "khet2026pass", lang: "mr" });
+    expect(signup.status).toBe(201);
+    expect(signup.body.profile).toEqual({ phone: PHONE, name: null, lang: "mr", facts: {}, consent: false }); // no hash leaked
+    expect((await store.getProfile(PHONE))!.passwordHash).toMatch(/^scrypt\$/);
+    expect((await call("POST", "/auth/signup", { phone: "9876543210", password: "another123" })).status).toBe(409);
+
+    expect((await call("POST", "/auth/login", { phone: "9876543210", password: "wrongpass1" })).body.error).toBe("invalid_credentials");
+    expect((await call("POST", "/auth/login", { phone: "9123456789", password: "khet2026pass" })).body.error).toBe("invalid_credentials");
+    const login = await call("POST", "/auth/login", { phone: "+91 98765 43210", password: "khet2026pass" });
     expect(login.status).toBe(200);
     const token = login.body.token as string;
-    expect(login.body.profile).toMatchObject({ phone: PHONE, consent: false });
+    expect(verifyToken(token, SECRET)).toBe(PHONE);
 
     expect((await call("GET", "/me")).status).toBe(401);
     // Facts aren't stored without consent.
@@ -142,6 +151,19 @@ describe("account endpoints and profile-aware turns", () => {
     const saved = await call("PUT", "/me", { name: "Asha", consent: true, facts: { age: 40, state: "MH", bogus: 1, gender: "robot" } }, token);
     expect(saved.body).toMatchObject({ name: "Asha", consent: true, facts: { age: 40, state: "MH" } });
     expect((await call("GET", "/me", undefined, token)).body.facts).toEqual({ age: 40, state: "MH" });
+    // Saving the profile keeps the password.
+    expect((await call("POST", "/auth/login", { phone: "9876543210", password: "khet2026pass" })).status).toBe(200);
+  });
+
+  it("locks a number after repeated wrong passwords", async () => {
+    await call("POST", "/auth/signup", { phone: "9000000001", password: "lockme1234" });
+    for (let i = 0; i < 5; i++) await call("POST", "/auth/login", { phone: "9000000001", password: "nope12345" });
+    expect((await call("POST", "/auth/login", { phone: "9000000001", password: "lockme1234" })).status).toBe(429);
+  });
+
+  it("has OTP login switched off", async () => {
+    const res = await fetch(`${url}/auth/otp/send`, { method: "POST", headers: { "content-type": "application/json" }, body: "{}" });
+    expect(res.status).toBe(404);
   });
 
   it("starts a logged-in chat from the saved profile and saves what it learns", async () => {
