@@ -1,8 +1,13 @@
 import { timingSafeEqual } from "node:crypto";
 import express, { type ErrorRequestHandler, type RequestHandler } from "express";
 import { z } from "zod";
+import { OtpError, OtpService } from "./account/otp.js";
+import type { AccountStore, Profile } from "./account/store.js";
+import { verifyToken } from "./account/token.js";
 import type { Agent } from "./agent/index.js";
+import { cleanFacts, type Facts } from "./engine/index.js";
 import { LiveBus, maskNumber } from "./live.js";
+import { toIndianMobile } from "./sms/number.js";
 import { composeChecklistSms } from "./sms/checklist.js";
 import { LogSender, type SmsSender } from "./sms/sender.js";
 
@@ -22,9 +27,19 @@ export type ServerOptions = {
   /** If set, the live panel endpoints require `?token=<liveToken>` (EventSource can't send headers). */
   liveToken?: string;
   bus?: LiveBus;
-  /** Sends the checklist SMS at call end. Defaults to a dry run that only logs. */
+  /** Sends the checklist SMS at call end, and login codes. Defaults to a dry run that only logs. */
   sms?: SmsSender;
+  /** Citizen accounts (phone + OTP login, saved profiles). Without it the /auth and /me endpoints answer 503. */
+  accounts?: { store: AccountStore; secret: string };
 };
+
+const langSchema = z.enum(["hi", "mr", "en"]);
+const USER_TOKEN_HEADER = "x-user-token";
+/** OTP requests per client IP per hour (on top of the per-phone limits in OtpService). */
+const OTP_SENDS_PER_IP = 10;
+const IP_WINDOW_MS = 60 * 60 * 1000;
+
+const profileView = (p: Profile) => ({ phone: p.phone, name: p.name, lang: p.lang, facts: p.facts, consent: !!p.consentAt });
 
 const HEARTBEAT_MS = 15_000;
 
@@ -58,7 +73,12 @@ function cors(origin: string): RequestHandler {
   };
 }
 
-export function createApp(agent: Agent, { apiKey, corsOrigin, liveToken, bus = new LiveBus(), sms = new LogSender() }: ServerOptions = {}) {
+export function createApp(
+  agent: Agent,
+  { apiKey, corsOrigin, liveToken, bus = new LiveBus(), sms = new LogSender(), accounts }: ServerOptions = {},
+) {
+  const otp = accounts ? new OtpService(accounts.store, sms, accounts.secret) : null;
+  const ipSends = new Map<string, { count: number; start: number }>();
   const app = express();
   app.disable("x-powered-by");
   if (corsOrigin) app.use(cors(corsOrigin));
@@ -116,14 +136,189 @@ export function createApp(agent: Agent, { apiKey, corsOrigin, liveToken, bus = n
     return { channel: s?.channel ?? "unknown", callerNumber: s?.callerNumber ?? null };
   };
 
+  /** Phone number of the logged-in user (the web app passes their token), or null for guests. */
+  const userPhone = (req: express.Request) => (accounts ? verifyToken(req.get(USER_TOKEN_HEADER), accounts.secret) : null);
+
+  const loadProfile = async (phone: string) => {
+    try {
+      return await accounts!.store.getProfile(phone);
+    } catch (err) {
+      console.error("Profile lookup failed:", err instanceof Error ? err.message : err);
+      return null;
+    }
+  };
+
+  /** Saves what the session learned to its profile (only sessions started from a consented profile have profilePhone). */
+  const saveSessionFacts = async (sessionId: string) => {
+    const s = agent.store.get(sessionId);
+    if (!accounts || !s?.profilePhone) return;
+    try {
+      const profile = await accounts.store.getProfile(s.profilePhone);
+      if (!profile?.consentAt) return;
+      await accounts.store.saveProfile({ ...profile, facts: cleanFacts(agent.engine.facts, s.stated), updatedAt: new Date().toISOString() });
+    } catch (err) {
+      console.error("Saving profile facts failed:", err instanceof Error ? err.message : err);
+    }
+  };
+
   app.post("/turn", async (req, res) => {
     const body = turnBody.safeParse(req.body);
     if (!body.success) return void res.status(400).json({ error: "invalid_request", details: body.error.issues });
-    const { sessionId, text, lang, callerNumber, channel } = body.data;
-    const result = await agent.handleTurn(sessionId, text, lang, { callerNumber, channel });
+    const { sessionId, text, lang, channel } = body.data;
+    let { callerNumber } = body.data;
+    const user = userPhone(req);
+    const existing = agent.store.get(sessionId);
+
+    // A logged-in web chat belongs to that user: another user (or a guest) can't continue it.
+    if (existing?.channel === "web" && existing.callerNumber && existing.callerNumber !== user) {
+      return void res.status(403).json({ error: "session_belongs_to_another_user" });
+    }
+
+    let knownFacts: Facts | undefined;
+    let profilePhone: string | undefined;
+    if (!existing) {
+      if (user) callerNumber = user; // the SMS checklist goes to the logged-in number
+      const phone = user ?? (channel === "phone" ? toIndianMobile(callerNumber) : null);
+      if (phone && accounts) {
+        const profile = await loadProfile(phone);
+        if (profile?.consentAt) {
+          knownFacts = cleanFacts(agent.engine.facts, profile.facts);
+          profilePhone = phone;
+        }
+      }
+    }
+
+    const result = await agent.handleTurn(sessionId, text, lang, { callerNumber, channel, knownFacts, profilePhone });
     bus.recordTurn(sessionId, meta(sessionId), text, result);
     res.json(result);
+    void saveSessionFacts(sessionId);
   });
+
+  /** Everything the web app needs to show schemes and edit a profile, in hi / mr / en. */
+  app.get("/catalog", (_req, res) => {
+    const { schemes, facts } = agent.engine;
+    res.json({
+      schemes: schemes.map((s) => ({
+        id: s.id,
+        name: s.name,
+        level: s.level,
+        state: s.state ?? null,
+        topics: s.topics,
+        benefitSummary: s.benefitSummary,
+        documents: s.documents,
+        applyAt: s.applyAt,
+        applyAtSpoken: s.applyAtSpoken,
+        helpline: s.helpline,
+        source: s.source,
+        lastVerified: s.lastVerified ?? null,
+      })),
+      facts: Object.fromEntries(
+        Object.entries(facts).map(([key, f]) => [
+          key,
+          { type: f.type, values: f.values ?? null, askable: f.askable, ask: f.ask ?? null, description: f.description ?? null, topics: f.topics ?? null },
+        ]),
+      ),
+    });
+  });
+
+  // --- Citizen accounts: phone + OTP login and saved profiles -------------------------------------------------------
+  const requireAccounts: RequestHandler = (_req, res, next) => {
+    if (accounts && otp) return next();
+    res.status(503).json({ error: "accounts_disabled" });
+  };
+
+  app.post("/auth/otp/send", requireAccounts, async (req, res) => {
+    const body = z.object({ phone: z.string().max(20), lang: langSchema.optional() }).safeParse(req.body);
+    if (!body.success) return void res.status(400).json({ error: "invalid_request" });
+    const ip = req.get("x-client-ip") || req.ip || "unknown";
+    const now = Date.now();
+    const w = ipSends.get(ip);
+    const window = w && now - w.start < IP_WINDOW_MS ? w : { count: 0, start: now };
+    if (window.count >= OTP_SENDS_PER_IP) return void res.status(429).json({ error: "too_many_codes" });
+    try {
+      await otp!.send(body.data.phone, body.data.lang);
+      ipSends.set(ip, { ...window, count: window.count + 1 });
+      res.json({ sent: true });
+    } catch (err) {
+      if (err instanceof OtpError) return void res.status(err.status).json({ error: err.code, retryAfterSec: err.retryAfterSec ?? null });
+      throw err;
+    }
+  });
+
+  app.post("/auth/otp/verify", requireAccounts, async (req, res) => {
+    const body = z.object({ phone: z.string().max(20), code: z.string().regex(/^\s*\d{6}\s*$/), lang: langSchema.optional() }).safeParse(req.body);
+    if (!body.success) return void res.status(400).json({ error: "invalid_code" });
+    try {
+      const { phone, token } = await otp!.verify(body.data.phone, body.data.code);
+      const now = new Date().toISOString();
+      const profile =
+        (await accounts!.store.getProfile(phone)) ??
+        (await accounts!.store.saveProfile({ phone, name: null, lang: body.data.lang ?? "hi", facts: {}, consentAt: null, createdAt: now, updatedAt: now }));
+      res.json({ token, profile: profileView(profile) });
+    } catch (err) {
+      if (err instanceof OtpError) return void res.status(err.status).json({ error: err.code });
+      throw err;
+    }
+  });
+
+  const requireUser: RequestHandler = (req, res, next) => {
+    const phone = userPhone(req);
+    if (!phone) return void res.status(401).json({ error: "not_logged_in" });
+    res.locals.phone = phone;
+    next();
+  };
+
+  app.get("/me", requireAccounts, requireUser, async (_req, res) => {
+    const profile = await accounts!.store.getProfile(res.locals.phone as string);
+    if (!profile) return void res.status(404).json({ error: "no_profile" });
+    res.json(profileView(profile));
+  });
+
+  app.put("/me", requireAccounts, requireUser, async (req, res) => {
+    const body = z
+      .object({
+        name: z.string().trim().max(80).nullable().optional(),
+        lang: langSchema.optional(),
+        consent: z.boolean().optional(),
+        /** Merged into saved facts; null removes a fact. */
+        facts: z.record(z.string(), z.union([z.string().max(40), z.number(), z.boolean(), z.null()])).optional(),
+      })
+      .safeParse(req.body);
+    if (!body.success) return void res.status(400).json({ error: "invalid_request", details: body.error.issues });
+    const phone = res.locals.phone as string;
+    const now = new Date().toISOString();
+    const current: Profile = (await accounts!.store.getProfile(phone)) ?? {
+      phone, name: null, lang: "hi", facts: {}, consentAt: null, createdAt: now, updatedAt: now,
+    };
+    const { name, lang, consent, facts } = body.data;
+    let nextFacts = current.facts;
+    if (facts) {
+      const merged: Record<string, unknown> = { ...current.facts };
+      for (const [k, v] of Object.entries(facts)) {
+        if (v === null) delete merged[k];
+        else merged[k] = v;
+      }
+      nextFacts = cleanFacts(agent.engine.facts, merged);
+    }
+    const consentAt = consent === undefined ? current.consentAt : consent ? (current.consentAt ?? now) : null;
+    // Without consent nothing is stored; withdrawing consent deletes the saved answers.
+    if (!consentAt) nextFacts = {};
+    const saved = await accounts!.store.saveProfile({
+      ...current,
+      name: name === undefined ? current.name : name || null,
+      lang: lang ?? current.lang,
+      facts: nextFacts,
+      consentAt,
+      updatedAt: now,
+    });
+    res.json(profileView(saved));
+  });
+
+  app.delete("/me", requireAccounts, requireUser, async (_req, res) => {
+    await accounts!.store.deleteProfile(res.locals.phone as string);
+    res.json({ deleted: true });
+  });
+
 
   /** Explicit language choice from a channel (keypad 1/2 on a call, buttons on the browser page). */
   app.post("/sessions/:id/language", (req, res) => {

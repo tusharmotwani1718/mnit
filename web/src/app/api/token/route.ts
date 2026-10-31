@@ -1,10 +1,12 @@
 import { randomUUID } from "node:crypto";
 import { AccessToken, RoomAgentDispatch, RoomConfiguration } from "livekit-server-sdk";
+import { forbidden, sameOrigin } from "@/lib/server/session";
 
 const LANGS = new Set(["hi", "mr", "en"]);
 
 /** Issues a LiveKit token for a browser call and asks for the Yojana agent by name (explicit dispatch). */
 export async function POST(request: Request) {
+  if (!sameOrigin(request)) return forbidden(); // only our pages may start (paid) calls
   const { LIVEKIT_URL, LIVEKIT_API_KEY, LIVEKIT_API_SECRET } = process.env;
   if (!LIVEKIT_URL || !LIVEKIT_API_KEY || !LIVEKIT_API_SECRET) {
     return Response.json({ error: "livekit_not_configured" }, { status: 500 });

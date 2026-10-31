@@ -85,7 +85,10 @@ function Retrieval({ rag }: { rag: RagTrace | null }) {
 
 function Transcript({ session, meta }: { session: LiveSession; meta: Meta | null }) {
   const end = useRef<HTMLDivElement>(null);
-  useEffect(() => end.current?.scrollIntoView({ behavior: "smooth", block: "end" }), [session.turns.length]);
+  // Block body: newer browsers return a Promise from scrollIntoView, and an effect may only return a cleanup.
+  useEffect(() => {
+    end.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+  }, [session.turns.length]);
 
   return (
     <section className="flex min-h-0 flex-col rounded-xl border border-slate-200 bg-white">

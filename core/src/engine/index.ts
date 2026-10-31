@@ -32,6 +32,21 @@ export function createEngine(facts: Record<string, FactDef>, schemes: Scheme[]):
   };
 }
 
+/** Keeps only known facts with values of the right type (for facts coming from a profile or a request). */
+export function cleanFacts(defs: Record<string, FactDef>, facts: Record<string, unknown>): Facts {
+  const out: Facts = {};
+  for (const [key, value] of Object.entries(facts)) {
+    const def = defs[key];
+    if (!def || value === null || value === undefined) continue;
+    if (def.type === "enum" && !(typeof value === "string" && def.values?.includes(value))) continue;
+    if (def.type === "number" && !(typeof value === "number" && Number.isFinite(value))) continue;
+    if (def.type === "boolean" && typeof value !== "boolean") continue;
+    if (def.type === "string" && typeof value !== "string") continue;
+    out[key] = value as Facts[string];
+  }
+  return out;
+}
+
 /** Loads approved schemes and the fact vocabulary from data/. */
 export function loadEngine(dataDir?: string): Engine {
   const facts = loadVocabulary(dataDir);

@@ -69,3 +69,33 @@ export type Meta = {
   }[];
   facts: Record<string, { label: string; askable: boolean; type: string }>;
 };
+
+export type TurnResult = { replyText: string; actions: Action[]; done: boolean; trace: Trace };
+
+export type CatalogScheme = {
+  id: string;
+  name: Localized;
+  level: "central" | "state";
+  state: string | null;
+  topics: string[];
+  benefitSummary: Localized;
+  documents: Localized[];
+  applyAt: string[];
+  applyAtSpoken: Localized;
+  helpline: string | null;
+  source: string;
+  lastVerified: string | null;
+};
+
+export type CatalogFact = {
+  type: "enum" | "boolean" | "number" | "string";
+  values: string[] | null;
+  askable: boolean;
+  ask: Localized | null;
+  description: string | null;
+  topics: string[] | null;
+};
+
+export type Catalog = { schemes: CatalogScheme[]; facts: Record<string, CatalogFact> };
+
+export type Profile = { phone: string; name: string | null; lang: Lang; facts: Record<string, string | number | boolean>; consent: boolean };

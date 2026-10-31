@@ -1,5 +1,5 @@
-import { LivePanel } from "@/components/live/LivePanel";
+import { HomePage } from "@/components/site/HomePage";
 
 export default function Page() {
-  return <LivePanel />;
+  return <HomePage />;
 }

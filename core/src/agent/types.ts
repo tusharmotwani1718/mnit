@@ -39,10 +39,13 @@ export type Session = {
   scamPatternsLogged: ScamPattern[];
   history: Turn[];
   callerNumber: string | null;
+  /** Profile this session reads from and saves to (logged-in web user, or a caller with a saved profile). */
+  profilePhone: string | null;
   /** Checklist the caller agreed to receive; sent by SMS when the call ends. */
   checklist: { to: string; schemeIds: string[]; lang: Lang } | null;
   channel: string;
   startedAt: number;
+  lastActiveAt: number;
 };
 
 export type Trace = {
@@ -70,4 +73,11 @@ export type TurnResult = {
   trace: Trace;
 };
 
-export type TurnMeta = { callerNumber?: string; channel?: string };
+export type TurnMeta = {
+  callerNumber?: string;
+  channel?: string;
+  /** Facts already known from the caller's saved profile; the session starts with them. */
+  knownFacts?: Facts;
+  /** Phone number of the logged-in or recognised profile this session belongs to. */
+  profilePhone?: string;
+};
