@@ -15,8 +15,8 @@ const mhFarmer: Facts = {
 };
 
 describe("loading", () => {
-  it("loads all 21 approved schemes with valid rules", () => {
-    expect(engine.schemes).toHaveLength(21);
+  it("loads all 29 approved schemes with valid rules", () => {
+    expect(engine.schemes).toHaveLength(29);
   });
 
   it("rejects unknown facts, assumptions on askable facts and bad enum values", () => {
@@ -47,8 +47,9 @@ describe("derivations", () => {
 });
 
 describe("farmer flow", () => {
-  it("asks about land ownership first for farming, age first with no topic", () => {
-    expect(engine.evaluate({}).next?.fact).toBe("age");
+  it("asks about land ownership first for farming, the state first with no topic", () => {
+    // With Maharashtra and Rajasthan schemes, the state settles the most schemes for a caller with no topic.
+    expect(engine.evaluate({}).next?.fact).toBe("state");
     expect(engine.evaluate({}, { topics: ["farming"] }).next?.fact).toBe("ownsCultivableLand");
   });
 
@@ -131,6 +132,8 @@ describe("units", () => {
     expect(toHectares(3, "acre")).toBeCloseTo(1.214, 3);
     expect(toHectares(40, "guntha")).toBeCloseTo(toHectares(1, "acre")!, 3);
     expect(toHectares(3, "bigha", "MH")).toBeNull();
+    expect(toHectares(3, "bigha")).toBeNull();
+    expect(toHectares(4, "bigha", "RJ")).toBeCloseTo(1.0116, 3); // Rajasthan pucca bigha
   });
 });
 
@@ -184,5 +187,46 @@ describe("rural, welfare and student schemes", () => {
     expect(status(man, "sgnay").status).toBe("not_eligible");
     const elder = engine.evaluate({ state: "MH", age: 70, annualFamilyIncome: 18000 }).results;
     expect(status(elder, "shravanbal").status).toBe("eligible");
+  });
+});
+
+describe("Rajasthan schemes", () => {
+  const rjFarmer = { state: "RJ", ownsCultivableLand: true, familyPaysIncomeTax: false, familyHasGovtEmployeeOrPensioner: false };
+
+  it("gives Rajasthan farmers the state top-up instead of Namo Shetkari", () => {
+    const r = engine.evaluate(rjFarmer).results;
+    expect(status(r, "rj-kisan-samman").status).toBe("eligible");
+    expect(status(r, "pm-kisan").status).toBe("eligible");
+    expect(status(r, "namo-shetkari").status).toBe("not_eligible");
+    const mh = engine.evaluate({ ...rjFarmer, state: "MH" }).results;
+    expect(status(mh, "rj-kisan-samman").status).toBe("not_eligible");
+  });
+
+  it("MAA health cover for Rajasthan families without a government job in the family", () => {
+    expect(status(engine.evaluate({ state: "RJ", familyHasGovtEmployeeOrPensioner: false }).results, "rj-maa").status).toBe("eligible");
+    expect(status(engine.evaluate({ state: "RJ", familyHasGovtEmployeeOrPensioner: true }).results, "rj-maa").status).toBe("not_eligible");
+  });
+
+  it("old-age pension: women from 55, men from 58", () => {
+    const woman = engine.evaluate({ state: "RJ", gender: "female", age: 56, annualFamilyIncome: 40000 }).results;
+    expect(status(woman, "rj-vridhjan-pension").status).toBe("eligible");
+    const man = engine.evaluate({ state: "RJ", gender: "male", age: 56, annualFamilyIncome: 40000 }).results;
+    expect(status(man, "rj-vridhjan-pension").status).toBe("not_eligible");
+    const richer = engine.evaluate({ state: "RJ", gender: "male", age: 60, annualFamilyIncome: 90000 }).results;
+    expect(status(richer, "rj-vridhjan-pension").status).toBe("not_eligible");
+  });
+
+  it("single-women pension, scooty for girls, and the Lado bond", () => {
+    const widow = engine.evaluate({ state: "RJ", gender: "female", age: 35, isWidowOrSingleWoman: true, annualFamilyIncome: 30000 }).results;
+    expect(status(widow, "rj-ekal-nari-pension").status).toBe("eligible");
+    const girl = engine.evaluate({ state: "RJ", studentIsGirl: true, studentLevel: "degree", annualFamilyIncome: 200000 }).results;
+    expect(status(girl, "rj-kalibai-scooty").status).toBe("likely_eligible");
+    const boy = engine.evaluate({ state: "RJ", studentIsGirl: false, studentLevel: "degree", annualFamilyIncome: 200000 }).results;
+    expect(status(boy, "rj-kalibai-scooty").status).toBe("not_eligible");
+    expect(status(engine.evaluate({ state: "RJ", hasNewbornDaughter: true }).results, "rj-lado-protsahan").status).toBe("likely_eligible");
+  });
+
+  it("asks the student's class first on the education topic even with Rajasthan schemes", () => {
+    expect(engine.evaluate({}, { topics: ["education"] }).next?.fact).toBe("studentLevel");
   });
 });

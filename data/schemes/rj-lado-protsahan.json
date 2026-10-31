@@ -1,0 +1,78 @@
+{
+  "id": "rj-lado-protsahan",
+  "name": {
+    "hi": "लाडो प्रोत्साहन योजना",
+    "mr": "लाडो प्रोत्साहन योजना",
+    "en": "Lado Protsahan Yojana (girl child)"
+  },
+  "level": "state",
+  "state": "RJ",
+  "tier": 1,
+  "topics": [
+    "women"
+  ],
+  "rules": {
+    "all": [
+      {
+        "fact": "state",
+        "op": "eq",
+        "value": "RJ"
+      },
+      {
+        "fact": "hasNewbornDaughter",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "manualCheck": "Birth of the girl registered for a Rajasthan resident family (Jan Aadhaar); later instalments need full vaccination and school enrolment."
+      }
+    ]
+  },
+  "benefitSummary": {
+    "hi": "1 अगस्त 2024 के बाद जन्मी बेटी के लिए 1.5 लाख रुपये का बचत बॉन्ड, जो सात किस्तों में बेटी के बड़े होने और पढ़ाई के साथ मिलता है; पहली किस्त जन्म पर।",
+    "mr": "1 ऑगस्ट 2024 नंतर जन्मलेल्या मुलीसाठी 1.5 लाख रुपयांचा बचत बाँड, जो सात हप्त्यांत मुलगी मोठी होताना आणि शिकताना मिळतो; पहिला हप्ता जन्मावेळी.",
+    "en": "A Rs 1.5 lakh savings bond for a girl born on or after 1 August 2024, paid in seven instalments as she grows and studies; the first at birth."
+  },
+  "documents": [
+    {
+      "hi": "जन आधार कार्ड",
+      "mr": "जन आधार कार्ड",
+      "en": "Jan Aadhaar card"
+    },
+    {
+      "hi": "बेटी का जन्म प्रमाण पत्र",
+      "mr": "मुलीचा जन्म दाखला",
+      "en": "Daughter's birth certificate"
+    },
+    {
+      "hi": "माँ का बैंक खाता",
+      "mr": "आईचे बँक खाते",
+      "en": "Mother's bank account"
+    },
+    {
+      "hi": "टीकाकरण कार्ड",
+      "mr": "लसीकरण कार्ड",
+      "en": "Vaccination card"
+    }
+  ],
+  "applyAt": [
+    "Registered at the hospital at birth",
+    "Anganwadi / e-Mitra for later instalments"
+  ],
+  "applyAtSpoken": {
+    "hi": "जन्म के समय अस्पताल में या आंगनवाड़ी दीदी के पास",
+    "mr": "जन्मावेळी रुग्णालयात किंवा अंगणवाडी ताईंकडे",
+    "en": "at the hospital at birth, or with your Anganwadi worker"
+  },
+  "notes": [
+    "Replaced Mukhyamantri Rajshree Yojana; raised from Rs 1 lakh to Rs 1.5 lakh in March 2025; extended to girls in private schools in Feb 2026 (reported).",
+    "Whether birth must be in a government / JSY-registered hospital (a Rajshree condition) is not confirmed for Lado; not modelled."
+  ],
+  "helpline": null,
+  "source": "https://www.lokmattimes.com/national/rajasthan-cm-announces-increase-in-saving-bond-under-lado-protsahan-yojana",
+  "sourceSecondary": "https://www.thestatesman.com/india/raj-govts-lado-protsahan-yojana-for-new-born-girl-child-1503375810.html",
+  "sourceHash": null,
+  "version": 1,
+  "lastVerified": "2026-10-31",
+  "status": "approved"
+}

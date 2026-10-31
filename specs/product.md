@@ -430,7 +430,7 @@ flowchart LR
 
 - Official scheme portals and guidelines (source of truth for Tier 1).
 - myScheme.gov.in for discovering schemes and their published eligibility text. No public API was found; community-scraped datasets exist, but check licensing and myScheme's terms before relying on them.
-- Prototype scheme set (approved): 21 Tier 1 schemes, hand-curated, every rule to be verified against the official portal before `status: approved`. Rules take the state into account. Whether more are added live via the authoring pipeline is to be decided.
+- Prototype scheme set (approved): 29 Tier 1 schemes (21 central/Maharashtra + 8 Rajasthan), hand-curated, every rule to be verified against the official portal before `status: approved`. Rules take the state into account. Whether more are added live via the authoring pipeline is to be decided.
 
 | # | Scheme | Level | Topic | Key facts | Best possible result |
 |---|---|---|---|---|---|
@@ -455,6 +455,16 @@ flowchart LR
 | 19 | Central Sector Scholarship (PM-USP) | Central | education | studentLevel degree/postgrad, income ≤ ₹4.5 lakh; 80th percentile in Class 12 = manualCheck | likely_eligible |
 | 20 | Post-Matric Scholarship for SC | Central (via MahaDBT) | education | socialCategory = SC, studentLevel ≥ class 11, income ≤ ₹2.5 lakh | eligible |
 | 21 | Rajarshi Shahu Maharaj fee reimbursement | Maharashtra | education | state = MH, socialCategory = GEN, studentLevel diploma/degree/postgrad, income ≤ ₹8 lakh; CAP admission = manualCheck | likely_eligible |
+| 22 | Mukhyamantri Kisan Samman Nidhi (RJ) | Rajasthan | farming | state = RJ + PM-KISAN conditions; Rs 3,000/yr on top of PM-KISAN | eligible (with caveats) |
+| 23 | Mukhyamantri Ayushman Arogya (MAA) | Rajasthan | health | state = RJ, no govt employee/pensioner in family (free or Rs 850/yr) | eligible |
+| 24 | Vridhjan Samman Pension | Rajasthan | pension, welfare | state = RJ, women ≥ 55 / men ≥ 58, income ≤ Rs 48,000 | eligible |
+| 25 | Ekal Nari Samman Pension | Rajasthan | pension, welfare, women | state = RJ, female, widow/single, age ≥ 18, income ≤ Rs 48,000 | eligible |
+| 26 | Vishesh Yogyajan Samman Pension | Rajasthan | pension, welfare, health | state = RJ, isDisabled (not askable), income ≤ Rs 60,000 | eligible |
+| 27 | Palanhar Yojana | Rajasthan | welfare, women | state = RJ, caresForVulnerableChild, income ≤ Rs 1.2 lakh; school/Anganwadi = manualCheck | likely_eligible |
+| 28 | Lado Protsahan Yojana | Rajasthan | women | state = RJ, hasNewbornDaughter (born ≥ 1 Aug 2024); registration = manualCheck | likely_eligible |
+| 29 | Kalibai Bheel Medhavi Chhatra Scooty | Rajasthan | education, women | state = RJ, studentIsGirl, degree, income ≤ Rs 2.5 lakh; Class 12 marks = manualCheck | likely_eligible |
+
+**Rajasthan.** `state` now has MH / RJ / OTHER. Rajasthan bigha is counted as a pucca bigha (≈ 0.2529 ha) and the agent tells the caller to confirm the area at the CSC; bigha elsewhere is still refused. Jan Aadhaar is a document (readiness checklist), not a rule. RAG-only Rajasthan schemes: Jan Aadhaar, Shri Annapurna Rasoi, Rs 450 LPG, Tarbandi, Anuprati Coaching, Shramik card, Shubh Shakti, Krishak Saathi. Retrieval drops other states' schemes once the caller's state is known (Marathi speakers are assumed to be in Maharashtra until they say otherwise). Pension and Palanhar amounts vary across sources; the spoken text says "confirm at e-Mitra" / "about".
 
 **Topic-gated facts.** A fact can carry `topics`; it is only asked when the caller's topics include one of them. Caste (`socialCategory`) and the student facts are asked only on the education topic, `willingManualWork` / `hasPfOrEsic` only on work, `isWidowOrSingleWoman` only on welfare/women/pension. A caller with no topic is never asked these.
 

@@ -52,7 +52,7 @@ describe("HTTP server", () => {
     const body = await res.json();
     expect(body.replyText).toBe("Which state do you live in?");
     expect(body.trace.facts.ownsCultivableLand).toBe(true);
-    expect(body.trace.results).toHaveLength(21);
+    expect(body.trace.results).toHaveLength(29);
   });
 
   it("rejects bad input", async () => {
@@ -114,7 +114,7 @@ describe("HTTP server", () => {
     const greet = await next();
     expect(greet.type).toBe("turn");
     expect(greet.session).toMatchObject({ sessionId: "live-1", channel: "phone", caller: "+91••••••3210", ended: false });
-    expect(greet.turn.trace.results).toHaveLength(21);
+    expect(greet.turn.trace.results).toHaveLength(29);
 
     await open.post("/turn", { sessionId: "live-1", text: "I have land" });
     const turn = await next();
@@ -133,7 +133,7 @@ describe("HTTP server", () => {
 
   it("live panel: meta lists schemes and fact labels; token enforced when set", async () => {
     const meta = await (await fetch(`${open.base}/live/meta`)).json();
-    expect(meta.schemes).toHaveLength(21);
+    expect(meta.schemes).toHaveLength(29);
     expect(meta.facts.state.label).toBe("Which state do you live in?");
 
     const guarded = start(undefined, "view-token");

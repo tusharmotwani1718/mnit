@@ -6,11 +6,18 @@ const HECTARES_PER: Record<string, number> = {
 };
 
 /**
- * Converts a land area to hectares. Returns null when the unit can't be converted
- * reliably (bigha varies by state and isn't used in Maharashtra), so the caller is asked again.
+ * Bigha differs from state to state (and within Rajasthan between pucca and kachha bigha). For Rajasthan we use the
+ * pucca bigha (3,025 sq yards ≈ 0.2529 ha); the agent adds a note to confirm the area in hectares at the CSC.
  */
-export function toHectares(value: number, unit: string, _state?: string): number | null {
-  const factor = HECTARES_PER[unit.toLowerCase()];
+const BIGHA_HECTARES: Record<string, number> = { RJ: 0.2529 };
+
+/**
+ * Converts a land area to hectares. Returns null when the unit can't be converted reliably
+ * (bigha outside Rajasthan, where its size isn't known), so the caller is asked again.
+ */
+export function toHectares(value: number, unit: string, state?: string): number | null {
+  const u = unit.toLowerCase();
+  const factor = u === "bigha" ? BIGHA_HECTARES[state ?? ""] : HECTARES_PER[u];
   if (factor === undefined || !Number.isFinite(value) || value < 0) return null;
   return Math.round(value * factor * 10000) / 10000;
 }

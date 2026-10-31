@@ -264,6 +264,9 @@ export const FACT_LABELS: Record<string, Record<Lang, string>> = {
   isWidowOrSingleWoman: { hi: "विधवा / तलाक़शुदा / परित्यक्ता", mr: "विधवा / घटस्फोटित / परित्यक्ता", en: "Widow, divorced or abandoned" },
   studentLevel: { hi: "विद्यार्थी की कक्षा / कोर्स", mr: "विद्यार्थ्याची इयत्ता / कोर्स", en: "Student's class or course" },
   studentInGovtSchool: { hi: "विद्यार्थी सरकारी / अनुदानित स्कूल में", mr: "विद्यार्थी सरकारी / अनुदानित शाळेत", en: "Student in a govt or aided school" },
+  studentIsGirl: { hi: "विद्यार्थी लड़की है", mr: "विद्यार्थी मुलगी आहे", en: "Student is a girl" },
+  hasNewbornDaughter: { hi: "1 अगस्त 2024 के बाद बेटी का जन्म", mr: "1 ऑगस्ट 2024 नंतर मुलीचा जन्म", en: "Daughter born on or after 1 Aug 2024" },
+  caresForVulnerableChild: { hi: "अनाथ / ज़रूरतमंद बच्चे की परवरिश", mr: "अनाथ / गरजू मुलाचा सांभाळ", en: "Raising an orphan or vulnerable child" },
   // Never asked in the chat, but checked by some schemes (and shown in the readiness comparison).
   isPregnantOrLactating: { hi: "गर्भवती या स्तनपान कराने वाली माँ", mr: "गरोदर किंवा स्तनदा माता", en: "Pregnant or breastfeeding" },
   isFrontlineWorker: { hi: "आशा / आंगनवाड़ी कार्यकर्ता", mr: "आशा / अंगणवाडी कार्यकर्ती", en: "ASHA / Anganwadi worker" },
@@ -278,6 +281,7 @@ export const FACT_LABELS: Record<string, Record<Lang, string>> = {
 export const VALUE_LABELS: Record<string, Record<string, Record<Lang, string>>> = {
   state: {
     MH: { hi: "महाराष्ट्र", mr: "महाराष्ट्र", en: "Maharashtra" },
+    RJ: { hi: "राजस्थान", mr: "राजस्थान", en: "Rajasthan" },
     OTHER: { hi: "दूसरा राज्य", mr: "दुसरे राज्य", en: "Another state" },
   },
   residence: {

@@ -7,8 +7,16 @@
   "schemes": [
     {
       "id": "ladki-bahin",
-      "name": { "en": "Mukhyamantri Majhi Ladki Bahin Yojana", "hi": "मुख्यमंत्री माझी लाडकी बहीण योजना", "mr": "मुख्यमंत्री माझी लाडकी बहीण योजना" },
-      "level": "state", "state": "MH", "topics": ["women"],
+      "name": {
+        "en": "Mukhyamantri Majhi Ladki Bahin Yojana",
+        "hi": "मुख्यमंत्री माझी लाडकी बहीण योजना",
+        "mr": "मुख्यमंत्री माझी लाडकी बहीण योजना"
+      },
+      "level": "state",
+      "state": "MH",
+      "topics": [
+        "women"
+      ],
       "source": "https://pune.gov.in/en/scheme/mukhyamantri-majhi-ladki-bahin-yojana/",
       "text": [
         "Majhi Ladki Bahin is a Maharashtra scheme that pays Rs 1,500 a month to women aged 21 to 65 who live in Maharashtra and whose family income is up to Rs 2.5 lakh a year. Married, widowed, divorced, abandoned and destitute women, and one unmarried woman per family, are covered. The money goes to an Aadhaar-linked bank account.",
@@ -22,8 +30,16 @@
     },
     {
       "id": "mjpjay",
-      "name": { "en": "Mahatma Jyotirao Phule Jan Arogya Yojana (MJPJAY)", "hi": "महात्मा ज्योतिराव फुले जन आरोग्य योजना", "mr": "महात्मा ज्योतिराव फुले जन आरोग्य योजना" },
-      "level": "state", "state": "MH", "topics": ["health"],
+      "name": {
+        "en": "Mahatma Jyotirao Phule Jan Arogya Yojana (MJPJAY)",
+        "hi": "महात्मा ज्योतिराव फुले जन आरोग्य योजना",
+        "mr": "महात्मा ज्योतिराव फुले जन आरोग्य योजना"
+      },
+      "level": "state",
+      "state": "MH",
+      "topics": [
+        "health"
+      ],
       "source": "https://www.jeevandayee.gov.in/",
       "text": [
         "Mahatma Jyotirao Phule Jan Arogya Yojana is Maharashtra's health scheme, run together with Ayushman Bharat PM-JAY. It gives free cashless treatment for listed surgeries and therapies in empanelled government and private hospitals. The cover was raised to Rs 5 lakh per family per year, and the scheme was extended to families of Maharashtra beyond the earlier yellow and orange ration card holders.",
@@ -37,8 +53,16 @@
     },
     {
       "id": "pm-sym",
-      "name": { "en": "PM Shram Yogi Maan-dhan (PM-SYM) pension", "hi": "प्रधानमंत्री श्रम योगी मानधन योजना", "mr": "प्रधानमंत्री श्रम योगी मानधन योजना" },
-      "level": "central", "topics": ["pension", "work"],
+      "name": {
+        "en": "PM Shram Yogi Maan-dhan (PM-SYM) pension",
+        "hi": "प्रधानमंत्री श्रम योगी मानधन योजना",
+        "mr": "प्रधानमंत्री श्रम योगी मानधन योजना"
+      },
+      "level": "central",
+      "topics": [
+        "pension",
+        "work"
+      ],
       "source": "https://maandhan.in/",
       "text": [
         "PM Shram Yogi Maan-dhan is a voluntary pension scheme for unorganised workers such as rickshaw pullers, street vendors, domestic workers, construction workers and farm labourers. Workers aged 18 to 40 with a monthly income of up to Rs 15,000 can join.",
@@ -52,8 +76,15 @@
     },
     {
       "id": "pm-vishwakarma",
-      "name": { "en": "PM Vishwakarma (artisans and craftspeople)", "hi": "पीएम विश्वकर्मा योजना", "mr": "पीएम विश्वकर्मा योजना" },
-      "level": "central", "topics": ["work"],
+      "name": {
+        "en": "PM Vishwakarma (artisans and craftspeople)",
+        "hi": "पीएम विश्वकर्मा योजना",
+        "mr": "पीएम विश्वकर्मा योजना"
+      },
+      "level": "central",
+      "topics": [
+        "work"
+      ],
       "source": "https://pmvishwakarma.gov.in/",
       "text": [
         "PM Vishwakarma supports artisans and craftspeople working with their hands and tools in 18 traditional trades, such as carpenter, blacksmith, potter, cobbler, tailor (darzi), barber, washerman, mason, goldsmith, basket and broom maker, fishing net maker, boat maker, armourer, locksmith, sculptor, doll and toy maker, hammer and toolkit maker, and garland maker.",
@@ -67,8 +98,15 @@
     },
     {
       "id": "nfsa-ration",
-      "name": { "en": "Free ration under NFSA (PM Garib Kalyan Anna Yojana)", "hi": "मुफ़्त राशन (राष्ट्रीय खाद्य सुरक्षा, पीएम गरीब कल्याण अन्न योजना)", "mr": "मोफत रेशन (राष्ट्रीय अन्न सुरक्षा, पीएम गरीब कल्याण अन्न योजना)" },
-      "level": "central", "topics": ["household"],
+      "name": {
+        "en": "Free ration under NFSA (PM Garib Kalyan Anna Yojana)",
+        "hi": "मुफ़्त राशन (राष्ट्रीय खाद्य सुरक्षा, पीएम गरीब कल्याण अन्न योजना)",
+        "mr": "मोफत रेशन (राष्ट्रीय अन्न सुरक्षा, पीएम गरीब कल्याण अन्न योजना)"
+      },
+      "level": "central",
+      "topics": [
+        "household"
+      ],
       "source": "https://nfsa.gov.in/",
       "text": [
         "Under the National Food Security Act, families with an eligible ration card get free food grains through the ration shop (fair price shop) under PM Garib Kalyan Anna Yojana. Priority household card holders get 5 kg of grain per person per month free; Antyodaya (AAY) families get 35 kg per family per month free. The free grain has been extended to December 2028.",
@@ -82,8 +120,15 @@
     },
     {
       "id": "pm-vidyalaxmi",
-      "name": { "en": "PM Vidyalaxmi (education loans)", "hi": "पीएम विद्यालक्ष्मी (शिक्षा ऋण)", "mr": "पीएम विद्यालक्ष्मी (शैक्षणिक कर्ज)" },
-      "level": "central", "topics": ["education"],
+      "name": {
+        "en": "PM Vidyalaxmi (education loans)",
+        "hi": "पीएम विद्यालक्ष्मी (शिक्षा ऋण)",
+        "mr": "पीएम विद्यालक्ष्मी (शैक्षणिक कर्ज)"
+      },
+      "level": "central",
+      "topics": [
+        "education"
+      ],
       "source": "https://pmvidyalaxmi.co.in/",
       "text": [
         "PM Vidyalaxmi gives collateral-free, guarantor-free education loans to students who get admission in quality higher education institutions (top-ranked institutions in the NIRF list). Students apply on the PM Vidyalaxmi portal, which sends the application to banks.",
@@ -97,8 +142,15 @@
     },
     {
       "id": "pm-svanidhi",
-      "name": { "en": "PM SVANidhi (street vendor loans)", "hi": "पीएम स्वनिधि (रेहड़ी-पटरी वालों के लिए लोन)", "mr": "पीएम स्वनिधी (फेरीवाल्यांसाठी कर्ज)" },
-      "level": "central", "topics": ["work"],
+      "name": {
+        "en": "PM SVANidhi (street vendor loans)",
+        "hi": "पीएम स्वनिधि (रेहड़ी-पटरी वालों के लिए लोन)",
+        "mr": "पीएम स्वनिधी (फेरीवाल्यांसाठी कर्ज)"
+      },
+      "level": "central",
+      "topics": [
+        "work"
+      ],
       "source": "https://newsonair.gov.in/union-cabinet-approves-restructuring-of-pm-svanidhi-scheme",
       "text": [
         "PM SVANidhi gives collateral-free working capital loans to street vendors. After the restructuring approved in August 2025, the first loan is up to Rs 15,000 (12 months), the second up to Rs 25,000 (18 months) after repaying the first, and the third up to Rs 50,000. The lending period runs until 31 March 2030.",
@@ -112,8 +164,15 @@
     },
     {
       "id": "mudra",
-      "name": { "en": "Pradhan Mantri Mudra Yojana (small business loans)", "hi": "प्रधानमंत्री मुद्रा योजना", "mr": "प्रधानमंत्री मुद्रा योजना" },
-      "level": "central", "topics": ["work"],
+      "name": {
+        "en": "Pradhan Mantri Mudra Yojana (small business loans)",
+        "hi": "प्रधानमंत्री मुद्रा योजना",
+        "mr": "प्रधानमंत्री मुद्रा योजना"
+      },
+      "level": "central",
+      "topics": [
+        "work"
+      ],
       "source": "https://www.mudra.org.in/",
       "text": [
         "Pradhan Mantri Mudra Yojana gives collateral-free loans to non-farm small and micro businesses such as shops, small manufacturing, services, food processing and activities allied to agriculture like dairy, poultry and beekeeping.",
@@ -127,8 +186,16 @@
     },
     {
       "id": "stand-up-india",
-      "name": { "en": "Stand-Up India (loans for SC/ST and women entrepreneurs)", "hi": "स्टैंड-अप इंडिया", "mr": "स्टँड-अप इंडिया" },
-      "level": "central", "topics": ["work", "women"],
+      "name": {
+        "en": "Stand-Up India (loans for SC/ST and women entrepreneurs)",
+        "hi": "स्टैंड-अप इंडिया",
+        "mr": "स्टँड-अप इंडिया"
+      },
+      "level": "central",
+      "topics": [
+        "work",
+        "women"
+      ],
       "source": "https://www.standupmitra.in/",
       "text": [
         "Stand-Up India gives bank loans of Rs 10 lakh to Rs 1 crore to at least one SC or ST borrower and at least one woman borrower per bank branch, to set up a new (greenfield) enterprise in manufacturing, services, trading or activities allied to agriculture.",
@@ -142,8 +209,15 @@
     },
     {
       "id": "pmegp",
-      "name": { "en": "PMEGP (subsidy to start a business)", "hi": "प्रधानमंत्री रोज़गार सृजन कार्यक्रम (पीएमईजीपी)", "mr": "प्रधानमंत्री रोजगार निर्मिती कार्यक्रम (पीएमईजीपी)" },
-      "level": "central", "topics": ["work"],
+      "name": {
+        "en": "PMEGP (subsidy to start a business)",
+        "hi": "प्रधानमंत्री रोज़गार सृजन कार्यक्रम (पीएमईजीपी)",
+        "mr": "प्रधानमंत्री रोजगार निर्मिती कार्यक्रम (पीएमईजीपी)"
+      },
+      "level": "central",
+      "topics": [
+        "work"
+      ],
       "source": "https://www.kviconline.gov.in/pmegpeportal/",
       "text": [
         "The Prime Minister's Employment Generation Programme (PMEGP) helps people start new micro enterprises in manufacturing or services with a bank loan plus a government margin-money subsidy. Projects up to Rs 50 lakh (manufacturing) and Rs 20 lakh (services) are covered.",
@@ -157,8 +231,15 @@
     },
     {
       "id": "sukanya-samriddhi",
-      "name": { "en": "Sukanya Samriddhi Yojana (savings for a girl child)", "hi": "सुकन्या समृद्धि योजना", "mr": "सुकन्या समृद्धी योजना" },
-      "level": "central", "topics": ["women"],
+      "name": {
+        "en": "Sukanya Samriddhi Yojana (savings for a girl child)",
+        "hi": "सुकन्या समृद्धि योजना",
+        "mr": "सुकन्या समृद्धी योजना"
+      },
+      "level": "central",
+      "topics": [
+        "women"
+      ],
       "source": "https://www.nsiindia.gov.in/",
       "text": [
         "Sukanya Samriddhi Yojana is a government small-savings account for a girl child. Parents or guardians can open it for a daughter below 10 years of age, at a post office or authorised bank, with as little as Rs 250. Up to two girls per family can have an account (three in case of twins or triplets).",
@@ -172,8 +253,15 @@
     },
     {
       "id": "pm-surya-ghar",
-      "name": { "en": "PM Surya Ghar Muft Bijli Yojana (rooftop solar)", "hi": "पीएम सूर्य घर मुफ़्त बिजली योजना", "mr": "पीएम सूर्य घर मोफत वीज योजना" },
-      "level": "central", "topics": ["household"],
+      "name": {
+        "en": "PM Surya Ghar Muft Bijli Yojana (rooftop solar)",
+        "hi": "पीएम सूर्य घर मुफ़्त बिजली योजना",
+        "mr": "पीएम सूर्य घर मोफत वीज योजना"
+      },
+      "level": "central",
+      "topics": [
+        "household"
+      ],
       "source": "https://pmsuryaghar.gov.in/",
       "text": [
         "PM Surya Ghar Muft Bijli Yojana gives a subsidy to households that put solar panels on their own roof, so they get up to 300 units of free electricity a month and can sell extra power to the electricity company.",
@@ -187,8 +275,16 @@
     },
     {
       "id": "sbm-g-toilet",
-      "name": { "en": "Swachh Bharat Mission (Gramin): household toilet", "hi": "स्वच्छ भारत मिशन (ग्रामीण): घर में शौचालय", "mr": "स्वच्छ भारत मिशन (ग्रामीण): घरगुती शौचालय" },
-      "level": "central", "topics": ["household", "housing"],
+      "name": {
+        "en": "Swachh Bharat Mission (Gramin): household toilet",
+        "hi": "स्वच्छ भारत मिशन (ग्रामीण): घर में शौचालय",
+        "mr": "स्वच्छ भारत मिशन (ग्रामीण): घरगुती शौचालय"
+      },
+      "level": "central",
+      "topics": [
+        "household",
+        "housing"
+      ],
       "source": "https://swachhbharatmission.ddws.gov.in/",
       "text": [
         "Under Swachh Bharat Mission (Gramin), rural households that do not have a toilet can get an incentive of Rs 12,000 to build an individual household latrine (IHHL).",
@@ -202,8 +298,15 @@
     },
     {
       "id": "soil-health-card",
-      "name": { "en": "Soil Health Card", "hi": "मृदा स्वास्थ्य कार्ड", "mr": "मृदा आरोग्य पत्रिका" },
-      "level": "central", "topics": ["farming"],
+      "name": {
+        "en": "Soil Health Card",
+        "hi": "मृदा स्वास्थ्य कार्ड",
+        "mr": "मृदा आरोग्य पत्रिका"
+      },
+      "level": "central",
+      "topics": [
+        "farming"
+      ],
       "source": "https://soilhealth.dac.gov.in/",
       "text": [
         "Under the Soil Health Card scheme, farmers get their soil tested for free and receive a card that shows the nutrient status of their land and the right amount of fertiliser and soil amendments for their crops.",
@@ -217,8 +320,17 @@
     },
     {
       "id": "lek-ladki",
-      "name": { "en": "Lek Ladki Yojana (Maharashtra, girl child)", "hi": "लेक लाडकी योजना", "mr": "लेक लाडकी योजना" },
-      "level": "state", "state": "MH", "topics": ["women", "education"],
+      "name": {
+        "en": "Lek Ladki Yojana (Maharashtra, girl child)",
+        "hi": "लेक लाडकी योजना",
+        "mr": "लेक लाडकी योजना"
+      },
+      "level": "state",
+      "state": "MH",
+      "topics": [
+        "women",
+        "education"
+      ],
       "source": "https://icds.gov.in/mr/node/624",
       "text": [
         "Lek Ladki Yojana is a Maharashtra scheme for girls born on or after 1 April 2023 in families holding a yellow or orange ration card. It replaced the earlier Majhi Kanya Bhagyashree scheme.",
@@ -232,8 +344,16 @@
     },
     {
       "id": "mahabocw",
-      "name": { "en": "Construction workers welfare board (Bandhkam Kamgar, Maharashtra)", "hi": "बांधकाम कामगार कल्याण मंडल (महाराष्ट्र)", "mr": "बांधकाम कामगार कल्याण मंडळ (महाराष्ट्र)" },
-      "level": "state", "state": "MH", "topics": ["work"],
+      "name": {
+        "en": "Construction workers welfare board (Bandhkam Kamgar, Maharashtra)",
+        "hi": "बांधकाम कामगार कल्याण मंडल (महाराष्ट्र)",
+        "mr": "बांधकाम कामगार कल्याण मंडळ (महाराष्ट्र)"
+      },
+      "level": "state",
+      "state": "MH",
+      "topics": [
+        "work"
+      ],
       "source": "https://mahabocw.in/",
       "text": [
         "The Maharashtra Building and Other Construction Workers Welfare Board registers construction workers (masons, labourers, carpenters, painters, plumbers, electricians, tile and road workers and others) and gives them welfare benefits.",
@@ -247,8 +367,15 @@
     },
     {
       "id": "nfbs",
-      "name": { "en": "National Family Benefit Scheme", "hi": "राष्ट्रीय पारिवारिक लाभ योजना", "mr": "राष्ट्रीय कौटुंबिक लाभ योजना" },
-      "level": "central", "topics": ["welfare"],
+      "name": {
+        "en": "National Family Benefit Scheme",
+        "hi": "राष्ट्रीय पारिवारिक लाभ योजना",
+        "mr": "राष्ट्रीय कौटुंबिक लाभ योजना"
+      },
+      "level": "central",
+      "topics": [
+        "welfare"
+      ],
       "source": "https://nsap.nic.in/",
       "text": [
         "Under the National Family Benefit Scheme (part of the National Social Assistance Programme), a BPL household gets a one-time grant of Rs 20,000 when its primary breadwinner dies, if the person was aged 18 to 59.",
@@ -261,8 +388,16 @@
     },
     {
       "id": "jsy",
-      "name": { "en": "Janani Suraksha Yojana (safe delivery)", "hi": "जननी सुरक्षा योजना", "mr": "जननी सुरक्षा योजना" },
-      "level": "central", "topics": ["women", "health"],
+      "name": {
+        "en": "Janani Suraksha Yojana (safe delivery)",
+        "hi": "जननी सुरक्षा योजना",
+        "mr": "जननी सुरक्षा योजना"
+      },
+      "level": "central",
+      "topics": [
+        "women",
+        "health"
+      ],
       "source": "https://nhm.gov.in/",
       "text": [
         "Janani Suraksha Yojana gives cash help to pregnant women who deliver in a government hospital or an accredited private hospital, to encourage safe institutional delivery. It is run under the National Health Mission and the ASHA worker helps the mother.",
@@ -276,8 +411,17 @@
     },
     {
       "id": "gopinath-munde",
-      "name": { "en": "Gopinath Munde farmer accident grant (Maharashtra)", "hi": "गोपीनाथ मुंडे शेतकरी अपघात सुरक्षा सानुग्रह अनुदान योजना", "mr": "गोपीनाथ मुंडे शेतकरी अपघात सुरक्षा सानुग्रह अनुदान योजना" },
-      "level": "state", "state": "MH", "topics": ["farming", "insurance"],
+      "name": {
+        "en": "Gopinath Munde farmer accident grant (Maharashtra)",
+        "hi": "गोपीनाथ मुंडे शेतकरी अपघात सुरक्षा सानुग्रह अनुदान योजना",
+        "mr": "गोपीनाथ मुंडे शेतकरी अपघात सुरक्षा सानुग्रह अनुदान योजना"
+      },
+      "level": "state",
+      "state": "MH",
+      "topics": [
+        "farming",
+        "insurance"
+      ],
       "source": "https://myscheme.gov.in/schemes/gopinath-munde-shetkari-apghat-suraksha-sanugrah-audhan-yojana",
       "text": [
         "Under the Gopinath Munde Shetkari Apghat Suraksha Sanugrah Anudan Yojana, the Maharashtra government pays a grant to a farmer's family if the farmer dies or is disabled in an accident (for example a road accident, snake bite, electric shock, drowning, fall, or an accident while farming). It replaced the earlier insurance-based scheme with a direct government grant.",
@@ -291,8 +435,16 @@
     },
     {
       "id": "udid",
-      "name": { "en": "UDID card for persons with disabilities", "hi": "दिव्यांग यूडीआईडी कार्ड", "mr": "दिव्यांग यूडीआयडी कार्ड" },
-      "level": "central", "topics": ["welfare", "health"],
+      "name": {
+        "en": "UDID card for persons with disabilities",
+        "hi": "दिव्यांग यूडीआईडी कार्ड",
+        "mr": "दिव्यांग यूडीआयडी कार्ड"
+      },
+      "level": "central",
+      "topics": [
+        "welfare",
+        "health"
+      ],
       "source": "https://www.swavlambancard.gov.in/",
       "text": [
         "The Unique Disability ID (UDID) card is a single national disability certificate and ID card for persons with disabilities. It is needed to get most disability benefits, such as the disability pension under Sanjay Gandhi Niradhar Yojana, assistive devices, concessions in travel, and reservation in education and jobs.",
@@ -301,6 +453,185 @@
       "summary": {
         "hi": "यूडीआईडी कार्ड दिव्यांग लोगों का एक ही राष्ट्रीय प्रमाण पत्र है, जो दिव्यांग पेंशन और दूसरी मदद के लिए ज़रूरी है। स्वावलंबन कार्ड पोर्टल पर या ज़िला अस्पताल में मुफ़्त आवेदन करें।",
         "mr": "यूडीआयडी कार्ड हे दिव्यांग व्यक्तींचे एकच राष्ट्रीय प्रमाणपत्र आहे, जे दिव्यांग पेन्शन आणि इतर मदतीसाठी आवश्यक आहे. स्वावलंबन कार्ड पोर्टलवर किंवा जिल्हा रुग्णालयात मोफत अर्ज करा."
+      }
+    },
+    {
+      "id": "rj-jan-aadhaar",
+      "name": {
+        "hi": "जन आधार कार्ड (राजस्थान)",
+        "mr": "जन आधार कार्ड (राजस्थान)",
+        "en": "Jan Aadhaar card (Rajasthan)"
+      },
+      "level": "state",
+      "state": "RJ",
+      "topics": [
+        "household"
+      ],
+      "source": "https://janaadhaar.rajasthan.gov.in/content/raj/janaadhaar/en/home-page_detail/jan-aadhaar-enrollment-.html",
+      "text": [
+        "Jan Aadhaar is Rajasthan's family identity card. Each family gets a 10-digit Jan Aadhaar family ID and each member an 11-digit individual ID. Almost every Rajasthan government scheme, including pensions, MAA health cover, Palanhar, Lado Protsahan and Kisan Samman Nidhi, uses the Jan Aadhaar to check eligibility and to pay money into the family's bank account.",
+        "Any adult member of a Rajasthan resident family can enrol the family through the Rajasthan SSO portal or at any e-Mitra kiosk, with the Aadhaar of all members and the bank account of the head of family. After two-level verification the Jan Aadhaar ID is issued. Keep the members' Aadhaar and bank details linked so scheme money reaches the family."
+      ],
+      "summary": {
+        "hi": "जन आधार राजस्थान का परिवार पहचान कार्ड है, जो लगभग हर राज्य योजना के लिए ज़रूरी है। नज़दीकी ई-मित्र पर परिवार के सभी सदस्यों के आधार और बैंक खाते के साथ बनवाएँ।",
+        "mr": "जन आधार हे राजस्थानचे कुटुंब ओळखपत्र आहे, जे जवळजवळ प्रत्येक राज्य योजनेसाठी आवश्यक आहे. जवळच्या ई-मित्र केंद्रावर कुटुंबातील सर्व सदस्यांचे आधार आणि बँक खाते घेऊन काढा."
+      }
+    },
+    {
+      "id": "rj-annapurna-rasoi",
+      "name": {
+        "hi": "श्री अन्नपूर्णा रसोई योजना",
+        "mr": "श्री अन्नपूर्णा रसोई योजना",
+        "en": "Shri Annapurna Rasoi Yojana (Rs 8 meal)"
+      },
+      "level": "state",
+      "state": "RJ",
+      "topics": [
+        "household"
+      ],
+      "source": "https://www.outlookindia.com/national/rajasthan-government-renames-indira-rasoi-yojana-announces-increased-benefits-news-341423",
+      "text": [
+        "Shri Annapurna Rasoi kitchens in Rajasthan's towns and cities serve a full meal of about 600 grams to anyone for Rs 8; the state pays the rest of the cost. The scheme was called Indira Rasoi Yojana until January 2024.",
+        "No card or registration is needed to eat there. Ask the local municipality for the nearest Annapurna Rasoi; some kitchens have closed, so check before going."
+      ],
+      "summary": {
+        "hi": "श्री अन्नपूर्णा रसोई में राजस्थान के शहरों में कोई भी सिर्फ़ 8 रुपये में भरपेट खाना खा सकता है, कोई कार्ड नहीं चाहिए। पहले इसे इंदिरा रसोई कहते थे।",
+        "mr": "श्री अन्नपूर्णा रसोईत राजस्थानातील शहरांमध्ये कोणीही फक्त 8 रुपयांत पोटभर जेवण घेऊ शकतो, कार्डची गरज नाही. आधी तिला इंदिरा रसोई म्हणत."
+      }
+    },
+    {
+      "id": "rj-lpg-450",
+      "name": {
+        "hi": "राजस्थान 450 रुपये में गैस सिलेंडर",
+        "mr": "राजस्थान 450 रुपयांत गॅस सिलिंडर",
+        "en": "Rajasthan LPG cylinder for Rs 450"
+      },
+      "level": "state",
+      "state": "RJ",
+      "topics": [
+        "household",
+        "women"
+      ],
+      "source": "https://www.lokmattimes.com/national/rajasthan-lpg-cylinder-for-rs-450-for-bpl-and-ujjwala-beneficiaries-from-jan-1",
+      "text": [
+        "Rajasthan gives domestic LPG cylinders at Rs 450 to PM Ujjwala Yojana beneficiaries and to families covered under the National Food Security Act (ration card holders getting wheat), up to 12 cylinders a year. The family pays the market price and the subsidy comes to the bank account.",
+        "There is no separate application, but the gas connection must be seeded (linked) with the family's Jan Aadhaar and bank account; do this at the gas agency or an e-Mitra kiosk."
+      ],
+      "summary": {
+        "hi": "राजस्थान में उज्ज्वला और खाद्य सुरक्षा राशन कार्ड वाले परिवारों को गैस सिलेंडर 450 रुपये में मिलता है, साल में 12 तक। गैस कनेक्शन को जन आधार और बैंक खाते से जुड़वाएँ।",
+        "mr": "राजस्थानात उज्ज्वला आणि अन्न सुरक्षा रेशन कार्ड असलेल्या कुटुंबांना गॅस सिलिंडर 450 रुपयांत मिळतो, वर्षाला 12 पर्यंत. गॅस जोडणी जन आधार आणि बँक खात्याशी जोडून घ्या."
+      }
+    },
+    {
+      "id": "rj-tarbandi",
+      "name": {
+        "hi": "तारबंदी योजना (राजस्थान)",
+        "mr": "तारबंदी योजना (राजस्थान)",
+        "en": "Tarbandi Yojana: farm fencing subsidy (Rajasthan)"
+      },
+      "level": "state",
+      "state": "RJ",
+      "topics": [
+        "farming"
+      ],
+      "source": "https://krishijagran.com/news/tarbandi-yojana-farmers-to-get-60-subsidy-up-to-rs-48-000-for-crop-fencing-check-eligibility-application-details",
+      "text": [
+        "Under the Rajasthan Tarbandi (Kantedar Tarbandi) Yojana, farmers get a subsidy to put barbed-wire fencing around their fields to protect crops from stray and wild animals. Small and marginal farmers get 60% of the cost up to Rs 48,000; other farmers get 50% up to Rs 40,000, for up to 400 running metres per farmer.",
+        "Apply on the Raj Kisan Sathi portal or at an e-Mitra kiosk with Jan Aadhaar, the land record (jamabandi) and bank details. The minimum land needed and the yearly targets are set by the agriculture department; ask the agriculture supervisor."
+      ],
+      "summary": {
+        "hi": "तारबंदी योजना में राजस्थान के किसानों को खेत की बाड़ के लिए सब्सिडी मिलती है: छोटे-सीमांत किसानों को 60 प्रतिशत, 48,000 रुपये तक। राज किसान साथी पोर्टल या ई-मित्र पर आवेदन करें।",
+        "mr": "तारबंदी योजनेत राजस्थानातील शेतकऱ्यांना शेताच्या कुंपणासाठी अनुदान मिळते: लहान-सीमांत शेतकऱ्यांना 60 टक्के, 48,000 रुपयांपर्यंत. राज किसान साथी पोर्टलवर किंवा ई-मित्रवर अर्ज करा."
+      }
+    },
+    {
+      "id": "rj-anuprati-coaching",
+      "name": {
+        "hi": "मुख्यमंत्री अनुप्रति कोचिंग योजना",
+        "mr": "मुख्यमंत्री अनुप्रती कोचिंग योजना",
+        "en": "Mukhyamantri Anuprati Coaching Yojana"
+      },
+      "level": "state",
+      "state": "RJ",
+      "topics": [
+        "education"
+      ],
+      "source": "https://en.vikaspedia.in/viewcontent/schemesall/state-specific-schemes/welfare-schemes-of-rajasthan/mukhyamantri-anuprati-coaching-yojana?lgn=en",
+      "text": [
+        "Under Mukhyamantri Anuprati Coaching Yojana, Rajasthan pays for coaching for competitive exams such as UPSC civil services, RAS, engineering (IIT/JEE), medical (NEET), CLAT and others, for students from SC, ST, OBC, MBC, EWS and minority families. The government pays the coaching fee directly to the institute.",
+        "The family's annual income must be up to Rs 8 lakh (or the parents are state government employees up to pay level 11). Apply on the Social Justice department portal through SSO when applications open; seats are limited."
+      ],
+      "summary": {
+        "hi": "अनुप्रति कोचिंग योजना में राजस्थान के एससी, एसटी, ओबीसी, एमबीसी, ईडब्ल्यूएस और अल्पसंख्यक विद्यार्थियों को आईएएस, आरएएस, नीट, जेईई जैसी परीक्षाओं की मुफ़्त कोचिंग मिलती है, परिवार की आय 8 लाख तक हो तो।",
+        "mr": "अनुप्रती कोचिंग योजनेत राजस्थानातील एससी, एसटी, ओबीसी, एमबीसी, ईडब्ल्यूएस आणि अल्पसंख्याक विद्यार्थ्यांना आयएएस, आरएएस, नीट, जेईईसारख्या परीक्षांचे मोफत कोचिंग मिळते, कुटुंबाचे उत्पन्न 8 लाखांपर्यंत असल्यास."
+      }
+    },
+    {
+      "id": "rj-shramik-card",
+      "name": {
+        "hi": "राजस्थान श्रमिक कार्ड (निर्माण श्रमिक पंजीकरण)",
+        "mr": "राजस्थान श्रमिक कार्ड (बांधकाम कामगार नोंदणी)",
+        "en": "Rajasthan Shramik card (construction worker registration)"
+      },
+      "level": "state",
+      "state": "RJ",
+      "topics": [
+        "work"
+      ],
+      "source": "https://housing.com/news/rajasthan-shramik-card/",
+      "text": [
+        "Construction workers in Rajasthan (masons, labourers, carpenters, painters, plumbers and others) can register with the Rajasthan Building and Other Construction Workers Welfare Board and get a Shramik (labour) card. Workers aged 18 to 60 who did construction work for at least 90 days in the past year can register.",
+        "Registered workers and their families can get the board's schemes, such as Shubh Shakti for daughters, scholarships for children, and help in accidents. Register through the Rajasthan SSO portal (LDMS) or an e-Mitra kiosk with Jan Aadhaar, a 90-day work certificate and bank details."
+      ],
+      "summary": {
+        "hi": "राजस्थान में 18 से 60 साल के निर्माण मज़दूर, जिन्होंने पिछले साल 90 दिन काम किया हो, श्रमिक कार्ड बनवा सकते हैं और मंडल की योजनाओं का फ़ायदा ले सकते हैं। ई-मित्र पर पंजीकरण करें।",
+        "mr": "राजस्थानात 18 ते 60 वयाचे बांधकाम कामगार, ज्यांनी मागील वर्षी 90 दिवस काम केले, श्रमिक कार्ड काढू शकतात आणि मंडळाच्या योजनांचा लाभ घेऊ शकतात. ई-मित्रवर नोंदणी करा."
+      }
+    },
+    {
+      "id": "rj-shubh-shakti",
+      "name": {
+        "hi": "शुभ शक्ति योजना (राजस्थान)",
+        "mr": "शुभ शक्ती योजना (राजस्थान)",
+        "en": "Shubh Shakti Yojana (Rajasthan)"
+      },
+      "level": "state",
+      "state": "RJ",
+      "topics": [
+        "women",
+        "work"
+      ],
+      "source": "https://www.myscheme.gov.in/schemes/sbsky",
+      "text": [
+        "Under Shubh Shakti Yojana, the Rajasthan construction workers' welfare board gives Rs 55,000 to an unmarried daughter (aged 18 or more) of a construction worker registered with the board for at least one year, for up to two daughters per family. The money can be used for her education, skills training, a business or her marriage.",
+        "The daughter needs a bank account in her own name. Apply through the Rajasthan SSO portal (LDMS) or at an e-Mitra kiosk; exact conditions such as schooling should be confirmed with the labour department."
+      ],
+      "summary": {
+        "hi": "शुभ शक्ति योजना में राजस्थान के पंजीकृत निर्माण मज़दूर की 18 साल से बड़ी अविवाहित बेटी को 55,000 रुपये मिलते हैं, परिवार की दो बेटियों तक। एसएसओ पोर्टल या ई-मित्र पर आवेदन करें।",
+        "mr": "शुभ शक्ती योजनेत राजस्थानातील नोंदणीकृत बांधकाम कामगाराच्या 18 वर्षांवरील अविवाहित मुलीला 55,000 रुपये मिळतात, कुटुंबातील दोन मुलींपर्यंत. एसएसओ पोर्टलवर किंवा ई-मित्रवर अर्ज करा."
+      }
+    },
+    {
+      "id": "rj-krishak-saathi",
+      "name": {
+        "hi": "मुख्यमंत्री कृषक साथी सहायता योजना",
+        "mr": "मुख्यमंत्री कृषक साथी सहाय्य योजना",
+        "en": "Mukhyamantri Krishak Saathi Sahayata Yojana (farm accident help)"
+      },
+      "level": "state",
+      "state": "RJ",
+      "topics": [
+        "farming",
+        "insurance"
+      ],
+      "source": "https://en.vikaspedia.in/viewcontent/schemesall/state-specific-schemes/welfare-schemes-of-rajasthan/mukhyamantri-krishak-sathi-sahayata-yojana-of-rajsthan-govt?lgn=en",
+      "text": [
+        "Under Mukhyamantri Krishak Saathi Sahayata Yojana (earlier Rajiv Gandhi Krishak Saathi), the Rajasthan State Agricultural Marketing Board helps farmers, farm labourers and licensed mandi workers who die or are injured in an accident while farming or working in a mandi. The family gets up to Rs 2 lakh on death, and smaller amounts for injuries; help for bone injuries and coma was raised to Rs 2 lakh in 2024.",
+        "The person must be a Rajasthan resident within the age limit at the time of the accident (sources give 14 to 70 or 75 years). Apply at the local Krishi Upaj Mandi Samiti or on the Raj Kisan portal with Jan Aadhaar, the death or injury certificate, the police report and bank details."
+      ],
+      "summary": {
+        "hi": "कृषक साथी सहायता योजना में राजस्थान में खेती या मंडी में काम करते हुए दुर्घटना में किसान या मज़दूर की मौत पर परिवार को 2 लाख रुपये तक मिलते हैं। नज़दीकी कृषि मंडी समिति में आवेदन करें।",
+        "mr": "कृषक साथी सहाय्य योजनेत राजस्थानात शेती किंवा मंडीत काम करताना अपघातात शेतकरी किंवा मजुराचा मृत्यू झाल्यास कुटुंबाला 2 लाख रुपयांपर्यंत मिळतात. जवळच्या कृषी मंडी समितीत अर्ज करा."
       }
     }
   ]

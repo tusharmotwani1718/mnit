@@ -1,0 +1,112 @@
+{
+  "id": "rj-kisan-samman",
+  "name": {
+    "hi": "मुख्यमंत्री किसान सम्मान निधि (राजस्थान)",
+    "mr": "मुख्यमंत्री किसान सन्मान निधी (राजस्थान)",
+    "en": "Mukhyamantri Kisan Samman Nidhi (Rajasthan)"
+  },
+  "level": "state",
+  "state": "RJ",
+  "tier": 1,
+  "topics": [
+    "farming"
+  ],
+  "rules": {
+    "all": [
+      {
+        "fact": "state",
+        "op": "eq",
+        "value": "RJ"
+      },
+      {
+        "fact": "ownsCultivableLand",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "fact": "familyPaysIncomeTax",
+        "op": "eq",
+        "value": false
+      },
+      {
+        "fact": "familyHasGovtEmployeeOrPensioner",
+        "op": "eq",
+        "value": false
+      },
+      {
+        "fact": "familyHasRegisteredProfessional",
+        "op": "eq",
+        "value": false,
+        "assumeIfUnknown": true,
+        "caveat": {
+          "hi": "अगर परिवार में कोई डॉक्टर, इंजीनियर, वकील या सीए प्रैक्टिस नहीं करता।",
+          "mr": "कुटुंबात कोणी डॉक्टर, इंजिनिअर, वकील किंवा सीए प्रॅक्टिस करत नसेल तर.",
+          "en": "As long as no one in the family practises as a doctor, engineer, lawyer or CA."
+        }
+      },
+      {
+        "fact": "familyHasPublicOffice",
+        "op": "eq",
+        "value": false,
+        "assumeIfUnknown": true,
+        "caveat": {
+          "hi": "अगर परिवार में कोई मंत्री, सांसद, विधायक या महापौर नहीं है।",
+          "mr": "कुटुंबात कोणी मंत्री, खासदार, आमदार किंवा महापौर नसेल तर.",
+          "en": "As long as no one in the family is a minister, MP, MLA or mayor."
+        }
+      },
+      {
+        "fact": "landAcquiredAfterCutoff",
+        "op": "eq",
+        "value": false,
+        "assumeIfUnknown": true,
+        "caveat": {
+          "hi": "ज़मीन 1 फरवरी 2019 के बाद खरीदी गई हो तो लाभ नहीं मिलता, विरासत में मिली हो तो मिलता है।",
+          "mr": "जमीन 1 फेब्रुवारी 2019 नंतर विकत घेतली असेल तर लाभ मिळत नाही, वारसाहक्काने मिळाली असेल तर मिळतो.",
+          "en": "Land bought after 1 February 2019 does not qualify; inherited land does."
+        }
+      }
+    ]
+  },
+  "benefitSummary": {
+    "hi": "राजस्थान सरकार से हर साल 3,000 रुपये, पीएम किसान के 6,000 के ऊपर, यानी कुल 9,000 रुपये। पैसा उसी बैंक खाते में किस्तों में आता है।",
+    "mr": "राजस्थान सरकारकडून दरवर्षी 3,000 रुपये, पीएम किसानच्या 6,000 वर, म्हणजे एकूण 9,000 रुपये. पैसे त्याच बँक खात्यात हप्त्यांनी येतात.",
+    "en": "Rs 3,000 a year from the Rajasthan government on top of PM-KISAN's Rs 6,000, so Rs 9,000 in all, paid in instalments into the same bank account."
+  },
+  "documents": [
+    {
+      "hi": "पीएम किसान में पंजीकरण",
+      "mr": "पीएम किसानमध्ये नोंदणी",
+      "en": "PM-KISAN registration"
+    },
+    {
+      "hi": "जन आधार कार्ड",
+      "mr": "जन आधार कार्ड",
+      "en": "Jan Aadhaar card"
+    },
+    {
+      "hi": "जन आधार से जुड़ा बैंक खाता",
+      "mr": "जन आधारशी जोडलेले बँक खाते",
+      "en": "Bank account linked to Jan Aadhaar"
+    }
+  ],
+  "applyAt": [
+    "Automatic for PM-KISAN farmers in Rajasthan (Jan Aadhaar linked)",
+    "Raj Kisan Sathi portal / e-Mitra"
+  ],
+  "applyAtSpoken": {
+    "hi": "अलग से फ़ॉर्म नहीं, पीएम किसान में नाम हो तो अपने आप; जन आधार जुड़वाने के लिए ई-मित्र पर",
+    "mr": "वेगळा अर्ज नाही, पीएम किसानमध्ये नाव असल्यास आपोआप; जन आधार जोडण्यासाठी ई-मित्रवर",
+    "en": "no separate form if you are in PM-KISAN; to link Jan Aadhaar, go to e-Mitra"
+  },
+  "notes": [
+    "Started in 2024 at Rs 2,000/year; raised to Rs 3,000/year (state budget), giving Rs 9,000 with PM-KISAN.",
+    "Same exclusions as PM-KISAN (income tax payers, government employees, professionals, constitutional posts)."
+  ],
+  "helpline": null,
+  "source": "https://www.zeebiz.com/hindi/economy/agriculture/mukhyamantri-kisan-samman-nidhi-yojana-now-rajasthan-farmers-to-get-3000-rupees-dairy-farmers-to-get-interest-free-loan-204327",
+  "sourceHash": null,
+  "version": 1,
+  "lastVerified": "2026-10-31",
+  "status": "approved"
+}

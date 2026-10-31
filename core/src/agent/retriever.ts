@@ -13,8 +13,22 @@ export type Chunk = {
   score?: number;
 };
 
+export type RetrieveOptions = {
+  schemeIds: string[];
+  lang: Lang;
+  /** The caller's state ("MH", "RJ"), if known: other states' schemes are left out. */
+  state?: string;
+};
+
 export interface Retriever {
-  retrieve(query: string, opts: { schemeIds: string[]; lang: Lang }): Promise<Chunk[]>;
+  retrieve(query: string, opts: RetrieveOptions): Promise<Chunk[]>;
+}
+
+/** State the caller most likely lives in: what they said, else Maharashtra for Marathi speakers. */
+export function likelyState(stated: string | undefined, lang: Lang): string | undefined {
+  if (stated === "MH" || stated === "RJ") return stated;
+  if (stated === "OTHER") return "OTHER";
+  return lang === "mr" ? "MH" : undefined;
 }
 
 /**
@@ -28,7 +42,7 @@ export class LocalSchemeRetriever implements Retriever {
     this.byId = new Map(schemes.map((s) => [s.id, s]));
   }
 
-  async retrieve(_query: string, { schemeIds, lang }: { schemeIds: string[]; lang: Lang }): Promise<Chunk[]> {
+  async retrieve(_query: string, { schemeIds, lang }: RetrieveOptions): Promise<Chunk[]> {
     return schemeIds.flatMap((id) => {
       const s = this.byId.get(id);
       if (!s) return [];
@@ -57,7 +71,7 @@ export class FallbackRetriever implements Retriever {
     private timeoutMs = 2500,
   ) {}
 
-  async retrieve(query: string, opts: { schemeIds: string[]; lang: Lang }): Promise<Chunk[]> {
+  async retrieve(query: string, opts: RetrieveOptions): Promise<Chunk[]> {
     let timer: NodeJS.Timeout | undefined;
     const timeout = new Promise<never>((_, reject) => {
       timer = setTimeout(() => reject(new Error(`retrieval timed out after ${this.timeoutMs} ms`)), this.timeoutMs);

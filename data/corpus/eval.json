@@ -1,5 +1,5 @@
 {
-  "notes": "Retrieval test set: each question should retrieve a chunk of `expect` in the top 4 with no scheme filter (the hardest case: caller names no scheme). Run with npm run rag:eval. Cases with heldOut=true were written after the alias/hint tuning and were not used to tune it.",
+  "notes": "Retrieval test set: each question should retrieve a chunk of `expect` in the top 4 with no scheme filter (the hardest case: caller names no scheme). Run with npm run rag:eval. Cases with heldOut=true were written after the alias/hint tuning and were not used to tune it. Cases with set=\"rajasthan\" cover the Rajasthan schemes (added with them, 31 Oct 2026).",
   "cases": [
     {
       "q": "पीएम किसान की किस्त कब आती है?",
@@ -183,6 +183,78 @@
       "lang": "en",
       "expect": "pmmvy",
       "heldOut": true
+    },
+    {
+      "q": "राजस्थान में किसानों को पीएम किसान के अलावा कितना पैसा मिलता है?",
+      "lang": "hi",
+      "expect": "rj-kisan-samman",
+      "set": "rajasthan"
+    },
+    {
+      "q": "जयपुर में मुफ़्त इलाज के लिए कौन सा कार्ड चाहिए, 25 लाख वाली योजना",
+      "lang": "hi",
+      "expect": "rj-maa",
+      "set": "rajasthan"
+    },
+    {
+      "q": "मेरी माँ 60 साल की है, राजस्थान में बुढ़ापा पेंशन कैसे मिलेगी?",
+      "lang": "hi",
+      "expect": "rj-vridhjan-pension",
+      "set": "rajasthan"
+    },
+    {
+      "q": "पति नहीं रहे, राजस्थान में विधवा पेंशन",
+      "lang": "hi",
+      "expect": "rj-ekal-nari-pension",
+      "set": "rajasthan"
+    },
+    {
+      "q": "अनाथ भतीजे को पाल रहा हूँ, कोई मदद मिलती है क्या?",
+      "lang": "hi",
+      "expect": "rj-palanhar",
+      "set": "rajasthan"
+    },
+    {
+      "q": "बेटी पैदा हुई है, राजस्थान में डेढ़ लाख वाली योजना",
+      "lang": "hi",
+      "expect": "rj-lado-protsahan",
+      "set": "rajasthan"
+    },
+    {
+      "q": "बारहवीं में 80 प्रतिशत आए, लड़कियों को स्कूटी मिलती है क्या?",
+      "lang": "hi",
+      "expect": "rj-kalibai-scooty",
+      "set": "rajasthan"
+    },
+    {
+      "q": "जन आधार कार्ड कैसे बनता है?",
+      "lang": "hi",
+      "expect": "rj-jan-aadhaar",
+      "set": "rajasthan"
+    },
+    {
+      "q": "खेत में नीलगाय फ़सल खा जाती है, तार लगाने की सब्सिडी",
+      "lang": "hi",
+      "expect": "rj-tarbandi",
+      "set": "rajasthan"
+    },
+    {
+      "q": "थ्रेशर से हाथ कट गया, किसान को मदद मिलती है?",
+      "lang": "hi",
+      "expect": "rj-krishak-saathi",
+      "set": "rajasthan"
+    },
+    {
+      "q": "Free coaching for RAS exam in Rajasthan",
+      "lang": "en",
+      "expect": "rj-anuprati-coaching",
+      "set": "rajasthan"
+    },
+    {
+      "q": "Cheap gas cylinder for ration card holders in Rajasthan",
+      "lang": "en",
+      "expect": "rj-lpg-450",
+      "set": "rajasthan"
     }
   ]
 }

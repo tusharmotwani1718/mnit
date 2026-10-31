@@ -7,7 +7,7 @@ import { detectScamKeywords } from "./scam.js";
 import { SessionStore } from "./session.js";
 import { toIndianMobile } from "../sms/number.js";
 import type { Action, RagTrace, Session, Topic, TurnMeta, TurnResult } from "./types.js";
-import type { Chunk } from "./retriever.js";
+import { likelyState, type Chunk } from "./retriever.js";
 
 /** Stopping rule (spec 6.4.4): speak results after this many questions in a topic round. */
 export const MAX_QUESTIONS = 5;
@@ -71,6 +71,8 @@ const SPEAK_ORDER = [
   "pm-jay", "pmay-g", "pmuy", "pmmvy", "pmsby", "pmjjby", "apy",
   "vb-g-ram-g", "e-shram", "sgnay", "shravanbal",
   "pms-sc", "shahu-fee", "csss", "nmms",
+  "rj-kisan-samman", "rj-maa", "rj-vridhjan-pension", "rj-ekal-nari-pension", "rj-vishesh-yogyajan-pension",
+  "rj-palanhar", "rj-lado-protsahan", "rj-kalibai-scooty",
 ];
 
 export type Agent = {
@@ -165,7 +167,10 @@ export function createAgent({
       let chunks: Chunk[] = [];
       let out: LlmTurnOutput;
       try {
-        if (retrieve) chunks = await retriever.retrieve(userText, { schemeIds: focus, lang: s.lang });
+        if (retrieve) {
+          const state = likelyState(s.stated.state as string | undefined, s.lang);
+          chunks = await retriever.retrieve(userText, { schemeIds: focus, lang: s.lang, state });
+        }
         out = await llm.turn({
           userText,
           lang: s.lang,
@@ -205,6 +210,8 @@ export function createAgent({
       }
 
       const learned = mergeFacts(s, out, userText);
+      // Bigha sizes vary; a Rajasthan bigha was counted as a pucca bigha, so say so.
+      if (out.landArea?.unit === "bigha" && s.stated.state === "RJ") say.push(text("bighaNote", s.lang));
       // Narrow to the caller's topics when none are set: at the start, or after "check other schemes" widened them
       // and the caller comes back to what they wanted ("actually, schemes for my son").
       if (!s.topics.length && out.topics.length && s.state === "collecting") {

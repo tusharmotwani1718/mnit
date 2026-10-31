@@ -1,7 +1,6 @@
 import OpenAI from "openai";
-import type { Lang } from "../engine/index.js";
-import type { Chunk, Retriever } from "../agent/retriever.js";
-import { loadAliases, matchKey, type Aliases, type CorpusChunk } from "./corpus.js";
+import type { Chunk, RetrieveOptions, Retriever } from "../agent/retriever.js";
+import { loadAliases, loadSchemeStates, matchKey, type Aliases, type CorpusChunk } from "./corpus.js";
 
 // Large beats small clearly on Hindi/Marathi (rag:eval Hit@4 97% vs 83%); cost is still a few cents for the corpus.
 export const EMBED_MODEL = process.env.RAG_EMBED_MODEL ?? "text-embedding-3-large";
@@ -144,7 +143,17 @@ export class PgVectorRetriever implements Retriever {
     private embedder: Embedder,
     private k = 4,
     private aliases: Aliases = loadAliases(),
+    private schemeStates: Record<string, string> = loadSchemeStates(),
   ) {}
+
+  /** Central schemes always; state schemes only for the caller's state (all of them when the state is unknown). */
+  private forState(chunks: Chunk[], state: string | undefined): Chunk[] {
+    if (!state) return chunks;
+    return chunks.filter((c) => {
+      const s = this.schemeStates[c.schemeId];
+      return !s || s === state;
+    });
+  }
 
   /** Warns if the stored passages were embedded with a different model than queries will be (results would be meaningless). */
   async checkModel(): Promise<void> {
@@ -177,7 +186,8 @@ export class PgVectorRetriever implements Retriever {
     }));
   }
 
-  async retrieve(query: string, { schemeIds }: { schemeIds: string[]; lang: Lang }): Promise<Chunk[]> {
+  async retrieve(query: string, { schemeIds, state }: RetrieveOptions): Promise<Chunk[]> {
+    // A scheme the caller names is searched even if it's from another state (they asked about it).
     const named = namedSchemes(query, this.aliases);
     const priority = [...new Set([...named, ...schemeIds])];
     const [vector] = await this.embedder.embed([query]);
@@ -188,6 +198,6 @@ export class PgVectorRetriever implements Retriever {
     // Named schemes outrank focus: the caller asked about them by name.
     const rank = (c: Chunk) => (named.includes(c.schemeId) ? 0 : 1);
     const prioritised = [...focused].sort((a, b) => rank(a) - rank(b));
-    return diversify([...prioritised.slice(0, this.k - 1), ...overall], this.k);
+    return diversify([...prioritised.slice(0, this.k - 1), ...this.forState(overall, state)], this.k);
   }
 }

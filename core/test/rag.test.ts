@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { createAgent, shouldRetrieve, type Chunk, type LlmTurnOutput, type Retriever, type TurnLlm } from "../src/agent/index.js";
 import { buildUserMessage } from "../src/agent/llm.js";
-import { FallbackRetriever, LocalSchemeRetriever } from "../src/agent/retriever.js";
+import { FallbackRetriever, likelyState, LocalSchemeRetriever } from "../src/agent/retriever.js";
 import { loadEngine } from "../src/engine/index.js";
 import { buildCorpus, chunkText, isMostlyDevanagari, normalise } from "../src/rag/corpus.js";
 import { diversify, namedSchemes } from "../src/rag/store.js";
-import { loadAliases } from "../src/rag/corpus.js";
+import { loadAliases, loadSchemeStates } from "../src/rag/corpus.js";
 
 const engine = loadEngine();
 
@@ -30,14 +30,14 @@ describe("corpus", () => {
     expect(chunks[1]).toContain(lastOfFirst.replace(/\.$/, ""));
   });
 
-  it("covers every rule scheme in hi/mr/en and the 20 RAG-only schemes", () => {
+  it("covers every rule scheme in hi/mr/en and the 28 RAG-only schemes", () => {
     const corpus = buildCorpus(engine.schemes);
     expect(new Set(corpus.map((c) => c.id)).size).toBe(corpus.length);
     for (const s of engine.schemes) {
       for (const lang of ["hi", "mr", "en"]) expect(corpus.some((c) => c.id === `${s.id}:summary:${lang}`)).toBe(true);
     }
     const extras = new Set(corpus.filter((c) => c.tier === "extra").map((c) => c.schemeId));
-    expect(extras.size).toBe(20);
+    expect(extras.size).toBe(28);
     expect(corpus.filter((c) => c.section === "official").length).toBeGreaterThan(100);
   });
 });
@@ -140,5 +140,22 @@ describe("ungrounded answers", () => {
   it("still says the CSC line for a real question it can't answer", async () => {
     const r = await run({});
     expect(r.replyText).toContain("CSC");
+  });
+});
+
+describe("state-aware retrieval", () => {
+  it("assumes Maharashtra for Marathi speakers until the caller says otherwise", () => {
+    expect(likelyState(undefined, "mr")).toBe("MH");
+    expect(likelyState(undefined, "hi")).toBeUndefined();
+    expect(likelyState("RJ", "mr")).toBe("RJ");
+    expect(likelyState("OTHER", "hi")).toBe("OTHER");
+  });
+
+  it("knows which schemes belong to which state", () => {
+    const states = loadSchemeStates();
+    expect(states["rj-maa"]).toBe("RJ");
+    expect(states["sgnay"]).toBe("MH");
+    expect(states["rj-jan-aadhaar"]).toBe("RJ");
+    expect(states["pm-kisan"]).toBeUndefined();
   });
 });

@@ -1,0 +1,96 @@
+{
+  "id": "rj-kalibai-scooty",
+  "name": {
+    "hi": "कालीबाई भील मेधावी छात्रा स्कूटी योजना",
+    "mr": "कालीबाई भील मेधावी विद्यार्थिनी स्कूटी योजना",
+    "en": "Kalibai Bheel Medhavi Chhatra Scooty Yojana"
+  },
+  "level": "state",
+  "state": "RJ",
+  "tier": 1,
+  "topics": [
+    "education",
+    "women"
+  ],
+  "rules": {
+    "all": [
+      {
+        "fact": "state",
+        "op": "eq",
+        "value": "RJ"
+      },
+      {
+        "fact": "studentIsGirl",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "fact": "studentLevel",
+        "op": "in",
+        "value": [
+          "degree"
+        ]
+      },
+      {
+        "fact": "annualFamilyIncome",
+        "op": "lte",
+        "value": 250000
+      },
+      {
+        "manualCheck": "Scored at least 65% in Class 12 (RBSE) or 75% (CBSE) and joined a regular college course in Rajasthan; category and seat rules per the current notification."
+      }
+    ]
+  },
+  "benefitSummary": {
+    "hi": "बारहवीं में अच्छे नंबर लाकर कॉलेज जाने वाली मेधावी छात्राओं को मुफ़्त स्कूटी।",
+    "mr": "बारावीत चांगले गुण मिळवून महाविद्यालयात जाणाऱ्या हुशार विद्यार्थिनींना मोफत स्कूटी.",
+    "en": "A free scooty for meritorious girls who score well in Class 12 and join college."
+  },
+  "documents": [
+    {
+      "hi": "जन आधार कार्ड",
+      "mr": "जन आधार कार्ड",
+      "en": "Jan Aadhaar card"
+    },
+    {
+      "hi": "बारहवीं की मार्कशीट",
+      "mr": "बारावीचे गुणपत्रक",
+      "en": "Class 12 marksheet"
+    },
+    {
+      "hi": "आय प्रमाण पत्र",
+      "mr": "उत्पन्नाचा दाखला",
+      "en": "Income certificate"
+    },
+    {
+      "hi": "मूल निवास प्रमाण पत्र",
+      "mr": "अधिवास प्रमाणपत्र",
+      "en": "Domicile certificate"
+    },
+    {
+      "hi": "कॉलेज में प्रवेश का प्रमाण",
+      "mr": "महाविद्यालय प्रवेशाचा पुरावा",
+      "en": "College admission proof"
+    }
+  ],
+  "applyAt": [
+    "Rajasthan scholarship portal via SSO (hte.rajasthan.gov.in)",
+    "e-Mitra"
+  ],
+  "applyAtSpoken": {
+    "hi": "एसएसओ पोर्टल पर छात्रवृत्ति के लिए, ई-मित्र की मदद से",
+    "mr": "एसएसओ पोर्टलवर शिष्यवृत्तीसाठी, ई-मित्रच्या मदतीने",
+    "en": "on the SSO scholarship portal, with help from e-Mitra"
+  },
+  "notes": [
+    "Sources conflict on whether it is limited to SC/ST girls or open to all categories; kept as an office check.",
+    "The 2025-26 window closed on 31 Oct 2025; the 2026-27 notice was not found."
+  ],
+  "helpline": null,
+  "source": "https://www.buddy4study.com/article/kalibai-bheel-medhavi-chhatra-scooty-yojana",
+  "sourceSecondary": "https://www.myscheme.gov.in/schemes/kbbmcss",
+  "sourceHash": null,
+  "version": 1,
+  "lastVerified": "2026-10-31",
+  "status": "approved"
+}

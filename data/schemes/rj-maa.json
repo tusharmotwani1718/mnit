@@ -1,0 +1,70 @@
+{
+  "id": "rj-maa",
+  "name": {
+    "hi": "मुख्यमंत्री आयुष्मान आरोग्य (मा) योजना",
+    "mr": "मुख्यमंत्री आयुष्मान आरोग्य (मा) योजना",
+    "en": "Mukhyamantri Ayushman Arogya (MAA) Yojana"
+  },
+  "level": "state",
+  "state": "RJ",
+  "tier": 1,
+  "topics": [
+    "health"
+  ],
+  "rules": {
+    "all": [
+      {
+        "fact": "state",
+        "op": "eq",
+        "value": "RJ"
+      },
+      {
+        "fact": "familyHasGovtEmployeeOrPensioner",
+        "op": "eq",
+        "value": false
+      }
+    ]
+  },
+  "benefitSummary": {
+    "hi": "चुने हुए अस्पतालों में परिवार को साल में 25 लाख रुपये तक मुफ़्त इलाज, और 10 लाख का दुर्घटना बीमा। खाद्य सुरक्षा, छोटे-सीमांत किसान और संविदा कर्मी परिवारों के लिए मुफ़्त, बाक़ी परिवार साल के 850 रुपये देकर जुड़ सकते हैं।",
+    "mr": "निवडक रुग्णालयांत कुटुंबाला वर्षाला 25 लाख रुपयांपर्यंत मोफत उपचार, आणि 10 लाखांचा अपघात विमा. अन्न सुरक्षा, लहान-सीमांत शेतकरी आणि कंत्राटी कर्मचारी कुटुंबांसाठी मोफत, इतर कुटुंबे वर्षाला 850 रुपये भरून सामील होऊ शकतात.",
+    "en": "Cashless treatment up to Rs 25 lakh a year per family in empanelled hospitals, plus Rs 10 lakh accident cover. Free for food-security (NFSA), SECC, small and marginal farmer and contract-worker families; other families can join for Rs 850 a year."
+  },
+  "documents": [
+    {
+      "hi": "जन आधार कार्ड",
+      "mr": "जन आधार कार्ड",
+      "en": "Jan Aadhaar card"
+    },
+    {
+      "hi": "परिवार के सभी सदस्यों का आधार",
+      "mr": "कुटुंबातील सर्व सदस्यांचे आधार",
+      "en": "Aadhaar of all family members"
+    },
+    {
+      "hi": "आधार से जुड़ा मोबाइल नंबर",
+      "mr": "आधारशी जोडलेला मोबाईल नंबर",
+      "en": "Mobile number linked to Aadhaar"
+    }
+  ],
+  "applyAt": [
+    "e-Mitra kiosk",
+    "Rajasthan SSO portal (sso.rajasthan.gov.in)"
+  ],
+  "applyAtSpoken": {
+    "hi": "नज़दीकी ई-मित्र केंद्र पर",
+    "mr": "जवळच्या ई-मित्र केंद्रावर",
+    "en": "to your nearest e-Mitra centre"
+  },
+  "notes": [
+    "Earlier called Chiranjeevi Swasthya Bima Yojana. Government employees and pensioners are covered by RGHS instead.",
+    "Rs 850 paid-category premium is from the health department's Chiranjeevi page; confirm for MAA."
+  ],
+  "helpline": null,
+  "source": "https://department.rajasthan.gov.in/scheme/detail/775",
+  "sourceSecondary": "https://currentaffairs.adda247.com/rajasthan-mukhyamantri-ayushman-arogya-yojana-maay-eligibility-benefits-coverage-and-how-to-apply/",
+  "sourceHash": null,
+  "version": 1,
+  "lastVerified": "2026-10-31",
+  "status": "approved"
+}

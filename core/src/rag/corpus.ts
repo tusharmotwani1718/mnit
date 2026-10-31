@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { Lang, Localized, Scheme } from "../engine/index.js";
 import { DEFAULT_DATA_DIR } from "../engine/loader.js";
@@ -22,6 +22,19 @@ type ExtraScheme = {
 };
 
 export type Aliases = Record<string, { names: string[]; hints: string }>;
+
+/** State of each state scheme (rule schemes and RAG-only ones); central schemes are absent. */
+export function loadSchemeStates(dataDir = DEFAULT_DATA_DIR): Record<string, string> {
+  const states: Record<string, string> = {};
+  const dir = join(dataDir, "schemes");
+  for (const file of readdirSync(dir).filter((f) => f.endsWith(".json"))) {
+    const s = JSON.parse(readFileSync(join(dir, file), "utf8")) as { id: string; state?: string };
+    if (s.state) states[s.id] = s.state;
+  }
+  const extra = JSON.parse(readFileSync(join(dataDir, "corpus", "extra-schemes.json"), "utf8")) as { schemes: { id: string; state?: string }[] };
+  for (const s of extra.schemes) if (s.state) states[s.id] = s.state;
+  return states;
+}
 
 export function loadAliases(dataDir = DEFAULT_DATA_DIR): Aliases {
   return (JSON.parse(readFileSync(join(dataDir, "corpus", "aliases.json"), "utf8")) as { schemes: Aliases }).schemes;

@@ -11,6 +11,11 @@ const T = {
     en: "Hello! Welcome to Yojana Darshak. You can get free information about government schemes here. We will never ask for your Aadhaar number, bank account or OTP. Tell me, what do you need help with?",
   },
   switched: { hi: "ठीक है, अब हिंदी में बात करते हैं।", mr: "ठीक आहे, आता मराठीत बोलूया.", en: "Okay, let's continue in English." },
+  bighaNote: {
+    hi: "मैंने राजस्थान का पक्का बीघा माना है; सीएससी पर अपनी ज़मीन हेक्टेयर में पक्की कर लीजिए।",
+    mr: "मी राजस्थानचा पक्का बिघा धरला आहे; सीएससीवर तुमची जमीन हेक्टरमध्ये निश्चित करून घ्या.",
+    en: "I've counted a Rajasthan pucca bigha; please confirm your land in hectares at a CSC.",
+  },
   meantYou: { hi: "मैं आपके अपने बारे में पूछ रही हूँ।", mr: "मी तुमच्या स्वतःबद्दल विचारत आहे.", en: "I meant you yourself." },
   sorry: { hi: "माफ़ कीजिए, ठीक से समझ नहीं आया।", mr: "माफ करा, नीट समजले नाही.", en: "Sorry, I didn't quite get that." },
   scamWarning: {

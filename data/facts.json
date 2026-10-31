@@ -4,7 +4,7 @@
   "facts": {
     "state": {
       "type": "enum",
-      "values": ["MH", "OTHER"],
+      "values": ["MH", "RJ", "OTHER"],
       "askable": true,
       "priority": 1,
       "ask": {
@@ -311,6 +311,42 @@
         "hi": "विद्यार्थी अभी कौन सी कक्षा या कोर्स में पढ़ रहा है?",
         "mr": "विद्यार्थी सध्या कोणत्या इयत्तेत किंवा कोर्समध्ये शिकत आहे?",
         "en": "Which class or course is the student studying in now?"
+      }
+    },
+    "studentIsGirl": {
+      "type": "boolean",
+      "askable": true,
+      "priority": 24,
+      "topics": ["education"],
+      "description": "The student is a girl (some scholarships and scooty schemes are only for girls).",
+      "ask": {
+        "hi": "क्या विद्यार्थी लड़की है?",
+        "mr": "विद्यार्थी मुलगी आहे का?",
+        "en": "Is the student a girl?"
+      }
+    },
+    "hasNewbornDaughter": {
+      "type": "boolean",
+      "askable": true,
+      "priority": 25,
+      "topics": ["women"],
+      "description": "The family has a daughter born on or after 1 August 2024 (Rajasthan Lado Protsahan Yojana).",
+      "ask": {
+        "hi": "क्या आपके घर 1 अगस्त 2024 के बाद बेटी का जन्म हुआ है?",
+        "mr": "तुमच्या घरी 1 ऑगस्ट 2024 नंतर मुलीचा जन्म झाला आहे का?",
+        "en": "Was a daughter born in your family on or after 1 August 2024?"
+      }
+    },
+    "caresForVulnerableChild": {
+      "type": "boolean",
+      "askable": true,
+      "priority": 26,
+      "topics": ["welfare", "women"],
+      "description": "The family raises a child who is an orphan, or whose parent is widowed, divorced or deserted, remarried (nata), in prison for life, disabled, or has HIV or leprosy (Rajasthan Palanhar Yojana).",
+      "ask": {
+        "hi": "क्या आप किसी ऐसे बच्चे को पाल रहे हैं जो अनाथ है, या जिसकी माँ विधवा, तलाक़शुदा या परित्यक्ता है, या जिसके माता-पिता जेल में या दिव्यांग हैं?",
+        "mr": "तुम्ही असे मूल सांभाळता का जे अनाथ आहे, किंवा ज्याची आई विधवा, घटस्फोटित किंवा परित्यक्ता आहे, किंवा ज्याचे आई-वडील तुरुंगात किंवा दिव्यांग आहेत?",
+        "en": "Are you raising a child who is an orphan, or whose mother is widowed, divorced or deserted, or whose parent is in prison or disabled?"
       }
     },
     "studentInGovtSchool": {

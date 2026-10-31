@@ -1,0 +1,88 @@
+{
+  "id": "rj-vishesh-yogyajan-pension",
+  "name": {
+    "hi": "मुख्यमंत्री विशेष योग्यजन सम्मान पेंशन",
+    "mr": "मुख्यमंत्री विशेष योग्यजन सन्मान पेन्शन",
+    "en": "Mukhyamantri Vishesh Yogyajan Samman Pension (disability)"
+  },
+  "level": "state",
+  "state": "RJ",
+  "tier": 1,
+  "topics": [
+    "pension",
+    "welfare",
+    "health"
+  ],
+  "rules": {
+    "all": [
+      {
+        "fact": "state",
+        "op": "eq",
+        "value": "RJ"
+      },
+      {
+        "fact": "isDisabled",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "fact": "annualFamilyIncome",
+        "op": "lte",
+        "value": 60000
+      }
+    ]
+  },
+  "benefitSummary": {
+    "hi": "हर महीने 1,250 रुपये पेंशन, सीधे बैंक खाते में (2025-26 के राज्य बजट में बढ़ी)। राशि ई-मित्र पर पक्की कर लें।",
+    "mr": "दरमहा 1,250 रुपये पेन्शन, थेट बँक खात्यात (2025-26 च्या राज्य अर्थसंकल्पात वाढ). रक्कम ई-मित्रवर निश्चित करून घ्या.",
+    "en": "Rs 1,250 a month, paid into your bank account (raised in the 2025-26 state budget). Confirm the current amount at e-Mitra."
+  },
+  "documents": [
+    {
+      "hi": "जन आधार कार्ड",
+      "mr": "जन आधार कार्ड",
+      "en": "Jan Aadhaar card"
+    },
+    {
+      "hi": "आधार कार्ड",
+      "mr": "आधार कार्ड",
+      "en": "Aadhaar card"
+    },
+    {
+      "hi": "उम्र का सबूत",
+      "mr": "वयाचा पुरावा",
+      "en": "Age proof"
+    },
+    {
+      "hi": "जन आधार से जुड़ा बैंक खाता",
+      "mr": "जन आधारशी जोडलेले बँक खाते",
+      "en": "Bank account linked to Jan Aadhaar"
+    },
+    {
+      "hi": "दिव्यांग प्रमाण पत्र (40% या ज़्यादा)",
+      "mr": "दिव्यांग प्रमाणपत्र (40% किंवा जास्त)",
+      "en": "Disability certificate (40% or more)"
+    }
+  ],
+  "applyAt": [
+    "e-Mitra kiosk",
+    "Rajasthan SSO portal (sso.rajasthan.gov.in)"
+  ],
+  "applyAtSpoken": {
+    "hi": "नज़दीकी ई-मित्र केंद्र पर",
+    "mr": "जवळच्या ई-मित्र केंद्रावर",
+    "en": "to your nearest e-Mitra centre"
+  },
+  "notes": [
+    "Disability of 40% or more, any age, family income up to Rs 60,000 a year. isDisabled is never asked; used only if the caller mentions it.",
+    "Amount: Rs 1,250/month per the 2025-26 Rajasthan budget; some reports say Rs 1,300 from 1 January 2026 (not confirmed from an official order).",
+    "Income limit is waived for BPL, Antyodaya and Astha card families and for Sahariya, Kathodi and Khairwa families (not modelled)."
+  ],
+  "helpline": null,
+  "source": "https://sje.rajasthan.gov.in/Default.aspx?PageID=288",
+  "sourceSecondary": "https://emandirates.com/rajasthan-budget-2025-relief-to-pensioners-will-get-pension-of-rs-1250-every-month/",
+  "sourceHash": null,
+  "version": 1,
+  "lastVerified": "2026-10-31",
+  "status": "approved"
+}

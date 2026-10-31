@@ -1,0 +1,84 @@
+{
+  "id": "rj-palanhar",
+  "name": {
+    "hi": "पालनहार योजना",
+    "mr": "पालनहार योजना",
+    "en": "Palanhar Yojana"
+  },
+  "level": "state",
+  "state": "RJ",
+  "tier": 1,
+  "topics": [
+    "welfare",
+    "women"
+  ],
+  "rules": {
+    "all": [
+      {
+        "fact": "state",
+        "op": "eq",
+        "value": "RJ"
+      },
+      {
+        "fact": "caresForVulnerableChild",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "fact": "annualFamilyIncome",
+        "op": "lte",
+        "value": 120000
+      },
+      {
+        "manualCheck": "The child goes to an Anganwadi from age 2 and to school from age 6; for a widowed or nata mother, at most 3 children."
+      }
+    ]
+  },
+  "benefitSummary": {
+    "hi": "हर बच्चे को 18 साल तक हर महीने मदद: छोटे बच्चों को लगभग 750 रुपये और स्कूल जाने पर लगभग 1,500 रुपये, अनाथ बच्चों को कपड़ों के लिए साल के 2,000 रुपये अलग से।",
+    "mr": "प्रत्येक मुलाला 18 वर्षांपर्यंत दरमहा मदत: लहान मुलांना साधारण 750 रुपये आणि शाळेत गेल्यावर साधारण 1,500 रुपये, अनाथ मुलांना कपड्यांसाठी वर्षाला 2,000 रुपये वेगळे.",
+    "en": "Monthly help for each child until 18: about Rs 750 for young children and about Rs 1,500 once in school, plus Rs 2,000 a year for clothes for orphans."
+  },
+  "documents": [
+    {
+      "hi": "जन आधार कार्ड",
+      "mr": "जन आधार कार्ड",
+      "en": "Jan Aadhaar card"
+    },
+    {
+      "hi": "आधार कार्ड",
+      "mr": "आधार कार्ड",
+      "en": "Aadhaar card"
+    },
+    {
+      "hi": "माता-पिता की स्थिति का प्रमाण (मृत्यु / पेंशन / सज़ा / दिव्यांगता)",
+      "mr": "आई-वडिलांच्या स्थितीचा पुरावा (मृत्यू / पेन्शन / शिक्षा / दिव्यांगत्व)",
+      "en": "Proof of the parents' situation (death, pension, sentence or disability)"
+    },
+    {
+      "hi": "स्कूल / आंगनवाड़ी में नाम का प्रमाण",
+      "mr": "शाळा / अंगणवाडीत नावाचा पुरावा",
+      "en": "Proof of school or Anganwadi enrolment"
+    }
+  ],
+  "applyAt": [
+    "e-Mitra kiosk",
+    "Rajasthan SSO portal (sso.rajasthan.gov.in)",
+    "Social Justice department district office"
+  ],
+  "applyAtSpoken": {
+    "hi": "नज़दीकी ई-मित्र केंद्र पर",
+    "mr": "जवळच्या ई-मित्र केंद्रावर",
+    "en": "to your nearest e-Mitra centre"
+  },
+  "notes": [
+    "Official SJE page (older) lists Rs 500/month up to age 5 and Rs 1,000/month after school admission; recent reports say Rs 750 and Rs 1,500. Spoken text says 'about'.",
+    "Categories: orphans; children of parents sentenced to death or life; of widows on pension (up to 3); of nata mothers (up to 3); of remarried widows; of parents with HIV/AIDS or leprosy; of disabled parents; of divorced or deserted women."
+  ],
+  "helpline": null,
+  "source": "https://sje.rajasthan.gov.in/schemes/palanhar.html",
+  "sourceHash": null,
+  "version": 1,
+  "lastVerified": "2026-10-31",
+  "status": "approved"
+}
